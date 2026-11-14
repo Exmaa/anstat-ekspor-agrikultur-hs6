@@ -1,0 +1,33 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.RDataTmp
+.Ruserdata
+
+# User-specific files
+.Renviron
+
+# RStudio files
+.Rproj.user/
+
+# Quarto / RMarkdown temporary files
+.quarto/
+*_cache/
+*_files/
+*.synctex.gz
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large installers / temporary binaries
+*.exe
+*.zip
+*.tar.gz
+*.rar
+*.tmp
+*.log

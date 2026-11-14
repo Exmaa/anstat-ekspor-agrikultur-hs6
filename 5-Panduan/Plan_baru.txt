@@ -1,0 +1,345 @@
+Berikut adalah susunan ulang **Rencana Penelitian (End-to-End Research Plan)** yang telah disempurnakan agar selaras dengan kaidah metodologi di folder `Materi` ([Kuliah03_An_Stat_Ganjil_2024_25_Pengujian Hipotesis.pdf](file:///Users/thariq/Magister/SEMESTER%201/Analisis%20Statistika/Teori/Draf/Materi/Kuliah03_An_Stat_Ganjil_2024_25_Pengujian%20Hipotesis.pdf), [Kuliah04_An_Stat_Ganjil_2023_24_Analisis_Regresi.pdf](file:///Users/thariq/Magister/SEMESTER%201/Analisis%20Statistika/Teori/Draf/Materi/Kuliah04_An_Stat_Ganjil_2023_24_Analisis_Regresi.pdf), [Kuliah05_An_Stat_Ganjil_2024_25_Analisis_Regresi (lanjutan).pdf](file:///Users/thariq/Magister/SEMESTER%201/Analisis%20Statistika/Teori/Draf/Materi/Kuliah05_An_Stat_Ganjil_2024_25_Analisis_Regresi%20%28lanjutan%29.pdf), [Kuliah06_An_Stat_Ganjil_2024_25_Rancangan Acak Lengkap.pdf](file:///Users/thariq/Magister/SEMESTER%201/Analisis%20Statistika/Teori/Draf/Materi/Kuliah06_An_Stat_Ganjil_2024_25_Rancangan%20Acak%20Lengkap.pdf), [Kuliah07_An_Stat_Ganjil_2024_25_Pembandingan_Ganda.pdf](file:///Users/thariq/Magister/SEMESTER%201/Analisis%20Statistika/Teori/Draf/Materi/Kuliah07_An_Stat_Ganjil_2024_25_Pembandingan_Ganda.pdf), dan [kuliah 10_Percobaan Faktorial.pdf](file:///Users/thariq/Magister/SEMESTER%201/Analisis%20Statistika/Teori/Draf/Materi/kuliah%2010_Percobaan%20Faktorial.pdf))
+
+---
+
+# Rencana Penelitian (End-to-End Research Plan)
+
+**Topik:** Analisis Asosiasi dan Dampak Tarif Resiprokal AS, Fluktuasi Kurs, dan Guncangan Blokade Selat Hormuz terhadap Ekspor Agrikultur Indonesia (Level HS-6) menggunakan Pendekatan Regresi Linear Berganda.
+
+**Desain Studi:** Penelitian ini merupakan **studi observasional deret waktu bulanan** (*monthly time-series*) yang memadukan Analisis Korelasi, Uji Beda Komparatif Antar-Rezim (*One-Way ANOVA* / *Kruskal-Wallis*), dan Regresi Linear Berganda (*Ordinary Least Squares* / OLS). Untuk menghindari bias agregasi akibat perbedaan skala varians antar-komoditas serta masalah pengamatan bernilai nol (*zero trade flows*) pada kode HS-6 minor, pemodelan dilakukan secara **terpisah (3 model independen)** pada pos tarif HS-6 utama yang aktif diperdagangkan setiap bulan, dilengkapi variabel kontrol aktivitas industri AS untuk menekan bias peubah perancu (*confounders*).
+
+---
+
+### Tahap 1: Pengambilan & Seleksi Data (*Data Acquisition*)
+
+Kumpulkan data deret waktu bulanan dengan rentang **Januari 2022 – September 2026** (`N = 57` observasi bulanan).
+
+1. **Variabel Dependen ($Y_t$) — Volume Impor AS dari Indonesia:**
+   * **Sumber:** [USDA FAS GATS](https://apps.fas.usda.gov/gats/default.aspx?publish=1) (*Standard Query* → *Product Import - General Imports* → *Partner: Indonesia* → *Level: HS-6* → *Satuan: Metric Tons* → *Frekuensi: Bulanan*).
+   * **Seleksi Kode HS-6 Utama (Aktif Setiap Bulan, $Y_t > 0$):**
+     * **Model 1 (Sawit Olahan):** `1511.90` (*Refined Palm Oil* dan fraksinya — dipilih karena pengirimannya rutin setiap bulan, sedangkan pos `1511.10` sering bernilai nol yang tidak terdefinisi pada transformasi $\ln$).
+     * **Model 2 (Karet Alam):** `4001.22` (*Technically Specified Natural Rubber* / TSNR SIR-20 — pos utama pengiriman rutin bahan baku pabrik ban AS).
+     * **Model 3 (Kopi Mentah):** `0901.11` (*Coffee, not roasted, not decaffeinated* — pengiriman rutin bulanan).
+
+2. **Variabel Independen Utama & Kontrol ($X_t$):**
+   * **Tarif Efektif AS ($\tau_t$):** Rasio $\text{Calculated Duty} / \text{Customs Value}$ dari [USITC DataWeb](https://dataweb.usitc.gov/) untuk masing-masing pos HS-6 (menangkap secara kontinu fase tarif dasar MFN, pemberlakuan tarif resiprokal 32% sejak April 2025, hingga pengecualian tarif 0% pasca-*Agreement on Reciprocal Trade* / ART mulai Februari 2026).
+   * **Kurs IDR/USD ($\text{Kurs}_{t-k}$):** Rata-rata kurs bulanan IDR/USD dari [Bank Indonesia (JISDOR)](https://www.bi.go.id/id/statistik/informasi-kurs/transaksi-bi/default.aspx) / seri referensi bulanan OECD-FRED (`CCUSMA02IDM618N`) dan ECB.
+   * **Harga Minyak Dunia ($\text{Oil}_{t-k}$):** Rata-rata bulanan harga minyak mentah Brent (USD/barel) dari World Bank *Pink Sheet* / [FRED St. Louis Fed](https://fred.stlouisfed.org/).
+   * **Variabel Dummy Krisis Geopolitik ($D_{\text{Hormuz},t}$):** Bernilai `1` mulai Maret 2026 hingga September 2026 (7 bulan fase penutupan Selat Hormuz dan pengalihan rute pelayaran memutar Tanjung Harapan), dan `0` sebelumnya.
+     > *Catatan Identifikasi:* Variabel dummy terpisah untuk ART ($D_{\text{ART},t}$ mulai Februari 2026) tidak dimasukkan bersamaan dengan $D_{\text{Hormuz},t}$ (mulai Maret 2026) ke dalam satu persamaan regresi untuk mencegah multikolinearitas ekstrem ($r \approx 0{,}93$; identik pada 56 dari 57 bulan) dan titik pengungkit tunggal pada Februari 2026. Efek penurunan tarif ART menjadi 0% ditangkap secara langsung oleh variabel kontinu $\ln(1 + \tau_t)$.
+   * **Variabel Kontrol Daya Serap Pasar ($\text{INDPRO}_t$):** *US Industrial Production Index* dari [FRED St. Louis Fed](https://fred.stlouisfed.org/) untuk mengontrol fluktuasi kapasitas serap dan permintaan manufaktur domestik AS.
+
+3. **Pemeriksaan Ketelitian Data (*Data Auditing*):**
+   * Memastikan keselarasan definisi *General Imports* antara USDA GATS dan USITC DataWeb serta memeriksa pengamatan ekstrem guna membedakan anomali perdagangan riil (seperti aksi *front-loading* importir) dari kesalahan pencatatan (*non-sampling error*).
+
+---
+
+### Tahap 2: Preprocessing, Transformasi Logaritma, *Mean-Centering*, & *Shipping Lag*
+
+1. **Transformasi Logaritma Natural ($\ln$):**
+   * Transformasikan seluruh variabel kontinu positif ($Y_t$, $\text{Kurs}_{t-k}$, $\text{Oil}_{t-k}$, dan $\text{INDPRO}_t$) ke dalam bentuk logaritma natural ($\ln$) untuk meluruskan hubungan fungsional, menstabilkan varians residual, dan memudahkan interpretasi koefisien sebagai **elastisitas (%)**.
+   * Transformasikan variabel tarif efektif $\tau_t$ (dalam desimal) menjadi **$\ln(1 + \tau_t)$** agar tetap terdefinisi ketika tarif bernilai `0%` pasca-ART Februari 2026 sekaligus mengukur elastisitas volume ekspor terhadap faktor beban tarif $(1 + \tau_t)$.
+
+2. **Pemusatan Nilai Tengah (*Mean-Centering*) Variabel Harga Minyak:**
+   * Bentuk variabel harga minyak terpusat sebelum dikalikan dengan dummy blokade Hormuz:
+     $$\ln(\text{Oil}_{t-k})^c = \ln(\text{Oil}_{t-k}) - \overline{\ln(\text{Oil})}$$
+   * Langkah ini dilakukan sejak tahap *preprocessing* untuk: (a) menghilangkan multikolinearitas struktural antara peubah utama dan suku interaksinya, serta (b) memastikan koefisien $D_{\text{Hormuz},t}$ dapat diinterpretasikan secara wajar pada **tingkat harga minyak rata-rata sampel** (bukan ekstrapolasi pada $\ln(\text{Oil}) = 0$ atau `1 USD/barel`).
+
+3. **Penyesuaian Jeda Waktu Pengiriman (*Shipping Lag*):**
+   * Mengingat data *General Imports* USDA GATS dicatat saat kedatangan kapal di pelabuhan AS (*arrival basis*), variabel $\text{Kurs}_{t-k}$ dan $\text{Oil}_{t-k}$ menggunakan jeda waktu pengiriman tetap ($k \in \{1, 2\}$ bulan) yang divalidasi secara empiris melalui *Cross-Correlation Function* (CCF) pada Tahap 3.
+   * Variabel kontrol $\text{INDPRO}_t$ menggunakan periode berjalan $t$ (atau $t-1$) karena mencerminkan aktivitas industri di daratan AS saat barang tiba/dikonsumsi.
+   * Skema jeda waktu dinamis (*time-varying lag*: `t-1` sebelum Maret 2026 dan `t-2` sejak Maret 2026 untuk mengakomodasi tambahan 10–14 hari pelayaran via Tanjung Harapan) dijalankan sebagai **uji ketahanan (*robustness check*)** agar model utama tidak kehilangan observasi transisi Februari 2026.
+
+---
+
+### Tahap 3: Analisis Eksplorasi, Korelasi, & Uji Beda Komparatif Antar-Rezim
+
+1. **Analisis Korelasi & Validasi *Lag* (Pearson, Spearman, & CCF):**
+   * Hitung korelasi linear **Pearson ($r$)** dan korelasi peringkat **Spearman ($\rho_s$)** antara $\ln(Y_t)$ dengan $\ln(1 + \tau_t)$, $\ln(\text{Kurs}_{t-k})$, $\ln(\text{Oil}_{t-k})$, dan $\ln(\text{INDPRO}_t)$ baik secara keseluruhan maupun per rezim waktu.
+   * Gunakan **Cross-Correlation Function (CCF)** pada *lag* `0, 1, 2, dan 3` bulan untuk memvalidasi jeda waktu pengiriman laut ($k$) yang paling relevan bagi masing-masing komoditas.
+
+2. **Uji Beda Komparatif Antar-Rezim (*One-Way ANOVA* / *Kruskal-Wallis*):**
+   * Bagi rentang waktu penelitian menjadi **3 kelompok periode (rezim)** yang saling lepas (*mutually exclusive*):
+     1. **Periode 1 — Pra-Tarif Resiprokal:** Januari 2022 – Maret 2025 (`n₁ = 39` bulan).
+     2. **Periode 2 — Transisi Tarif Resiprokal & ART:** April 2025 – Februari 2026 (`n₂ = 11` bulan).
+     3. **Periode 3 — Krisis Selat Hormuz:** Maret 2026 – September 2026 (`n₃ = 7` bulan).
+   * **Pemeriksaan Asumsi Prasyarat (RAL Ulangan Tidak Sama, $n_1 \neq n_2 \neq n_3$):**
+     * *Kenormalan:* Periksa menggunakan *Histogram*, *Normal Q-Q Plot*, dan **Uji Shapiro-Wilk** per kelompok.
+     * *Kehomogenan Ragam Antar-Rezim:* Uji kesamaan varians menggunakan **Uji Bartlett** (jika berdistribusi normal) atau **Uji Levene** (kekar terhadap penyimpangan kenormalan).
+   * **Prosedur Uji Hipotesis Komparatif & Pembandingan Ganda (*Post-Hoc*):**
+     * Bila data normal dan ragam homogen: jalankan **One-Way ANOVA** (Uji $F$), dilanjutkan uji lanjut **Tukey HSD** atau **Metode Bonferroni** ($B = t_{(1 - \alpha/(2g);\, n_T - t)}$ dengan $g = 3$ kontras pasangan periode).
+     * Bila normal tetapi ragam tidak homogen: gunakan **Welch's ANOVA** (dilanjutkan *Games-Howell*).
+     * Bila tidak normal: gunakan uji nonparametrik **Kruskal-Wallis**, dilanjutkan **Dunn's Test** dengan koreksi Bonferroni.
+     * *Kaidah Kesimpulan:* Kegagalan menolak $H_0$ ($p\text{-value} \ge \alpha$) disimpulkan sebagai **tidak cukup bukti perbedaan rata-rata/median yang nyata (inkonklusif)**, bukan bukti ketiadaan dampak.
+
+---
+
+### Tahap 4: Pemodelan Regresi Linear Berganda (OLS)
+
+Susun dan estimasi persamaan regresi linear berganda menggunakan **Metode Kuadrat Terkecil (MKT / OLS)**, $\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}$, secara **terpisah** untuk masing-masing komoditas (`1511.90`, `4001.22`, dan `0901.11`):
+
+$$\ln(Y_t) = \beta_0 + \beta_1 \ln(1 + \tau_t) + \beta_2 \ln(\text{Kurs}_{t-k}) + \beta_3 \ln(\text{Oil}_{t-k})^c + \beta_4 D_{\text{Hormuz},t} + \beta_5 \big[D_{\text{Hormuz},t} \times \ln(\text{Oil}_{t-k})^c\big] + \beta_6 \ln(\text{INDPRO}_t) + \varepsilon_t$$
+
+**Interpretasi Koefisien Secara Parsial (*Ceteris Paribus*):**
+* **$\beta_1$ (Elastisitas Tarif):** Persentase perubahan volume ekspor jika faktor beban tarif $(1 + \tau_t)$ berubah 1% (menangkap efek pengenaan tarif resiprokal maupun pembebasan tarif 0% pasca-ART).
+* **$\beta_2$ (Elastisitas Kurs):** Persentase perubahan volume ekspor jika kurs IDR/USD naik (Rupiah melemah) sebesar 1%.
+* **$\beta_3$ (Elastisitas Harga Minyak Pra-Hormuz):** Persentase perubahan volume ekspor jika harga minyak dunia naik 1% pada kondisi rute pelayaran normal ($D_{\text{Hormuz},t} = 0$).
+* **$\beta_4$ (Pergeseran Intersep Blokade Hormuz):** Perubahan tingkat $\ln(Y_t)$ akibat penutupan Selat Hormuz yang dievaluasi pada tingkat harga minyak rata-rata ($\ln(\text{Oil}_{t-k})^c = 0$), atau setara dengan perubahan relatif $[\exp(\beta_4) - 1] \times 100\%$.
+* **$\beta_5$ (Efek Interaksi / Perubahan Sensitivitas Minyak):** Perubahan elastisitas harga minyak dunia selama krisis Selat Hormuz berlangsung; sehingga total elastisitas harga minyak selama periode blokade adalah $(\beta_3 + \beta_5)$.
+* **$\beta_6$ (Elastisitas Daya Serap Industri AS):** Persentase perubahan volume ekspor ketika indeks produksi industri AS (`INDPRO`) naik 1%.
+
+---
+
+### Tahap 5: Pemeriksaan Asumsi Formal Regresi & Diagnostik Pengamatan Ekstrem
+
+Untuk menjamin kevalidan inferensi (uji $t$ dan uji $F$), sifat **BLUE (*Best Linear Unbiased Estimator*)** dari teorema Gauss-Markov, serta kestabilan penduga matriks $(\mathbf{X}'\mathbf{X})^{-1}$, setiap model komoditas wajib melalui enam pemeriksaan diagnostik berikut:
+
+| No | Asumsi / Diagnostik & Perannya pada OLS | Metode Pengujian | Kriteria Terpenuhi | Solusi & Penanganan Jika Terlanggar |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | **Linearitas & $E(\varepsilon_t) = 0$**<br>*(Syarat ketakbiasan penduga OLS)* | Plot Sisaan terhadap Nilai Dugaan (*Residual vs Fitted*) | Titik sisaan menyebar acak di sekitar nol tanpa pola kuadratik/sistematik | Evaluasi kembali bentuk fungsional atau tambahkan kontrol pola musiman/tren. |
+| **2** | **Normalitas Sisaan**<br>*(Syarat kevalidan inferensi uji $t$, uji $F$, & selang kepercayaan)* | *Normal Q-Q Plot*, Histogram sisaan, serta **Jarque-Bera / Shapiro-Wilk / Kolmogorov-Smirnov Test** pada $e_t$ | $p\text{-value} > 0{,}05$ (sisaan menyebar normal) | Periksa apakah penyimpangan dipicu bulan anomali (*front-loading* Q2 2025); tambahkan *dummy outlier* terukur atau lakukan *winsorizing* terbatas. |
+| **3** | **Non-Multikolinearitas Berat**<br>*(Menjaga ragam $\hat{\beta}_j$ tidak membesar & matriks $(\mathbf{X}'\mathbf{X})$ tidak* ill-conditioned*)* | Korelasi berpasangan antar-$X$, $\det(\mathbf{X}'\mathbf{X})$, & **Variance Inflation Factor** ($\text{VIF}_j = 1/(1 - R_j^2)$) | Korelasi antar-$X \le 0{,}80$ dan **$\text{VIF} < 5$** (batas toleransi maksimum $< 10$) | Gunakan $\ln(\text{Oil}_{t-k})^c$ (*mean-centered*) pada interaksi dan hindari duplikasi dummy $D_{\text{ART}}$ dengan $\ln(1+\tau_t)$. |
+| **4** | **Homoskedastisitas ($\text{Var}(\varepsilon_t) = \sigma^2$)**<br>*(Syarat efisiensi ragam minimum / Best dalam BLUE & ketakbiasan SE)* | Plot *Residual vs Fitted*, **Uji Park**, **Uji White** ($nR^2$), atau **Breusch-Pagan-Godfrey Test** | $p\text{-value} > 0{,}05$ (ragam residual konstan) | Estimasi dengan **Weighted Least Squares (WLS)** untuk memulihkan efisiensi, atau gunakan **White's Robust Standard Errors (HC1/HC3)** agar uji $t$ & $F$ tetap valid. |
+| **5** | **Non-Autokorelasi ($\text{Cov}(\varepsilon_t, \varepsilon_s) = 0$)**<br>*(Syarat efisiensi BLUE & kevalidan SE pada data deret waktu)* | **Breusch-Godfrey Serial Correlation LM Test** & statistik **Durbin-Watson ($d_L, d_U$)** | $p\text{-value LM} > 0{,}05$ dan $d_U < \text{DW} < 4 - d_U$ | Gunakan **Newey-West HAC Standard Errors** untuk mengoreksi standar error uji $t$ & $F$; model dinamis dengan $\ln(Y_{t-1})$ digunakan sebagai pembanding (*robustness check*). |
+| **6** | **Deteksi Pencilan (*Outliers*) & Titik Pengungkit (*High Leverage*)**<br>*(Mencegah distorsi kemiringan garis regresi oleh pengamatan ekstrem)* | Diagonal matriks topi **$h_{tt}$** dari $\mathbf{H} = \mathbf{X}(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'$ serta **Internally & Externally Studentized Residuals** | *Studentized residuals* berada di rentang **`[-2, 2]`** ($\approx 95\%$) dan tidak ada amatan dengan $h_{tt} > 2p/n$ yang memelintir koefisien | Lakukan analisis sensitivitas (estimasi dengan dan tanpa amatan berpengungkit tinggi) atau kendalikan bulan lonjakan stok (*front-loading*) dengan variabel dummy. |
+
+---
+
+### Tahap 6: Uji Hipotesis, Kualitas Persamaan, & Sintesis Komparatif Antar-Komoditas
+
+1. **Uji Kelayakan Model Simultan (Uji $F$) & Kualitas Suai Persamaan:**
+   * Menguji hipotesis simultan atas seluruh variabel penjelas:
+     $$H_0: \beta_1 = \beta_2 = \beta_3 = \beta_4 = \beta_5 = \beta_6 = 0 \quad \text{vs.} \quad H_1: \text{minimal ada satu } \beta_j \neq 0$$
+     menggunakan statistik uji $F_{\text{hit}} = \text{MS}_{\text{Regresi}} / \text{MSE}$ (kriteria tolak $H_0$: $p\text{-value } F < 0{,}05$).
+   * Laporkan **Koefisien Determinasi ($R^2$)**, **Adjusted $R^2$ ($R^2_{\text{adj}}$)** untuk memperhitungkan penalti jumlah prediktor, serta **Standar Galat Regresi ($S = \sqrt{\text{MSE}}$)**.
+
+2. **Uji Signifikansi Parsial (Uji $t$) & Selang Kepercayaan Parameter:**
+   * Uji masing-masing koefisien secara parsial ($t_{\text{hit}} = \hat{\beta}_j / \text{SE}(\hat{\beta}_j)$ dengan derajat bebas $db = n - p$) pada tingkat signifikansi $\alpha = 1\%, 5\%, \text{dan } 10\%$, dilengkapi **Selang Kepercayaan 95%** bagi setiap $\beta_j$.
+   * Untuk hipotesis komoditas yang memiliki arah teoretis spesifik (positif atau negatif), sesuaikan kriteria pengujian dengan **uji-$t$ satu arah (*one-tailed test*)**. Jika $H_0$ gagal ditolak, nyatakan hasil sebagai **inkonklusif (belum cukup bukti statistik)**.
+
+3. **Sintesis Komparatif Antar-Model Komoditas (Ekspektasi Hipotesis):**
+   * **Model 1 — Sawit Olahan (`1511.90`):**
+     * Menguji sensitivitas negatif terhadap beban tarif ($\beta_1 < 0$, yang berarti pembebasan tarif ART ke 0% memulihkan volume ekspor) serta efek substitusi positif terhadap kenaikan harga minyak mentah dunia ($\beta_3 > 0$ dan $\beta_3 + \beta_5 > 0$ seiring dorongan permintaan bahan baku biodiesel saat minyak mentah mahal).
+   * **Model 2 — Karet Alam (`4001.22`):**
+     * Menguji tekanan negatif tarif impor ($\beta_1 < 0$), keterkaitan positif dengan aktivitas manufaktur AS ($\beta_6 > 0$), serta efek substitusi positif terhadap lonjakan harga minyak dunia ($\beta_3 > 0$ dan $\beta_3 + \beta_5 > 0$, karena kenaikan harga minyak mentah meningkatkan biaya produksi karet sintetis berbasis petrokimia sehingga pabrik ban AS beralih ke karet alam TSNR).
+   * **Model 3 — Kopi Mentah (`0901.11`):**
+     * Menguji elastisitas positif terhadap depresiasi nilai tukar Rupiah ($\beta_2 > 0$, di mana pelemahan IDR terhadap USD meningkatkan daya saing harga ekspor kopi) dan ketahanan terhadap tarif ($\beta_1$ cenderung tidak signifikan karena konsumsi kopi bersifat inelastis), namun mengalami tekanan negatif signifikan akibat disrupsi rute pelayaran Selat Hormuz ($\beta_4 < 0$ karena lonjakan biaya *freight* dan waktu tempuh menuju pelabuhan US East/Gulf Coast).
+
+analisisnya menggunakan R dan gunakan prioritas package bukan membuat fungsi kemudian buatkan dokumentasi dalam bentuk pdf serta infografis dalam png dengan ukuran A3. Untuk model regresi hilangkan Variable INDPRO
+
+apa yang memengaruhi volume ekspor indonesia
+12.20
+Volume ekspor Indonesia dipengaruhi oleh berbagai faktor ekonomi makro, kondisi pasar global, serta kebijakan pemerintah. Secara umum, faktor-faktor utama tersebut meliputi:
+• Nilai Tukar (Kurs) Rupiah: Pergerakan nilai tukar rupiah terhadap mata uang asing (terutama dolar AS) memengaruhi daya saing harga barang Indonesia di pasar internasional.
+• Permintaan Global dan PDB Negara Tujuan: Tingkat pertumbuhan ekonomi (Produk Domestik Bruto/PDB per kapita) dan jumlah penduduk di negara mitra dagang menentukan seberapa besar permintaan terhadap komoditas asal Indonesia.
+• Harga Komoditas Internasional: Fluktuasi harga pasar dunia untuk komoditas unggulan Indonesia (seperti CPO, batu bara, karet, dan produk pertanian) secara langsung berdampak pada volume maupun nilai barang yang diminati pembeli luar negeri.
+• Tingkat Produksi Domestik: Kapasitas produksi dalam negeri (misalnya ketersediaan pasokan CPO, hasil perkebunan, atau manufaktur) menjadi batas atas dari jumlah barang yang siap diekspor.
+• Inflasi dan Suku Bunga: Tingkat inflasi serta suku bunga perbankan (termasuk ketersediaan kredit modal kerja bagi sektor ekspor) memengaruhi biaya produksi dan daya saing industri dalam negeri.
+• Kebijakan Pemerintah dan Regulasi: Aturan perpajakan, kuota ekspor, hilirisasi industri, serta perjanjian dagang internasional yang diterapkan pemerintah turut mengatur arus keluar barang.
+• Biaya Logistik dan Rantai Pasok Global: Efisiensi pelabuhan, biaya pengiriman, serta kelancaran distribusi maritim dan logistik global sangat menentukan kecepatan dan volume pengapalan barang.
+Anda dapat membaca ulasan lebih lanjut mengenai faktor pendorong perdagangan ini melalui 7 Faktor yang Mempengaruhi Kinerja Ekspor Impor Indonesia.
+Apakah Anda ingin mendalami faktor yang memengaruhi volume ekspor untuk komoditas tertentu (seperti CPO, kopi, atau hasil perikanan), atau melihat data tren ekspor terbaru?
+• 
+Jurnal Unigal
+Jurnal Pemikiran Masyarakat Ilmiah Berwawasan Agribisnis
+Analisis Faktor-faktor yang Memengaruhi Volume Ekspor Kopra Indonesia Di Pasar Dunia · Abstract. Kopra diekspor karena jumlah prod...
+• 
+Neliti
+FAKTOR-FAKTOR YANG MEMPENGARUHI VOLUME ... - Neliti
+Secara parsial, terdapat tiga variabel yang mempunyai pengaruh signifikan terhadap volume ekspor. CPO Indonesia yaitu produksi CPO...
+• 
+IPM2KPE
+ANALISIS FAKTOR YANG MEMPENGARUHI VOLUME ...
+Fluktuasi volume ekspor CPO Indonesia ke India 2021–2025 mendorong kajian empiris atas determinannya. Penelitian ini menganalisis ...
+Tampilkan semua
+dalami
+12.20
+Untuk memahami secara lebih mendalam bagaimana faktor-faktor tersebut bekerja memengaruhi volume ekspor Indonesia, kita dapat mengelompokkannya menjadi dua dimensi utama, yaitu faktor eksternal (pasar global) dan faktor internal (domestik), serta melihat studi kasus pada komoditas unggulan.
+
+1. Dinamika Faktor Eksternal (Pasar Global)
+
+Faktor eksternal berada di luar kendali langsung Indonesia, namun memberikan dampak paling cepat terhadap permintaan barang dari luar negeri.
+• Pertumbuhan Ekonomi Negara Mitra (Efek Pendapatan): Negara tujuan ekspor utama Indonesia seperti Tiongkok, Amerika Serikat, India, dan Jepang menjadi penentu utama. Saat pertumbuhan ekonomi negara mitra melambat, daya beli industri dan konsumen mereka turun, sehingga pesanan komoditas dari Indonesia ikut menyusut.
+• Harga Komoditas Dunia & Barang Substitusi: Sebagian besar ekspor Indonesia masih bertumpu pada komoditas primer (seperti batu bara dan minyak kelapa sawit/CPO). Jika harga CPO dunia terlalu mahal dibandingkan minyak nabati pengganti (seperti minyak kedelai atau bunga matahari), importir global akan beralih ke komoditas lain yang lebih murah.
+• Hambatan Perdagangan dan Geopolitik: Kebijakan proteksionisme negara lain dapat memangkas volume ekspor secara drastis. Contoh nyatanya adalah regulasi deforestasi Uni Eropa (EUDR) yang memperketat syarat masuk produk perkebunan, atau perang dagang antarnegara besar yang mengubah rantai pasok global.
+
+2. Dinamika Faktor Internal (Domestik)
+
+Faktor internal menentukan seberapa siap dan kompetitif produk Indonesia saat bersaing di pasar internasional.
+• Mekanisme Nilai Tukar (Kurs): Ketika Rupiah melemah (terdepresiasi) terhadap Dolar AS, harga produk Indonesia menjadi relatif lebih murah bagi pembeli luar negeri, sehingga secara teori dapat mendorong kenaikan volume permintaan. Namun, efek ini bisa terhambat jika industri ekspor tersebut sangat bergantung pada bahan baku impor (seperti industri tekstil atau elektronik) yang biayanya justru ikut membengkak.
+• Kebijakan Hilirisasi dan Larangan Ekspor: Pemerintah Indonesia aktif menerapkan kebijakan hilirisasi untuk meningkatkan nilai tambah di dalam negeri. Kebijakan ini sering kali membatasi atau melarang ekspor bahan mentah (seperti bijih nikel dan bauksit), yang secara langsung menurunkan volume ekspor bahan mentah namun menaikkan volume dan nilai ekspor produk olahan logam/besi baja.
+• Kebijakan Perlindungan Pasokan Domestik: Untuk menjaga stabilitas harga dan pasokan di dalam negeri, pemerintah terkadang menerapkan kebijakan seperti Domestic Market Obligation (DMO) atau pajak ekspor (pungutan ekspor). Hal ini pernah terjadi pada CPO dan batu bara, di mana eksportir wajib memenuhi kuota dalam negeri terlebih dahulu sebelum diizinkan mengekspor sisanya.
+• Efisiensi Biaya Logistik (Biaya Ekonomi Tinggi): Biaya pengiriman kontainer antar-pulau maupun dari pelabuhan Indonesia ke luar negeri (dwelling time dan tarif pelabuhan) sangat memengaruhi harga jual akhir. Jika biaya logistik mahal, produk manufaktur Indonesia kalah bersaing secara harga dibandingkan negara tetangga seperti Vietnam atau Thailand.
+
+3. Contoh Penerapan pada Komoditas Utama
+
+• Kelapa Sawit (CPO): Sangat sensitif terhadap kebijakan DMO dalam negeri, cuaca (El Nino yang menurunkan hasil panen), serta selisih harga dengan minyak kedelai di pasar India dan Tiongkok.
+• Batu Bara: Sangat bergantung pada musim (kebutuhan pemanas saat musim dingin di belahan bumi utara) dan transisi energi bersih di negara-negara pengimpor utama.
+• Produk Manufaktur (Tekstil, Alas Kaki, Elektronik): Sangat dipengaruhi oleh suku bunga global, inflasi di negara tujuan (AS dan Eropa), serta efisiensi upah dan logistik di dalam negeri.
+Apakah ada bagian tertentu yang ingin Anda bahas lebih spesifik, misalnya dampak kebijakan hilirisasi, perbandingan kinerja ekspor antar-sektor (migas vs non-migas), atau tren data ekspor Indonesia dalam beberapa tahun terakhir?
+jika ekspor Indonesia ke Amerika dengan data dari USDA GATS untuk product import - general
+12.25
+Jika Anda meneliti ekspor Indonesia ke Amerika Serikat menggunakan data dari USDA FAS Global Agricultural Trade System (GATS) dengan pengaturan kategori Product Import - General, maka sudut pandang data Anda secara spesifik mengukur arus masuk (impor umum) produk pertanian, perikanan, kehutanan, dan tekstil Indonesia yang tercatat tiba di pelabuhan Amerika Serikat.
+
+1. Memahami Karakteristik Data "Product Import - General" di USDA GATS
+
+Sebelum menganalisis faktor yang memengaruhinya, penting untuk memahami bagaimana dataset ini mencatat volume perdagangan:
+• Cakupan Komoditas: Sistem GATS tidak mencatat seluruh perdagangan barang (seperti elektronik atau mesin), melainkan berfokus pada produk pertanian (agrikultur), perikanan, kehutanan, dan tekstil. Untuk Indonesia, kelompok ini didominasi oleh minyak sawit, karet alam, produk perikanan (udang/tuna), kakao, kopi, rempah-rempah, kayu, dan pakaian/tekstil.
+• Definisi General Imports (Impor Umum): Berbeda dengan Imports for Consumption (barang yang langsung masuk ke pasar konsumen AS), General Imports mencatat total fisik barang yang tiba di wilayah pabean AS—termasuk barang yang langsung dikonsumsi maupun barang yang disimpan sementara di gudang berikat (bonded warehouses) atau Zona Perdagangan Luar Negeri (Foreign Trade Zones).
+• Pencatatan berbasis Arrival (Kedatangan): Waktu pencatatan volume di GATS didasarkan pada tanggal barang tiba di pelabuhan AS (berdasarkan data Biro Sensus AS), bukan tanggal kapal berangkat dari Indonesia. Artinya, ada jeda waktu pengiriman (shipping lag) sekitar 30–45 hari dari kondisi produksi di Indonesia.
+
+2. Faktor Spesifik yang Memengaruhi Volume pada Dataset Ini
+
+Berdasarkan karakteristik data USDA GATS tersebut, fluktuasi volume ekspor Indonesia ke AS sangat dipengaruhi oleh kombinasi faktor berikut:
+
+A. Kebijakan Tarif dan Perjanjian Dagang Bilateral AS–Indonesia
+
+• Tarif Impor AS & Fasilitas Resiprokal: Kebijakan tarif bea masuk AS sangat menentukan daya saing produk Indonesia dibandingkan negara pesaing (seperti Malaysia untuk sawit, atau Vietnam dan Ekuador untuk udang). Kesepakatan dagang timbal balik AS–Indonesia (Agreements on Reciprocal Trade) turut mengatur pembebasan tarif bea masuk menjadi 0% untuk puluhan kelompok komoditas pertanian tertentu, sekaligus menetapkan tarif dasar bagi produk lainnya.
+• Penyelidikan Anti-Dumping dan Bea Imbalan (CVD): Komoditas perikanan Indonesia (khususnya udang beku) sangat sensitif terhadap petisi anti-dumping dari produsen domestik AS. Kenaikan bea masuk sementara akibat investigasi perdagangan dapat langsung menekan volume General Imports dalam hitungan bulan.
+
+B. Regulasi Ketat Badan Pengawas AS (FDA, USDA, & CBP)
+
+Karena kategori General Imports mencatat barang saat menyentuh perbatasan AS, hambatan non-tarif di pelabuhan masuk sangat berpengaruh:
+• Standar Keamanan Pangan (FDA): Penolakan kontainer (import refusal) oleh Food and Drug Administration (FDA) akibat residu antibiotik pada udang, kadar aflatoksin pada rempah/kacang, atau standar higienitas akan langsung menahan laju volume yang lolos masuk.
+• Undang-Undang Anti-Kerja Paksa & Deforestasi (UFLPA / Lacey Act): Produk tekstil/pakaian dan produk kehutanan (kayu/furnitur) diawasi ketat oleh U.S. Customs and Border Protection (CBP). Jika eksportir gagal membuktikan rantai pasok bebas dari kerja paksa atau pembalakan liar, barang akan ditahan di pelabuhan.
+
+C. Dinamika Persediaan Gudang (Inventory Restocking) di AS
+
+• Karena General Imports mencakup barang yang masuk ke gudang penyimpanan (bonded warehouses), lonjakan atau penurunan volume tidak selalu mencerminkan konsumsi langsung masyarakat AS pada bulan tersebut.
+• Importir besar AS (seperti jaringan ritel dan industri makanan) sering melakukan penumpukan stok (front-loading) sebelum pemberlakuan kenaikan tarif baru atau menjelang musim liburan akhir tahun (Thanksgiving dan Natal), lalu mengerem impor di kuartal berikutnya saat gudang penuh.
+
+D. Biaya Pengiriman Maritim Lintas Pasifik (Trans-Pacific Freight)
+
+• Jarak pengiriman dari Indonesia ke Pantai Barat atau Pantai Timur AS memakan waktu lama. Lonjakan tarif kontainer lintas Pasifik, kemacetan pelabuhan di AS (seperti Los Angeles/Long Beach), atau gangguan jalur pelayaran global akan meningkatkan biaya mendarat (landed cost), sehingga membuat importir AS beralih sementara ke pemasok yang lebih dekat secara geografis (seperti Amerika Latin untuk kopi, kakao, dan udang).
+
+E. Faktor Musiman dan Produksi Domestik Indonesia
+
+• Siklus Panen dan Cuaca: Volume komoditas perkebunan (kopi, kakao, karet, sawit) mengikuti siklus panen tahunan serta anomali iklim (El Niño/La Niña) di Indonesia.
+• Kebijakan Domestik RI: Aturan larangan ekspor sementara, pungutan ekspor (export levy), atau kewajiban pasokan dalam negeri (DMO) untuk sawit secara langsung memotong pasokan yang bisa dikapalkan menuju AS.
+
+3. Implikasi untuk Analisis Data / Riset Anda
+
+Jika Anda menggunakan data ini untuk pemodelan ekonometrika atau analisis tren perdagangan:
+• Gunakan Time Lag (Jeda Waktu): Saat menghubungkan volume GATS dengan variabel ekonomi Indonesia (seperti kurs Rupiah atau produksi domestik), gunakan jeda waktu 1 hingga 2 bulan untuk mengakomodasi waktu pelayaran laut dari Indonesia ke AS.
+• Gunakan Satuan Volume (Quantity) daripada Nilai (Value): Untuk melihat dampak permintaan riil dan cuaca, fokuslah pada kolom kuantitas (misalnya Metric Tons atau KG) di GATS, karena nilai dalam Dolar AS sering terdistorsi oleh fluktuasi harga komoditas global.
+Apakah data USDA GATS ini sedang Anda gunakan untuk penelitian atau pemodelan ekonometrika (misalnya regresi faktor penentu ekspor), atau untuk analisis pasar komoditas tertentu seperti sawit, udang, atau kopi?
+• 
+USDA Foreign Agricultural Service (.gov)
+FAS - Global Agricultural Trade System (GATS)
+USDA FAS Global Agricultural Trade System (GATS) provides international agricultural, fish, forest, and textile trade statistics f...
+• 
+Southern Ag Today
+U.S.-Indonesia Trade Agreement Framework
+tariffs will remain at 19 percent for imports from Indonesia. U.S. agricultural imports from Indonesia reached $7.14 billion in 20...
+• 
+USDA Foreign Agricultural Service (.gov)
+Expanding U.S. Agricultural Exports to Indonesia
+In 2024, Indonesia was the 11th-largest market for U.S. agricultural exports, valued at $2.9 billion. In July 2025, President Dona...
+Tampilkan semua
+pemodelan dengan tarif resiprokal, kurs idr usd, dan harga minya dunia dan analisis untuk kategori HS-6 pada sawit/CPO, karet, dan kopi
+12.28
+Untuk memodelkan dampak tarif resiprokal AS, kurs IDR/USD, dan harga minyak dunia terhadap volume ekspor Indonesia ke AS (menggunakan data kuantitas Product Import - General dari USDA FAS GATS), pendekatan terbaik adalah menggunakan regresi data panel terdisagregasi pada tingkat pos tarif HS-6 digit yang dikombinasikan dengan analisis dinamika waktu (time-series bulanan/triwulanan).
+
+1. Konteks Kebijakan Tarif Resiprokal (2025–2026) sebagai Variabel Kunci
+
+Pemodelan untuk periode 2025–2026 perlu menangkap perubahan struktural (structural break) yang tajam akibat dinamika kebijakan tarif AS:
+• Fase Ancaman Tarif Tinggi (April 2025): AS awalnya mengumumkan pengenaan tarif resiprokal dasar hingga 32% untuk produk Indonesia.
+• Fase Negosiasi & Perjanjian ART (Februari 2026): Pada 19 Februari 2026, Indonesia dan AS menandatangani Agreement on Reciprocal Trade (ART) yang menurunkan tarif dasar menjadi 19% dan memberikan pengecualian tarif 0% bagi 1.819 pos tarif—termasuk sawit, karet alam, dan kopi.
+• Fase Transisi Hukum AS (Februari–September 2026): Sehari setelah penandatanganan ART, Mahkamah Agung AS membatalkan dasar hukum tarif IEEPA, yang kemudian diikuti pemberlakuan tarif sementara Section 122 (10%–15%) dan beralih ke tarif Section 301 sebesar 10% pada Juli 2026. Meski demikian, sawit, kopi, dan karet alam tetap masuk dalam daftar pengecualian (exempt) dari tarif tambahan tersebut.
+
+2. Spesifikasi Pemodelan Ekonometrika
+
+Karena data GATS mencatat kedatangan barang di pelabuhan AS (arrival basis), model harus memasukkan jeda waktu (lag) sekitar 1 hingga 2 bulan (t-1 atau t-2) untuk merepresentasikan waktu pelayaran laut dari Indonesia ke AS.
+
+Persamaan Dasar (Model Log-Linear / Gravity-Augmented)
+
+\(\ln (Q_{it})=\alpha _{i}+\beta _{1}\ln (1+\tau _{it})+\beta _{2}D_{\text{ART},t}+\beta _{3}\ln (\text{Kurs}_{t-1})+\beta _{4}\ln (\text{Oil}_{t-1})+\beta _{5}\ln (P_{it-1})+\beta _{6}\ln (\text{GDP}_{\text{US},t})+\varepsilon _{it}\)
+• \(Q_{it}\): Volume impor umum AS (Metric Tons) dari Indonesia untuk kode komoditas HS-6 ke-i pada bulan t.
+• \(\ln(1 + \tau_{it})\): Tarif efektif aktual yang dikenakan pada kode HS-6 ke-i (menangkap perbedaan antara tarif MFN normal, tarif tambahan 10%–32%, dan pembebasan 0%).
+• \(D_{\text{ART},t}\): Variabel dummy kebijakan untuk menangkap efek pengumuman/penandatanganan ART dan penumpukan stok (front-loading) sebelum tarif berlaku.
+• \(\ln(\text{Kurs}_{t-1})\): Nilai tukar tengah IDR/USD (JISDOR BI) pada bulan t-1. Ekspektasi tanda: positif (β₃ > 0) karena depresiasi Rupiah membuat harga ekspor lebih murah dalam Dolar AS.
+• \(\ln(\text{Oil}_{t-1})\): Harga minyak mentah dunia (WTI atau Brent) pada bulan t-1. Ekspektasi tanda: berbeda antar-komoditas (lihat analisis di bawah).
+• Variabel Kontrol (\(P_{it-1}\) & \(\text{GDP}_{\text{US},t}\)): Harga internasional komoditas terkait (sebagai kontrol efek harga) dan indikator permintaan AS (seperti US Industrial Production Index atau penjualan ritel AS).
+• \(\alpha _{i}\): Fixed Effects pada tingkat HS-6 untuk mengontrol karakteristik spesifik tiap produk (seperti daya tahan penyimpanan atau standar inspeksi FDA).
+Catatan Metode Estimasi: Jika data bulanan pada tingkat HS-6 tertentu memiliki banyak nilai nol (bulan tanpa pengiriman), gunakan estimator PPML (Poisson Pseudo-Maximum Likelihood) daripada regresi OLS biasa agar hasil estimasi tidak bias.
+
+3. Analisis Spesifik Komoditas pada Tingkat HS-6
+
+
+Komoditas	Kode HS-6 Utama	Sensitivitas Tarif Resiprokal	Sensitivitas Kurs (IDR/USD)	Sensitivitas Harga Minyak Dunia
+Sawit / CPO & Turunan	1511.10 (CPO)
+1511.90 (Minyak sawit olahan/RBD)	Sangat Tinggi. AS umumnya mengimpor fraksi olahan (1511.90). Pengecualian tarif 0% menjaga daya saing sawit RI terhadap minyak kedelai domestik AS dan sawit Malaysia.	Moderat. Karena harga CPO mengacu pada bursa global (BMD/Rotterdam) dalam USD, pelemahan Rupiah lebih memperbesar margin eksportir RI daripada menurunkan harga jual di AS.	Positif Kuat. Minyak sawit adalah bahan baku biodiesel. Kenaikan harga minyak dunia mendorong permintaan biofuel global, menarik harga dan volume perdagangan minyak nabati.
+Karet Alam	4001.22 (TSNR / SIR 20)
+4001.10 (Lateks alam)
+4001.21 (RSS)	Kritis bagi Industri Ban AS. AS tidak memproduksi karet alam. Pengecualian 0% pada 4001.22 mencegah lonjakan biaya bagi pabrik ban AS dan mencegah pengalihan pesanan ke Thailand atau Pantai Gading.	Moderat–Tinggi. Pelemahan Rupiah mendorong petani dan pabrik remah (crumb rubber) di Sumatera dan Kalimantan meningkatkan pasokan ekspor karena harga beli di tingkat petani (dalam IDR) meningkat.	Positif (Efek Substitusi). Karet sintetis dibuat dari petrokimia (minyak bumi). Saat harga minyak dunia naik, karet sintetis menjadi mahal sehingga industri ban beralih meningkatkan porsi karet alam (4001.22).
+Kopi	0901.11 (Biji kopi mentah/tidak disangrai, tidak didekafeinasi)
+0901.12 (Biji kopi mentah didekafeinasi)	Rendah–Moderat. Biji kopi mentah (0901.11) secara historis sudah menikmati tarif MFN 0% di AS. Pencantuman dalam daftar bebas tarif berfungsi melindungi kopi RI dari tarif resiprokal umum (10%–19%) terhadap pesaing seperti Brasil atau Kolombia.	Tinggi (Jangka Pendek). Eksportir kopi di Lampung, Aceh, dan Toraja sangat responsif terhadap kurs. Kenaikan USD/IDR memicu pelepasan stok gudang (de-stocking) eksportir untuk dikapalkan ke AS.	Negatif (Efek Biaya Logistik). Kopi tidak bersaing langsung dengan minyak bumi. Kenaikan harga minyak dunia justru meningkatkan tarif angkutan laut (bunker fuel surcharge) lintas Pasifik, yang berpotensi menekan pengiriman jarak jauh dari Asia ke AS.
+
+
+4. Rekomendasi Langkah Pengolahan Data
+
+1. Pisahkan Komoditas Mentah vs. Olahan: Pada sawit, bedakan 1511.10 (CPO mentah) dengan 1511.90 (fraksi olahan), karena struktur impor AS jauh lebih terkonsentrasi pada pos 1511.90.
+2. Gunakan Variabel Interaksi: Tambahkan suku interaksi antara tarif dan dummy komoditas (\(\tau_{it} \times \text{Komoditas}_i\)) dalam satu model panel gabungan untuk menguji secara statistik apakah elastisitas tarif kopi berbeda signifikan dibandingkan sawit dan karet.
+3. Uji Stasioneritas & Kointegrasi: Jika menggunakan rentang waktu yang panjang (misalnya data bulanan 2018–2026), pastikan untuk menguji stasioneritas variabel kurs dan harga minyak dunia agar terhindar dari regresi lancung (spurious regression).
+Apakah Anda memerlukan bantuan untuk menyiapkan struktur kode ekonometrika (misalnya di R, Stata, atau Python untuk estimasi panel/PPML) atau ingin menelusuri kode HS-6 turunan lainnya (seperti minyak inti sawit/PKO atau kopi sangrai)?
+• 
+Kementerian Sekretariat Negara
+Frequently Asked Questions Perjanjian Perdagangan Resiprokal Indonesia – Amerika Serikat | Sekretariat Negara
+Perjanjian Perdagangan Resiprokal (ART) 19 Februari 2026; tarif turun dari 32% (defisit AS 19,3 miliar dolar AS 2024) menjadi 19%,
+• 
+IDNFinancials
+Govt explains various matters regarding tariff agreement with US | IDNFinancials
+Prompted by a US-imposed 32% tariff on April 2, 2025; negotiations reduced the tariff to 19%, protecting 4–5 million workers in la...
+• 
+Airlift USA
+US Tariffs on Indonesia 2026: Rates, Changes - Airlift USA
+As of September 25, 2026, most goods of Indonesian origin pay the normal US duty for their HTS line plus a 10% Section 301 duty in...
+Tampilkan semua
+pemodelan dengan tarif resiprokal, kurs idr usd, dan harga minyak dunia dan analisis untuk kategori HS-6 pada sawit/CPO, karet, dan kopi dengan scope analisis pra dan pasca tariff resiprokal serta dampak tutupnya selat hormuz
+12.31
+Untuk memodelkan dampak tarif resiprokal AS, kurs IDR/USD, harga minyak dunia, serta guncangan penutupan Selat Hormuz terhadap volume ekspor Indonesia ke AS pada data Product Import - General USDA FAS GATS, model Anda perlu menangkap perubahan rezim kebijakan (structural breaks) dan pergeseran jeda waktu pelayaran (time-varying shipping lag).
+
+1. Pemetaan Rezim Waktu (Scope Pra vs. Pasca Guncangan)
+
+Agar model ekonometrika tidak bias, rentang data bulanan Anda harus dibagi ke dalam tiga rezim struktural:
+1. Rezim Pra-Tarif Resiprokal (Sebelum April 2025): Rezim tarif normal Most Favored Nation (MFN) AS. Kopi mentah dan karet alam menikmati tarif dasar 0% MFN, sedangkan sawit dikenai tarif spesifik rendah. Rute pelayaran global berjalan normal dengan waktu tempuh Indonesia–AS sekitar 30–45 hari (lag t-1).
+2. Rezim Tarif Resiprokal & Transisi ART (April 2025 – Februari 2026):
+	• Fase Ancaman Tarif 32% (April – Juli 2025): Pengumuman tarif resiprokal AS hingga 32% memicu aksi penumpukan stok (front-loading) oleh importir AS di gudang berikat (bonded warehouses), yang langsung terbaca sebagai lonjakan semu pada data General Imports GATS.
+	• Fase Agreement on Reciprocal Trade / ART (19 Februari 2026): Perjanjian ART RI–AS memangkas tarif dasar menjadi 19% dan memberikan pengecualian tarif 0% bagi 1.819 pos tarif—termasuk sawit, karet alam, dan kopi. Meskipun AS kemudian menerapkan tarif sementara 10% (Februari 2026) dan tarif Section 301 sebesar 10% pada Juli 2026, ketiga komoditas perkebunan ini tetap masuk dalam daftar pengecualian (exempt).
+3. Rezim Krisis & Penutupan Selat Hormuz (Mulai Maret 2026): Penutupan Selat Hormuz menghentikan sekitar 20% pasokan minyak laut global dan mendorong harga minyak mentah Brent menembus kisaran $118 per barel. Pengalihan rute pelayaran global memutar melalui Tanjung Harapan (Cape of Good Hope) menambah waktu tempuh 10–14 hari (+3.500–4.000 mil laut) serta memicu kelangkaan kontainer kosong.
+
+2. Spesifikasi Model Ekonometrika (Panel PPML dengan Structural Break)
+
+Karena data GATS tingkat HS-6 bulanan sering memiliki nilai nol pada bulan tertentu, gunakan estimator PPML (Poisson Pseudo-Maximum Likelihood) dengan Fixed Effects komoditas (\(\alpha _{i}\)):
+\(Q_{it}=\exp \Big(\alpha _{i}+\beta _{1}\ln (1+\tau _{it})+\beta _{2}D_{\text{ART},t}+\beta _{3}\ln (\text{Kurs}_{t-k})+\beta _{4}\ln (\text{Oil}_{t-k})+\beta _{5}D_{\text{Hormuz},t}+\beta _{6}\big[D_{\text{Hormuz},t}\times \ln (\text{Oil}_{t-k})\big]+\gamma \mathbf{X}_{it-k}\Big)+\varepsilon _{it}\)
+
+Penjelasan Variabel & Mekanisme Lag (k):
+
+• \(Q_{it}\): Volume kuantitas General Imports AS (Metric Tons) dari Indonesia untuk kode HS-6 ke-i pada bulan t.
+• \(\ln(1 + \tau_{it})\): Tarif efektif aktual pada kode HS-6 ke-i. Karena sawit, karet, dan kopi mendapat pengecualian 0% sementara produk non-pengecualian dikenai 10%–19%, Anda dapat menerapkan desain Difference-in-Differences (DiD) untuk mengukur keunggulan daya saing relatif komoditas bebas tarif tersebut.
+• \(D_{\text{ART},t}\): Variabel dummy bernilai 1 sejak berlakunya pengecualian tarif ART (dan dummy terpisah untuk periode front-loading Q2 2025).
+• \(\ln(\text{Kurs}_{t-k})\): Nilai tukar tengah IDR/USD (JISDOR). Ekspektasi tanda: positif (β₃ > 0). Depresiasi Rupiah—termasuk tekanan risk-off akibat perang Timur Tengah—meningkatkan daya saing harga dan margin eksportir domestik.
+• \(\ln(\text{Oil}_{t-k})\) & \(D_{\text{Hormuz},t}\): Harga minyak mentah dunia (Brent/WTI) dan dummy penutupan Selat Hormuz (bernilai 1 mulai Maret 2026). Suku interaksi \(\big[D_{\text{Hormuz}, t} \times \ln(\text{Oil}_{t-k})\big]\) menangkap perubahan elastisitas ekstrem saat krisis pasokan energi dan disrupsi logistik maritim terjadi bersamaan.
+• Penyesuaian Jeda Waktu (k): Gunakan k = 1 (jeda 1 bulan) untuk periode sebelum Maret 2026, dan k = 2 (jeda 2 bulan) sejak Maret 2026 untuk mengakomodasi keterlambatan kedatangan kapal di pelabuhan Pantai Timur AS akibat rute memutar Tanjung Harapan.
+• \(\mathbf{X}_{it-k}\) (Variabel Kontrol): Harga internasional komoditas terkait (World Bank Pink Sheet), US Industrial Production Index (proksi permintaan industri AS), dan variabel dummy musiman bulan (month fixed effects).
+
+3. Analisis Komparatif per Kategori HS-6
+
+
+Dimensi Analisis	Sawit / CPO & Turunan
+(HS 1511.10 & 1511.90)	Karet Alam
+(HS 4001.22, 4001.10, 4001.21)	Kopi
+(HS 0901.11 & 0901.12)
+Fokus Pos HS-6 di Pasar AS	1511.90 (minyak sawit olahan/RBD) mendominasi ekspor ke AS dibandingkan 1511.10 (CPO mentah).	4001.22 (TSNR / SIR 20) menjadi pos utama untuk bahan baku industri ban di AS.	0901.11 (biji kopi mentah/tidak disangrai, tidak didekafeinasi) menyumbang porsi terbesar.
+Dampak Pra vs. Pasca Tarif Resiprokal	Sangat Positif (Proteksi Daya Saing). Pengecualian 0% di ART melindungi sawit olahan RI dari tarif umum 10%–19%, menjaga harganya tetap kompetitif terhadap minyak kedelai domestik AS.	Kritis & Stabil. AS tidak memproduksi karet alam. Pembebasan tarif 0% mencegah pabrik ban AS mengalihkan kontrak jangka panjang ke negara pemasok lain.	Netral–Positif. Secara historis sudah 0% MFN, namun status pengecualian mencegah pengenaan tarif dasar baru sehingga posisi tawar terhadap kopi Brasil/Kolombia tetap aman.
+Dampak Kurs IDR/USD	Moderat. Harga acuan ditentukan dalam USD di bursa global; pelemahan Rupiah lebih memperbesar keuntungan eksportir dalam negeri daripada menurunkan harga jual di AS.	Positif Kuat. Pelemahan Rupiah langsung menaikkan harga beli bokar (bahan olah karet) di tingkat petani Sumatera dan Kalimantan, sehingga mendorong volume pasokan ekspor.	Positif Tinggi (Jangka Pendek). Eksportir kopi sangat responsif terhadap kurs; lonjakan USD/IDR memicu pelepasan stok gudang (de-stocking) secara agresif.
+Dampak Harga Minyak & Tutupnya Selat Hormuz	Efek Ganda (Net Positif Permintaan, Tekanan Biaya). Lonjakan Brent >$118/barel memicu permintaan biodiesel global dan menarik volume minyak nabati. Namun, penutupan Hormuz memblokir ~1/3 perdagangan urea global yang menaikkan biaya pupuk kebun sawit.	Sangat Positif (Efek Substitusi Petrokimia). Karet sintetis dibuat dari turunan minyak bumi. Saat harga minyak melonjak akibat krisis Hormuz, biaya karet sintetis melambung sehingga pabrik ban AS memperbesar porsi karet alam (4001.22).	Negatif (Hambatan Logistik). Kopi tidak memiliki substitusi energi. Pengalihan rute laut lewat Tanjung Harapan (+10–14 hari) dan kenaikan bunker fuel surcharge meningkatkan biaya angkut dan risiko penurunan mutu biji kopi, membuat roaster AS lebih melirik kopi Amerika Latin.
+
+
+4. Langkah Praktis Uji Ekonometrika
+
+• Uji Interaksi Antar-Komoditas: Jalankan satu regresi panel gabungan yang mencakup ketiga kelompok HS-6, lalu masukkan interaksi antara dummy komoditas dengan variabel tarif, kurs, dan minyak (\(\text{Komoditas}_i \times \ln(\text{Oil}_{t-k})\)). Uji Wald (Wald test) akan membuktikan secara statistik bahwa elastisitas minyak pada karet alam (4001.22) dan sawit (1511.90) bernilai positif signifikan, sedangkan pada kopi (0901.11) bernilai negatif atau tidak signifikan.
+• Kontrol Distorsi Front-Loading: Pisahkan periode Q2 2025 dengan variabel dummy khusus agar lonjakan pengiriman menjelang tenggat tarif April–Juli 2025 tidak mengacaukan estimasi elastisitas jangka panjang pasca-ART.
+Apakah Anda ingin saya membantu menyusun skrip kode estimasi panel PPML (menggunakan R fixest, Stata ppmlhdfe, atau Python statsmodels) beserta struktur tabulasi variabel dummy rezimnya?
+
+terus sebelum run buat 5 folder, nama foldernya 1-References , 2-Data, 3-Analysis, 4-Reports, 5-Panduan, di references klo masih banyak token tarok semua file materi anstatnya man, klo datanya suruh dia aja yang narik soalnya harus diubah lagi nanti formatnya, jadi biar cepat sekaligus aja wkwk
