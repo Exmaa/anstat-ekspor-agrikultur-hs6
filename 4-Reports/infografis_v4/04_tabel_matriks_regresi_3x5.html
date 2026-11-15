@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1420, initial-scale=1.0" />
+  <title>Matriks Hasil Regresi Linear OLS: 3 Prediktor × 5 Komoditas HS-6</title>
+  <style>
+    :root {
+      --bg-canvas: #FAFAF8;
+      --bg-white: #FFFFFF;
+      --bg-tint: #F1F5F9;
+      --border: #CBD5E1;
+      --navy: #0F172A;
+      --slate: #334155;
+      --muted: #64748B;
+      --cobalt: #005AB5;
+      --cobalt-bg: #EFF6FF;
+      --cobalt-bd: #93C5FD;
+      --amber: #D97706;
+      --amber-txt: #B45309;
+      --amber-bg: #FFFBEB;
+      --amber-bd: #FCD34D;
+      --teal: #0E7490;
+      --teal-bg: #ECFEFF;
+      --teal-bd: #67E8F9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: var(--bg-canvas);
+      color: var(--navy);
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      width: 1420px;
+      line-height: 1.4;
+    }
+
+    .card {
+      width: 1420px;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-top: 7px solid var(--cobalt);
+      padding: 26px 32px 24px 32px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--bg-tint);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      gap: 24px;
+    }
+
+    .eyebrow {
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--cobalt);
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      font-size: 22.5px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.18;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 13.5px;
+      color: var(--slate);
+    }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .leg-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .leg-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+    .leg-bonf { background: var(--cobalt-bg); color: var(--cobalt); border: 1.5px solid var(--cobalt); }
+    .leg-nom  { background: var(--amber-bg); color: var(--amber-txt); border: 1.5px solid var(--amber); }
+    .leg-tak  { background: var(--teal-bg); color: var(--teal); border: 1.2px dashed var(--teal); }
+    .leg-ts   { background: #F8FAFC; color: var(--muted); border: 1.2px dashed var(--border); }
+
+    /* TABEL 3 BARIS x 5 KOLOM */
+    table.reg3x5 {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 8px;
+      table-layout: fixed;
+    }
+
+    thead th {
+      vertical-align: top;
+      text-align: left;
+      padding: 13px 14px;
+      border-radius: 4px;
+    }
+
+    th.corner {
+      width: 240px;
+      background: var(--navy);
+      color: #FFFFFF;
+      border-top: 5px solid var(--cobalt);
+    }
+
+    .corner-k {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #93C5FD;
+      margin-bottom: 4px;
+    }
+
+    .corner-t {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.25;
+      margin-bottom: 5px;
+    }
+
+    .corner-s {
+      font-size: 11.2px;
+      color: #CBD5E1;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    th.col-hdr {
+      background: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--muted);
+    }
+
+    th.col-hdr.karet  { background: var(--cobalt-bg); border-color: var(--cobalt-bd); border-top-color: var(--cobalt); }
+    th.col-hdr.sawit  { background: var(--amber-bg); border-color: var(--amber-bd); border-top-color: var(--amber); }
+    th.col-hdr.kelapa { background: var(--teal-bg); border-color: var(--teal-bd); border-top-color: var(--teal); }
+
+    .hs-code {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    th.col-hdr.karet  .hs-code { color: var(--cobalt); }
+    th.col-hdr.sawit  .hs-code { color: var(--amber-txt); }
+    th.col-hdr.kelapa .hs-code { color: var(--teal); }
+
+    .comm-name {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+
+    .col-fit {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 2px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: var(--slate);
+    }
+    th.col-hdr.karet .col-fit {
+      background: var(--cobalt);
+      border-color: var(--cobalt);
+      color: #FFFFFF;
+    }
+    th.col-hdr.sawit .col-fit {
+      border-color: var(--amber);
+      color: var(--amber-txt);
+    }
+
+    /* BARIS PREDIKTOR (3 KE BAWAH) */
+    tbody th.pred-hdr {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--navy);
+      padding: 14px 14px;
+      text-align: left;
+      vertical-align: middle;
+      border-radius: 4px;
+    }
+
+    tbody th.pred-hdr.x1 { border-left-color: var(--amber); }
+    tbody th.pred-hdr.x2 { border-left-color: var(--cobalt); }
+    tbody th.pred-hdr.x3 { border-left-color: var(--muted); }
+
+    .pred-code {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+    tbody th.pred-hdr.x1 .pred-code { color: var(--amber-txt); }
+    tbody th.pred-hdr.x2 .pred-code { color: var(--cobalt); }
+
+    .pred-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.22;
+      margin-bottom: 4px;
+    }
+
+    .pred-unit {
+      font-size: 11.4px;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.3;
+    }
+
+    /* SEL HASIL */
+    tbody td.cell {
+      border-radius: 4px;
+      padding: 12px 13px;
+      vertical-align: middle;
+      background: #FFFFFF;
+      border: 1.2px dashed #CBD5E1;
+    }
+
+    tbody td.cell.sig-bonf {
+      background: var(--cobalt-bg);
+      border: 2.2px solid var(--cobalt);
+      box-shadow: inset 0 0 0 1px rgba(0, 90, 181, 0.12);
+    }
+
+    tbody td.cell.sig-nom5 {
+      background: repeating-linear-gradient(
+        -45deg,
+        #FFFBEB,
+        #FFFBEB 8px,
+        #FEF3C7 8px,
+        #FEF3C7 10px
+      );
+      border: 2px solid var(--amber);
+    }
+
+    tbody td.cell.sig-takbonf {
+      background: var(--teal-bg);
+      border: 1.5px dashed var(--teal);
+    }
+
+    tbody td.cell.ts {
+      background: #F8FAFC;
+      border: 1.2px dashed #CBD5E1;
+    }
+
+    .inner-pill {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    tbody td.cell.sig-nom5 .inner-pill {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 7px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--amber-bd);
+    }
+
+    .coef {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .cell.sig-bonf .coef { color: var(--cobalt); font-size: 15.5px; }
+    .cell.sig-nom5 .coef { color: var(--amber-txt); }
+    .cell.ts .coef       { color: var(--slate); font-weight: 600; font-size: 13.5px; }
+
+    .subcoef {
+      font-size: 11px;
+      color: var(--slate);
+      font-weight: 600;
+    }
+
+    .pval {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .cell.ts .pval { color: var(--muted); font-weight: 600; }
+
+    .status {
+      display: inline-block;
+      width: fit-content;
+      font-size: 10.6px;
+      font-weight: 800;
+      padding: 2.5px 7px;
+      border-radius: 2px;
+      margin-top: 2px;
+    }
+    .st-bonf { background: var(--cobalt); color: #FFFFFF; }
+    .st-nom  { background: var(--amber); color: #FFFFFF; }
+    .st-tak  { background: #FFFFFF; color: var(--teal); border: 1px solid var(--teal); }
+    .st-ts   { background: #E2E8F0; color: var(--slate); font-weight: 700; }
+
+    /* FOOTER DISIPLIN ILMIAH */
+    .footer {
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      font-size: 11.4px;
+      color: var(--slate);
+    }
+
+    .footer strong { color: var(--navy); }
+    .footer-right {
+      text-align: right;
+      white-space: nowrap;
+      color: var(--muted);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="header">
+      <div>
+        <div class="eyebrow">Analisis Regresi Linear Berganda (OLS) • Panel 57 Bulan per Komoditas (Januari 2022 – September 2026)</div>
+        <h1>Matriks Pengaruh Prediktor Ekonomi terhadap Volume Impor AS per Komoditas</h1>
+        <p class="subtitle">
+          Model simultan tiap komoditas HS-6: <strong>Volume Impor AS (MT/bln) ~ Tarif Efektif (X₁) + Kurs IDR/USD (X₂) + Harga Minyak Brent (X₃)</strong> • N = 57 bulan per model
+        </p>
+      </div>
+
+      <div class="legend">
+        <div class="leg-row">
+          <span class="leg-pill leg-bonf">[✓] Signifikan Lolos Bonferroni</span>
+          <span class="leg-pill leg-nom">[*] Sig. Nominal 5% (Tak Lolos Bonf 1%)</span>
+        </div>
+        <div class="leg-row">
+          <span class="leg-pill leg-tak">[TS] p &lt; 0,05 Awal, Tak Lolos Bonferroni</span>
+          <span class="leg-pill leg-ts">[TS] Tidak Signifikan</span>
+        </div>
+      </div>
+    </div>
+
+    <table class="reg3x5">
+      <thead>
+        <tr>
+          <th class="corner">
+            <div class="corner-k">Struktur Matriks (3 × 5)</div>
+            <div class="corner-t">Variabel Penjelas (↓) × Komoditas HS-6 (→)</div>
+            <div class="corner-s">Membaca tiap kolom ke bawah menunjukkan prediktor mana yang signifikan pada model komoditas tersebut.</div>
+          </th>
+
+          <th class="col-hdr karet">
+            <div class="hs-code">HS 4001.22</div>
+            <div class="comm-name">Karet Alam TSNR</div>
+            <span class="col-fit">Adj. R² = 0,3960 (Terkuat)</span>
+          </th>
+
+          <th class="col-hdr sawit">
+            <div class="hs-code">HS 1511.90</div>
+            <div class="comm-name">Sawit Olahan</div>
+            <span class="col-fit">Adj. R² = 0,0866 • Sinyal Tarif</span>
+          </th>
+
+          <th class="col-hdr kelapa">
+            <div class="hs-code">HS 1513.19</div>
+            <div class="comm-name">Minyak Kelapa</div>
+            <span class="col-fit">Adj. R² = 0,0894 • Lemah</span>
+          </th>
+
+          <th class="col-hdr">
+            <div class="hs-code">HS 0901.11</div>
+            <div class="comm-name">Kopi Mentah</div>
+            <span class="col-fit">Adj. R² = −0,0469 • Tak Sig.</span>
+          </th>
+
+          <th class="col-hdr">
+            <div class="hs-code">HS 1804.00</div>
+            <div class="comm-name">Mentega Kakao</div>
+            <span class="col-fit">Adj. R² = −0,0112 • Tak Sig.</span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- BARIS 1: X1 TARIF EFEKTIF -->
+        <tr>
+          <th class="pred-hdr x1">
+            <div class="pred-code">Prediktor X₁</div>
+            <div class="pred-name">Tarif Efektif Aktual</div>
+            <div class="pred-unit">Bea masuk aktual / nilai impor pabean AS (per +1 poin %)</div>
+          </th>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">Tarif Aktual ≤ 0,08%</div>
+              <div class="subcoef">Hampir nol sepanjang periode</div>
+              <div class="pval">p = 0,1676</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell sig-nom5">
+            <div class="inner-pill">
+              <div class="coef">b = −2.675,73 MT</div>
+              <div class="subcoef">per +1 poin % tarif efektif</div>
+              <div class="pval">p = 0,0070</div>
+              <span class="status st-nom">[*] Sig. 5% (Tak Bonf 1%)</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = +101,99 MT</div>
+              <div class="pval">p = 0,5729</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = +9,41 MT</div>
+              <div class="pval">p = 0,8990</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = −60,36 MT</div>
+              <div class="pval">p = 0,1805</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- BARIS 2: X2 KURS IDR/USD -->
+        <tr>
+          <th class="pred-hdr x2">
+            <div class="pred-code">Prediktor X₂</div>
+            <div class="pred-name">Kurs IDR / USD</div>
+            <div class="pred-unit">Nilai tukar Rupiah terhadap Dolar AS (per kenaikan Rp1/USD)</div>
+          </th>
+
+          <td class="cell sig-bonf">
+            <div class="inner-pill">
+              <div class="coef">b = −6,37 MT/Rp1</div>
+              <div class="subcoef">≈ −637,2 MT per +Rp100/USD</div>
+              <div class="pval">p = 4,73 × 10⁻⁶</div>
+              <span class="status st-bonf">[✓] Lolos Bonferroni</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = +6,02 MT/Rp1</div>
+              <div class="pval">p = 0,2855</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell sig-takbonf">
+            <div class="inner-pill">
+              <div class="coef">b = −1,71 MT/Rp1</div>
+              <div class="subcoef">per kenaikan Rp1/USD</div>
+              <div class="pval">p = 0,0179</div>
+              <span class="status st-tak">[TS] Tak Lolos Bonf</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = +0,16 MT/Rp1</div>
+              <div class="pval">p = 0,5732</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = −0,03 MT/Rp1</div>
+              <div class="pval">p = 0,8781</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- BARIS 3: X3 HARGA MINYAK BRENT -->
+        <tr>
+          <th class="pred-hdr x3">
+            <div class="pred-code">Prediktor X₃</div>
+            <div class="pred-name">Harga Minyak Brent</div>
+            <div class="pred-unit">Harga minyak mentah acuan dunia (per +1 USD/bbl)</div>
+          </th>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = +104,73 MT</div>
+              <div class="pval">p = 0,1890</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = −110,14 MT</div>
+              <div class="pval">p = 0,7304</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = +57,27 MT</div>
+              <div class="pval">p = 0,2367</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = −3,27 MT</div>
+              <div class="pval">p = 0,8663</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+
+          <td class="cell ts">
+            <div class="inner-pill">
+              <div class="coef">b = +0,99 MT</div>
+              <div class="pval">p = 0,9300</div>
+              <span class="status st-ts">[TS] Tidak Signifikan</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <div>
+        <strong>Catatan Integritas Statistik:</strong> Seluruh nilai berasal dari estimasi regresi OLS skala level pada data <em>US General Imports</em> (impor AS dari Indonesia). Karet Alam TSNR ↔ Kurs (<em>p</em> = 4,73 × 10⁻⁶) adalah satu-satunya prediktor yang lolos koreksi Bonferroni; Sawit Olahan ↔ Tarif Efektif (<em>p</em> = 0,0070) signifikan pada taraf nominal 5% namun belum melewati ambang koreksi Bonferroni 1%. Hubungan statistik bersifat asosiatif observasional, bukan bukti kausalitas langsung.
+      </div>
+      <div class="footer-right">
+        Kelompok 10 — STA2511 IPB<br>
+        USDA FAS GATS, USITC, BI/FRED, World Bank
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
