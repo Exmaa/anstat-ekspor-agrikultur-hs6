@@ -1,34 +1,32 @@
-# Kit Produksi Infografis Digital (Kelompok 10 — STA2511)
+# Kit Produksi Infografis Digital: Ekspor Agrikultur Indonesia (2022–2026)
 
+**Judul Studi:** Ekspor Indonesia di Tengah Perubahan Kebijakan Tarif AS: Analisis volume ekspor sawit olahan, karet alam, dan kopi Indonesia (2022–2026)  
 **Mata Kuliah:** Analisis Statistika (STA2511)  
-**Judul Studi:** Mengarungi Badai Tarif Paman Sam: Menakar Ketahanan Ekspor Agrikultur Nusantara (Level HS-6: 2022–2026)  
-**Tim Peneliti:** Kelompok 10 — Emanuel Marthen Embuai & Tim  
-**Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)  
+**Kelompok Peneliti:** Kelompok 10  
+**Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si.  
+**Penyusun:** Emanuel Marthen Embuai & Tim  
 **Institusi:** Departemen Statistika dan Sains Data, FMIPA IPB University  
+**Pendekatan:** Editorial Data Journalism dengan Disiplin Akademis (*Sharp, Academic, Editorial*)  
 **Tautan Desain Canva:** [canva.link/x5sju4kg3ajy4kp](https://canva.link/x5sju4kg3ajy4kp) (ID: `DAHa9_KM1Sg`)  
 **Repositori GitHub:** [github.com/Exmaa/anstat-ekspor-agrikultur-hs6](https://github.com/Exmaa/anstat-ekspor-agrikultur-hs6)
 
 ---
 
-## Daftar Dokumen Resmi Kit Produksi
+## Daftar Dokumen Resmi Kit Produksi (Revisi Standar Akademis)
 
-Folder ini berisi 4 dokumen PDF panduan komprehensif berstandar jurnalistik data (*Editorial Data Storytelling*) untuk memproduksi dan memvalidasi infografis ilmiah:
-
-| No | Nama Berkas PDF | Format Sumber | Cakupan & Fungsi Dokumen |
+| No | Dokumen PDF | Dokumen Sumber | Ringkasan Fungsi & Isi |
 |:---:|:---|:---:|:---|
-| **01** | [`01_Naskah_dan_Storyline_Infografis.pdf`](./01_Naskah_dan_Storyline_Infografis.pdf) | `.qmd` | **Naskah & Storyline Infografis:** Memuat narasi dramatik 6 babak (*The Narrative Arc*), teks *copywriting* per kartu, *hook*, plot twist karet, hingga resolusi kebijakan. |
-| **02** | [`02_Kompendium_Tabel_dan_Metrik_Statistika.pdf`](./02_Kompendium_Tabel_dan_Metrik_Statistika.pdf) | `.qmd` | **Kompendium Tabel & Metrik Statistika:** Buku angka acuan resmi seluruh hasil uji ekonometrika (Deskriptif agregat, Welch's t-test, ANOVA 3 fase, Tukey HSD, Regresi OLS, dan matriks 5 uji Gauss-Markov). |
-| **03** | [`03_Blueprint_Desain_dan_Wireframe_Canva.pdf`](./03_Blueprint_Desain_dan_Wireframe_Canva.pdf) | `.qmd` | **Blueprint Desain & Wireframe Canva:** Panduan visual lengkap (dimensi kanvas digital scroll & cetak A2, palet warna Hex, tipografi hierarkis, wireframe 6 zona, katalog ID aset media Canva, dan checklist kendali mutu visual). |
-| **04** | [`04_Executive_Summary_dan_Policy_Brief.pdf`](./04_Executive_Summary_dan_Policy_Brief.pdf) | `.qmd` | **Executive Summary & Policy Brief:** Laporan eksekutif ringkas untuk Dosen Pengampu (Pak Farit) dan pembuat kebijakan, memuat sintesis ekonometrika dan matriks strategi kebijakan 3 pilar. |
+| **01** | [`01_Naskah_dan_Storyline_Infografis.pdf`](./01_Naskah_dan_Storyline_Infografis.pdf) | [`.qmd`](./01_Naskah_dan_Storyline_Infografis.qmd) | **Naskah Utama Infografis:** Memuat narasi 6 zona berbasis jurnalisme data berdisiplin akademis, teks komparasi Welch's t-test, hasil estimasi OLS, transparansi batas diagnostik kopi, dan rekomendasi kebijakan. |
+| **02** | [`02_Kompendium_Tabel_dan_Metrik_Statistika.pdf`](./02_Kompendium_Tabel_dan_Metrik_Statistika.pdf) | [`.qmd`](./02_Kompendium_Tabel_dan_Metrik_Statistika.qmd) | **Kompendium Tabel & Metrik Statistika:** Buku angka acuan resmi 6 tabel empiris (deskriptif 57 bulan $N=171$, Welch's t-test, ANOVA tiga fase terkalibrasi, post-hoc Tukey HSD, OLS $\beta$, serta matriks asumsi klasik Gauss-Markov dengan catatan heteroskedastisitas kopi). |
+| **03** | [`03_Blueprint_Desain_dan_Wireframe_Canva.pdf`](./03_Blueprint_Desain_dan_Wireframe_Canva.pdf) | [`.qmd`](./03_Blueprint_Desain_dan_Wireframe_Canva.qmd) | **Blueprint Desain & Penataan Canva:** Panduan visual lengkap (struktur 6 zona baru, kanvas scroll digital & cetak A2, sistem identitas warna komoditas, visualisasi forest plot, dan prinsip eliminasi KPI dangkal). |
+| **04** | [`04_Executive_Summary_dan_Policy_Brief.pdf`](./04_Executive_Summary_dan_Policy_Brief.pdf) | [`.qmd`](./04_Executive_Summary_dan_Policy_Brief.qmd) | **Ringkasan Eksekutif & Policy Brief:** Sintesis padat untuk Dosen Pengampu (Dr. Farit Mochamad Afendi, M.Si.) dan pengambil kebijakan, memuat pertanyaan penelitian, metode, 3 temuan utama, batasan observasional, dan matriks kebijakan terarah. |
 
 ---
 
-## Basis Data & Parameter Riset
+## Parameter Utama & Konsistensi Tiga Fase Kebijakan
 
-- **Unit Observasi:** Data panel bulanan seimbang (*balanced panel*) 57 bulan (Januari 2022 s.d. September 2026), total $N = 171$ observasi.
-- **Komoditas Inti HS-6:**
-  - `1511.90`: Sawit Olahan (*Refined Palm Oil*)
-  - `4001.22`: Karet Alam Remah TSNR (*SIR-20*)
-  - `0901.11`: Kopi Biji Mentah (*Raw Coffee Beans*)
-- **Ambang Signifikansi Konservatif Bonferroni:** $\alpha_{\text{Bonf}} = \frac{0{,}05}{3} = 0{,}0167$.
-- **Uji Asumsi Klasik:** 100% Lolos Penuh (VIF = 1,517; Breusch-Pagan $p > 0{,}25$; Durbin-Watson = 1,71; Ramsey RESET $p > 0{,}20$).
+Berdasarkan dataset empiris `master_panel_2022_202609.rds`:
+* **Fase 1: Pra-Tarif (Januari 2022 – Maret 2025, 39 bulan):** Tarif efektif $0\% - 0{,}06\%$.
+* **Fase 2: Tarif Resiprokal (April 2025 – Januari 2026, 10 bulan):** Puncak tarif $19{,}00\%$.
+* **Fase 3: Pasca-ART (Februari 2026 – September 2026, 8 bulan):** Kesepakatan bilateral tarif $0\%$.
+* **Total:** 57 bulan berimbang $\times$ 3 komoditas = 171 observasi.

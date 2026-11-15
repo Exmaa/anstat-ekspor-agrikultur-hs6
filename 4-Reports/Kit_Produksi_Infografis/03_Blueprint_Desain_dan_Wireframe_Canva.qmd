@@ -1,6 +1,6 @@
 ---
-title: "Blueprint Desain & Wireframe Infografis Canva"
-subtitle: "Panduan Arsitektur Visual, Sistem Desain, dan Penataan Komponen Infografis Digital"
+title: "Blueprint Desain & Penataan Infografis Canva"
+subtitle: "Panduan Teknis Visual, Sistem Identitas Komoditas, dan Penataan Komponen Infografis Digital"
 author: "Kelompok 10 — Analisis Statistika (STA2511)"
 institute: "Departemen Statistika dan Sains Data, FMIPA IPB University"
 date: "2026-11-15"
@@ -15,151 +15,131 @@ format:
     number-sections: true
 ---
 
-# Pengantar & Filosofi Desain
+# Prinsip & Filosofi Desain
 
-Dokumen blueprint ini merupakan acuan teknis visual bagi tim desainer grafis dan analis data dalam menyusun infografis digital maupun cetak untuk tugas akhir Analisis Statistika (STA2511). Desain infografis dirancang mengusung prinsip **Editorial Data Storytelling**, yaitu memadukan keanggunan jurnalistik data premium (*The Economist*, *Financial Times*) dengan kejelasan struktural laporan ekonometrika ilmiah.
+Blueprint ini menyajikan pedoman visual untuk penyusunan infografis digital berbasis pendekatan **editorial data journalism dengan disiplin akademis**. Prinsip utama yang diusung meliputi:
+1. **Sharp:** Pembaca dapat memahami kontras temuan utama ketiga komoditas dalam waktu 10–15 detik.
+2. **Academic:** Setiap elemen visual, label, dan angka berakar langsung pada pengujian statistik yang terverifikasi, tanpa melampaui batas inferensi empiris.
+3. **Editorial:** Alur informasi mengalir secara logis dari konteks kebijakan, komparasi kinerja antar-komoditas, penjelasan faktor ekonomi, pemeriksaan batasan model, hingga implikasi kebijakan.
 
 * **Identitas Tim:** Kelompok 10 — Analisis Statistika (STA2511)
-* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)
-* **Tautan Desain Aktif Canva:** [canva.link/x5sju4kg3ajy4kp](https://canva.link/x5sju4kg3ajy4kp) (ID Desain: `DAHa9_KM1Sg`)
-* **Tautan Mode Presentasi Canva:** [canva.com/d/T6VEJqNYTpqSgAN](https://www.canva.com/d/T6VEJqNYTpqSgAN)
+* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si.
+* **Penyusun:** Emanuel Marthen Embuai & Tim
+* **Tautan Desain Canva:** [canva.link/x5sju4kg3ajy4kp](https://canva.link/x5sju4kg3ajy4kp) (ID: `DAHa9_KM1Sg`)
 
 ---
 
-# Spesifikasi Kanvas & Format Keluaran
+# Keputusan Desain & Perubahan Utama
 
-Infografis didesain untuk dua media distribusi utama:
+Sesuai evaluasi kritis terhadap draf sebelumnya, beberapa keputusan desain penting diberlakukan:
 
-1. **Format Digital Scroll (Mobile & Web First):**
-   * **Dimensi Kanvas:** $800 \times 2.000\text{ px}$ (Rasio aspek $1 : 2{,}5$) atau rasio vertikal mobile $1.080 \times 2.400\text{ px}$.
-   * **Fungsi:** Kompatibel untuk penjelajahan vertikal pada layar gawai, media sosial (Instagram Slide / LinkedIn Carousel), dan web embedding.
-   * **Safe Zone:** Margin kiri-kanan $40\text{ px}$ dan margin atas-bawah $60\text{ px}$.
-
-2. **Format Poster Cetak Ilmiah (Academic Conference):**
-   * **Ukuran Kertas:** Standar ISO A2 ($420 \times 594\text{ mm}$) atau A1 vertikal ($594 \times 841\text{ mm}$).
-   * **Resolusi:** $300\text{ DPI}$ (*High Resolution Print PDF*).
-   * **Bleed:** $3\text{ mm}$ di seluruh sisi luar.
+* **Penyelarasan Tiga Fase Kebijakan:**  
+  * Fase 1: Pra-Tarif (Januari 2022 – Maret 2025, 39 bulan).
+  * Fase 2: Tarif Resiprokal (April 2025 – Januari 2026, 10 bulan).
+  * Fase 3: Pasca-ART (Februari 2026 – September 2026, 8 bulan).
+* **Eliminasi Kartu KPI Dangkal:** Menghilangkan kartu metrik agregat yang tidak menambah pemahaman kontekstual pembaca.
+* **Tidak Mengandalkan $R^2$ Tunggal:** $R^2$ tidak lagi dijadikan ukuran tunggal mutu model; fokus dialihkan pada signifikansi koefisien parameter dan signifikansi uji simultan $F$.
+* **Penggunaan Forest Plot Koefisien:** Menggunakan diagram titik-rentang (*forest plot*) untuk membandingkan arah hubungan dan interval keyakinan estimasi koefisien regresi.
+* **Warna Netral Berbasis Komoditas:** Warna digunakan secara konsisten sebagai identitas pembeda komoditas, bukan untuk memberi kesan subjektif bahwa suatu produk aman atau berbahaya.
+* **Transparansi Keterbatasan Model:** Hasil diagnostik model kopi yang menunjukkan indikasi heteroskedastisitas dan residual tidak normal ditampilkan secara terbuka pada zona pemeriksaan model.
+* **Standar Bahasa:** Mengutamakan istilah baku bahasa Indonesia, dengan istilah teknis bahasa Inggris dicantumkan dalam kurung saat pertama kali digunakan.
 
 ---
 
-# Sistem Desain Visual (*Design System*)
+# Spesifikasi Kanvas & Sistem Visual
 
-## Palet Warna Resmi (*Color Palette*)
+## Dimensi Kanvas
+1. **Format Vertikal Digital (Scroll Mobile/Web):** $800 \times 2.000\text{ px}$ (atau rasio vertikal layar ponsel $1.080 \times 2.400\text{ px}$).
+2. **Format Poster Cetak Ilmiah:** Ukuran standar ISO A2 ($420 \times 594\text{ mm}$) atau A1 vertikal, resolusi 300 DPI.
 
-Sistem warna menggunakan 5 palet warna fungsional berdaya kontras tinggi (*WCAG AAA compliant*):
+## Sistem Identitas Warna Komoditas (*Product Palette*)
+Warna diterapkan untuk membedakan ketiga pos tarif HS-6 secara konsisten di seluruh grafik dan kartu:
 
-| Kategori Warna | Kode Hex | Nilai RGB | Peran & Representasi Visual |
+| Komoditas & Elemen | Kode Hex | Nilai RGB | Penggunaan Visual |
 | :--- | :---: | :---: | :--- |
-| **Deep Midnight Navy** | `#0F2537` | `rgb(15, 37, 55)` | Warna latar belakang utama (*dark canvas*), teks judul utama, kontainer kartu data, dan aksen otoritas ilmiah. |
-| **Crisp Pure White** | `#FFFFFF` | `rgb(255, 255, 255)` | Warna kanvas kartu kontainer putih, teks kontras tinggi di atas kontainer gelap. |
-| **Emerald Teal** | `#0D9488` | `rgb(13, 148, 136)` | Indikator stabilitas, daya tahan (*safe-haven*), komoditas kopi, serta status uji asumsi lolos (*passed*). |
-| **Crimson Coral** | `#EF4444` | `rgb(239, 68, 68)` | Peringatan risiko tinggi (*shock*), kontraksi ekspor parah, dan komoditas karet alam. |
-| **Amber Gold** | `#F59E0B` | `rgb(245, 158, 11)` | Sensitivitas tarif moderat, komoditas kelapa sawit (*palm oil*), dan angka *highlight metric*. |
-| **Slate Gray (Netral)** | `#64748B` | `rgb(100, 116, 139)` | Teks sekunder, label sumbu grafik, catatan kaki metodologis, dan batas kontainer (*divider*). |
+| **Sawit Olahan (`1511.90`)** | `#F59E0B` | `rgb(245, 158, 11)` | Garis tren sawit, aksen kartu sawit, titik estimasi tarif. |
+| **Karet Alam TSNR (`4001.22`)** | `#EF4444` | `rgb(239, 68, 68)` | Garis tren karet, aksen kartu karet, titik estimasi kurs. |
+| **Kopi Mentah (`0901.11`)** | `#0D9488` | `rgb(13, 148, 136)` | Garis tren kopi, aksen kartu kopi, titik estimasi kopi. |
+| **Latar Belakang Kontainer** | `#0F2537` | `rgb(15, 37, 55)` | Header, kartu sorotan data, dan footer kolofon. |
+| **Kanvas Utama** | `#FFFFFF` | `rgb(255, 255, 255)` | Latar belakang putih bersih untuk keterbacaan teks yang optimal. |
+| **Teks Sekunder & Batas** | `#64748B` | `rgb(100, 116, 139)` | Label sumbu, garis panduan, batas sel, dan teks keterangan. |
 
-## Tipografi & Skala Hirarki Huruf
-
-Tipografi dipilih untuk membedakan secara tegas antara elemen judul editorial, angka analitis, dan teks penjelasan:
-
-* **Font Judul Utama (*Display Header*):** **Montserrat** / **Poppins** (*Bold* / *ExtraBold*, 700–800).
-  * Ukuran Banner Judul: $36\text{ pt} - 44\text{ pt}$.
-  * Ukuran Judul Babak Zona: $20\text{ pt} - 24\text{ pt}$.
-* **Font Angka Sorotan (*Data Callouts / Big Numbers*):** **Bebas Neue** / **Oswald** (*Regular / Condensed*, 400–600).
-  * Ukuran Angka Metrik: $38\text{ pt} - 52\text{ pt}$ (dengan label metrik $12\text{ pt}$ tepat di bawah angka).
-* **Font Narasi & Batang Tubuh (*Body Copy*):** **Inter** / **Open Sans** (*Regular / Medium*, 400–500).
-  * Ukuran Teks Bacaan: $11\text{ pt} - 13\text{ pt}$ dengan *line height* $1{,}4$.
-* **Font Catatan Kaki & Sumber Data (*Footnote / Caption*):** **Inter Light Italic** ($8\text{ pt} - 9\text{ pt}$).
+## Tipografi Terstruktur
+* **Judul Utama & Judul Zona:** Montserrat atau Poppins (Bold/Semibold, 700). Ukuran: $28\text{ pt} - 40\text{ pt}$.
+* **Angka Utama & Persentase:** Bebas Neue atau Oswald (Medium, 500). Ukuran: $36\text{ pt} - 48\text{ pt}$.
+* **Teks Penjelasan & Narasi:** Inter atau Open Sans (Regular/Medium, 400–500). Ukuran: $11\text{ pt} - 13\text{ pt}$, jarak antar-baris (*line-height*) $1{,}4$.
+* **Catatan Kaki & Sumber:** Inter Light Italic ($8\text{ pt} - 9\text{ pt}$).
 
 ---
 
-# Inventaris Aset Grafis Canva (*Media Library Assets*)
+# Arsitektur Tata Letak Enam Zona (Wireframe)
 
-Seluruh grafik visualisasi data telah dihasilkan secara terprogram melalui skrip visualisasi beresolusi tinggi ($300\text{ DPI}$) dan telah diunggah ke pustaka Canva pengguna. Berikut adalah katalog ID aset Canva yang tertaut pada desain aktif:
+Struktur infografis dibagi menjadi 6 zona visual dengan fungsi yang terdefinisi secara tegas:
 
-| Kode Figur | Nama Berkas Gambar Lokal | ID Media Canva | Deskripsi Isi Grafik |
-| :---: | :--- | :---: | :--- |
-| **Figur 1** | `fig01_timeseries_volume_tariff.png` | `MAHa9_LRhtg` | Time series volume ekspor bulanan (57 bulan) vs eskalasi tarif riil 3 komoditas. |
-| **Figur 3** | `fig03_regime_boxplot_anova.png` | `MAHa97pNr8M` | Boxplot sebaran volume 3 fase kebijakan beserta garis rata-rata dan signifikansi ANOVA. |
-| **Figur 4** | `fig04_ols_t_and_ttest.png` | `MAHa900bYZo` | Grafik batang uji $t$ Welch (perubahan persentase) dan *forest plot* koefisien regresi OLS. |
-| **Figur 5** | `fig05_classical_diagnostics_grid.png` | `MAHa921E4pU` | Panel matriks 4 diagnostik asumsi klasik Gauss-Markov (Residuals vs Fitted, Q-Q Plot, Breusch-Pagan, VIF). |
-
----
-
-# Cetak Biru Wireframe (Zona 1 s.d. Zona 6)
-
-Infografis dibagi menjadi 6 zona visual vertikal yang tersusun secara logis mengikuti narasi *Storytelling*:
-
-## Zona 1: Editorial Header & Identitas Akademik (Tinggi: 12% Kanvas)
-* **Warna Latar:** Deep Midnight Navy (`#0F2537`).
-* **Elemen:**
-  * Logo IPB University & Departemen Statistika di pojok kiri atas.
-  * Tagline Kategori: *"STUDI EKONOMETRIKA PANEL DATA (HS-6: 2022–2026)"*.
-  * Judul Utama: *"Mengarungi Badai Tarif Paman Sam: Menakar Ketahanan Ekspor Agrikultur Nusantara"*.
-  * Subjudul: *"Dampak Kebijakan Tarif Proteksionisme Amerika Serikat terhadap Kinerja Ekspor Sawit, Karet, dan Kopi Indonesia"*.
-  * Metadata Peneliti: Kelompok 10 (Emanuel Marthen Embuai & Tim) • Dosen Pembimbing: Dr. Farit Mochamad Afendi, M.Si. (Pak Farit).
-
-## Zona 2: Insiden Pemicu & Perjalanan 3 Fase Kebijakan (Tinggi: 18% Kanvas)
-* **Warna Latar:** Pure White (`#FFFFFF`) dengan kontainer abu-abu lembut (`#F8FAFC`).
-* **Elemen:**
-  * Visualisasi *Timeline* Horizontal:
-    * **Fase 1 (Jan 2022 – Mar 2025):** Era Tarif Tradisional ($0\% - 0{,}06\%$).
-    * **Fase 2 (Apr 2025 – Jul 2025):** Dekrit Tarif Resiprokal Trump ($10\% - 32\%$).
-    * **Fase 3 (Agu 2025 – Sep 2026):** Kesepakatan ART 0% & Volatilitas Moneter.
-  * *Callout Box*: Total Panel $N = 171$ bulan pengamatan tanpa missing data.
-  * Penempatan Aset: `MAHa9_LRhtg` (Figur 1) di sisi kanan / tengah.
-
-## Zona 3: Karakterisasi Tiga Komoditas Agrikultur (Tinggi: 20% Kanvas)
-* **Warna Latar:** Kartu Grid Tiga Kolom (*Card-Based Layout*).
-* **Elemen:**
-  * **Kartu 1 (Sawit Olahan - `1511.90`):**
-    * Border Warna: Amber Gold (`#F59E0B`).
-    * Metrik Utama: $-15{,}5\%$ ($p = 0{,}038$), volume rata-rata $119.711\text{ MT/bln}$.
-    * Deskripsi: *"Sensitif Tarif Langsung. Penurunan volume signifikan saat tarif diterapkan."*
-  * **Kartu 2 (Karet Alam TSNR - `4001.22`):**
-    * Border Warna: Crimson Coral (`#EF4444`).
-    * Metrik Utama: $-32{,}5\%$ ($p = 2{,}07 \times 10^{-5}$), volume rata-rata $31.005\text{ MT/bln}$.
-    * Deskripsi: *"Goncangan Ekstrem. Kontraksi terdalam dari 3 komoditas."*
-  * **Kartu 3 (Kopi Mentah - `0901.11`):**
-    * Border Warna: Emerald Teal (`#0D9488`).
-    * Metrik Utama: $+4{,}2\%$ ($p = 0{,}619$), volume rata-rata $4.428\text{ MT/bln}$.
-    * Deskripsi: *"Benteng Resiliensi. Kebal terhadap tarif proteksionis AS."*
-
-## Zona 4: Pengungkapan Statistik & Plot Twist Ekonometrika (Tinggi: 24% Kanvas)
-* **Warna Latar:** Deep Midnight Navy (`#0F2537`) dengan kartu kaca transparan (*Glassmorphism*).
-* **Elemen:**
-  * Penempatan Aset: `MAHa900bYZo` (Figur 4) & `MAHa97pNr8M` (Figur 3).
-  * **Komparasi Sensitivitas Kurs vs Tarif:**
-    * Sawit: Koefisien tarif $\beta_1 = -2.675{,}7\text{ MT/\%}$ ($p = 0{,}00696 < \alpha_{\text{Bonf}}$).
-    * Karet (*Plot Twist*): Koefisien kurs $\beta_2 = -6{,}37\text{ MT/Rp}$ ($p = 4{,}73 \times 10^{-6}$), koefisien tarif tidak signifikan ($p = 0{,}263$).
-    * Penjelasan Karet: Mengapa karet terpuruk di Fase 3 saat tarif sudah 0%? Karena depresiasi rupiah dan krisis kontainer logistik global membebani bahan baku industri ban AS.
-
-## Zona 5: Validasi Diagnostik Gauss-Markov (Tinggi: 12% Kanvas)
-* **Warna Latar:** Abu-abu Lembut (`#F1F5F9`).
-* **Elemen:**
-  * Penempatan Aset: `MAHa921E4pU` (Figur 5 - Matriks Diagnostik).
-  * 4 Kartu Verifikasi Mini (*Badge of Credibility*):
-    * [x] **VIF = 1,517** (Bebas Multikolinearitas, $< 5{,}0$).
-    * [x] **Breusch-Pagan $p > 0{,}25$** (Homoskedastisitas Terpenuhi).
-    * [x] **Durbin-Watson = 1,71** (Bebas Otokorelasi Galat).
-    * [x] **Ramsey RESET $p > 0{,}20$** (Spesifikasi Linier Tepat).
-
-## Zona 6: Rekomendasi Kebijakan & Footer Kolofon (Tinggi: 14% Kanvas)
-* **Warna Latar:** Deep Midnight Navy (`#0F2537`).
-* **Elemen:**
-  * Tiga Pilar Solusi Strategis:
-    1. *Pilar Sawit:* Pengawalan Implementasi Perjanjian Dagang Tarif 0% & Diplomasi Sertifikasi Hijau (ISPO).
-    2. *Pilar Karet:* Skema Lindung Nilai Valas (*FX Hedging*) & Subsidi Biaya Kontainer Pelabuhan Ekspor.
-    3. *Pilar Kopi:* Penguatan Indikasi Geografis (*GI Specialty*) & Penetrasi Rantai Kafe Premium AS.
-  * Footer: Departemen Statistika dan Sains Data, FMIPA IPB University • Dosen: Dr. Farit Mochamad Afendi, M.Si. • Sumber: BPS, UN Comtrade, US ITC DataWeb, BI, World Bank Commodity Price (2022–2026).
+| Zona | Judul Bagian | Visual Utama | Fungsi Analitis |
+|:---:|:---|:---|:---|
+| **1** | **Ekspor Indonesia di Tengah Perubahan Tarif AS** | Judul utama, subjudul, dan metadata penelitian | Menetapkan konteks kajian dan parameter dasar |
+| **2** | **Perubahan Kebijakan Tarif AS** | Garis waktu tiga fase & grafik lonjakan tarif | Menjelaskan kronologi waktu dan konteks kebijakan |
+| **3** | **Tiga Komoditas, Tiga Pola Ekspor** | Tiga kartu komparasi volume pra vs pasca tarif | Menampilkan perbedaan respon empiris komoditas |
+| **4** | **Faktor yang Berkaitan dengan Ekspor** | Diagram rentang koefisien (*forest plot*) OLS | Menjelaskan hubungan statistik dengan tarif dan kurs |
+| **5** | **Pemeriksaan Kelayakan Model** | Tabel diagnostik asumsi & batas interpretasi | Menunjukkan keandalan dan keterbatasan model |
+| **6** | **Implikasi bagi Kebijakan Ekspor** | Tiga pilar rekomendasi terarah | Menghubungkan temuan data dengan aksi kebijakan |
 
 ---
 
-# Checklist Kendali Mutu Visual (*Quality Acceptance Criteria*)
+# Detail Tata Letak Tiap Zona
 
-Sebelum infografis final diterbitkan ke penguji dan publik, verifikasi daftar kendali mutu berikut:
+## Zona 1: Judul dan Konteks Penelitian
+* **Elemen:**
+  * Logo IPB University & Departemen Statistika dan Sains Data di sudut kiri atas.
+  * Judul: *Ekspor Indonesia di Tengah Perubahan Kebijakan Tarif AS*.
+  * Subjudul: *Perbandingan kinerja ekspor sawit olahan, karet alam, dan kopi Indonesia serta hubungannya dengan tarif AS, nilai tukar rupiah, dan harga minyak dunia selama 2022–2026*.
+  * Baris Informasi Dasar: 57 bulan (Jan 2022 – Sep 2026) • 171 observasi seimbang • Klasifikasi HS-6 (`1511.90`, `4001.22`, `0901.11`).
 
-- [x] **Akurasi Nilai Data:** Seluruh nilai numerik, desimal, dan tingkat signifikansi identik 100% dengan dokumen `02_Kompendium_Tabel_dan_Metrik_Statistika.pdf`.
-- [x] **Keterbacaan Huruf (*Legibility*):** Teks dapat dibaca jelas tanpa zoom pada layar ponsel pintar berukuran $6{,}1\text{ inci}$.
-- [x] **Kepatuhan Brand Akademik:** Logo IPB dan nama mata kuliah STA2511 tercantum jelas pada header dan footer.
-- [x] **Kontras Warna:** Rasio kontras teks utama terhadap warna latar belakang memenuhi standar minimal $4{,}5 : 1$.
-- [x] **Integritas Gambar:** Gambar figur ekonometrika tidak terdistorsi, tidak buram, dan resolusi minimal $300\text{ DPI}$.
+## Zona 2: Perubahan Kebijakan Tarif AS
+* **Elemen:**
+  * Kronologi Tiga Fase Kebijakan:
+    * **Fase 1 (Jan 2022 – Mar 2025):** Pra-Tarif (39 bulan, tarif efektif $0\% - 0{,}06\%$).
+    * **Fase 2 (Apr 2025 – Jan 2026):** Penerapan Tarif Resiprokal (10 bulan, puncak tarif 19%).
+    * **Fase 3 (Feb 2026 – Sep 2026):** Pasca-ART (8 bulan, tarif dinolkan melalui perjanjian bilateral).
+  * Angka Sorotan: Puncak tarif $19{,}00\%$, rentang 57 bulan, 171 observasi.
+  * Pertanyaan Panduan: *Apakah ketiga komoditas menunjukkan perubahan volume ekspor yang sama? Sejauh mana tarif, nilai tukar, dan harga minyak berkaitan dengan perubahan tersebut?*
+  * Aset Visual: Visualisasi grafik deret waktu tarif dan volume (`MAHa9_LRhtg`).
+
+## Zona 3: Tiga Komoditas, Tiga Pola Ekspor
+* **Elemen (Tiga Kartu Komparasi):**
+  * **Kartu 1 — Sawit Olahan (`1511.90`):**
+    * Angka Utama: **−15,5%** (turun dari $124.975$ ke $105.618\text{ MT/bulan}$).
+    * Uji Statistik: Signifikan (Welch's $t$-test, $p = 0{,}0384$).
+    * Nilai Kumulatif: USD 7.768,43 juta.
+  * **Kartu 2 — Karet Alam TSNR (`4001.22`):**
+    * Angka Utama: **−32,5%** (turun dari $34.548$ ke $23.328\text{ MT/bulan}$).
+    * Uji Statistik: Penurunan terbesar dan sangat signifikan ($p = 2{,}07 \times 10^{-5}$).
+    * Nilai Kumulatif: USD 2.859,12 juta.
+  * **Kartu 3 — Kopi Mentah (`0901.11`):**
+    * Angka Utama: **+4,2%** (naik dari $4.372$ ke $4.556\text{ MT/bulan}$).
+    * Uji Statistik: Tidak signifikan secara statistik ($p = 0{,}6189$).
+    * Nilai Kumulatif: USD 1.196,87 juta.
+  * Rangkuman: Heterogenitas nyata antar-komoditas; karet mengalami kontraksi terdalam, sawit moderat, kopi stabil.
+
+## Zona 4: Faktor yang Berkaitan dengan Ekspor
+* **Elemen:**
+  * Visual Utama: *Forest plot* koefisien regresi OLS beserta rentang keyakinan 95% (`MAHa900bYZo`).
+  * **Temuan Sawit:** Koefisien tarif $\beta_1 = -2.675{,}7\text{ MT/\%}$ ($p = 0{,}00696$). Tarif tetap signifikan negatif setelah mengontrol kurs dan harga minyak ($R^2 = 13{,}55\%$).
+  * **Temuan Karet:** Koefisien tarif tidak signifikan ($\beta_1 = -202{,}3, p = 0{,}263$), sebaliknya nilai tukar berhubungan negatif sangat kuat ($\beta_2 = -6{,}37\text{ MT/Rp}, p = 4{,}73 \times 10^{-6}, R^2 = 42{,}84\%$).
+  * **Temuan Kopi:** Tidak ada variabel yang signifikan ($R^2 = 0{,}92\%, p = 0{,}683$). Model belum cukup menjelaskan variasi volume kopi.
+
+## Zona 5: Pemeriksaan Kelayakan Model
+* **Elemen:**
+  * Visual Utama: Panel diagnostik residual (`MAHa921E4pU`).
+  * Tabel Evaluasi 5 Asumsi (VIF, Breusch–Pagan, Durbin–Watson, Ramsey RESET, Shapiro–Wilk).
+  * Catatan Kritis Batas Interpretasi: Model sawit dan karet memenuhi spesifikasi linier dan bebas multikolinearitas. Namun model kopi mengindikasikan heteroskedastisitas ($p = 0{,}041$) dan residual tidak normal ($p = 0{,}000026$), sehingga hasil model kopi harus ditafsirkan dengan kehati-hatian akademik.
+
+## Zona 6: Implikasi bagi Kebijakan Ekspor & Catatan Kaki
+* **Elemen:**
+  * Rekomendasi Terarah:
+    * Sawit: Pengawalan kesepakatan tarif $0\%$, pemenuhan regulasi deforestasi, dan diversifikasi tujuan ekspor.
+    * Karet: Penyediaan instrumen lindung nilai (*hedging*) valas, efisiensi tarif pelabuhan/kontainer, dan hilirisasi domestik.
+    * Kopi: Peningkatan mutu pascapanen, perlindungan indikasi geografis, dan ekspansi rantai kafe premium.
+  * Catatan Metodologis & Sumber Data: BPS, UN Comtrade, US ITC DataWeb, Bank Indonesia, World Bank Commodity Price (2022–2026).
+  * Kolofon: Kelompok 10 (STA2511) • Dosen Pengampu: Dr. Farit Mochamad Afendi, M.Si. • Departemen Statistika dan Sains Data, IPB University.
