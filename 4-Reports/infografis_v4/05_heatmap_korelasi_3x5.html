@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1120, initial-scale=1.0" />
+  <title>Heatmap Korelasi Pearson (3 Prediktor × 5 Komoditas) — Gaya Canva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream-card: #F2E4C7;
+      --cream-soft: #FBF6EA;
+      --cream-pill: #E8F0DA;
+      --border-dark: #3C4D3D;
+      --ink-dark: #233326;
+      --ink-muted: #566354;
+      --forest: #44644C;
+      --forest-deep: #2E4836;
+      --terra: #C05C40;
+      --terra-deep: #8A311B;
+      --sky: #2E7BA1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: transparent;
+      color: var(--ink-dark);
+      font-family: "Nunito", "Segoe UI", -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      width: 1120px;
+      line-height: 1.32;
+    }
+
+    .card {
+      width: 1120px;
+      background: var(--cream-card);
+      border: 2.5px solid var(--border-dark);
+      border-radius: 22px;
+      padding: 20px 24px 18px 24px;
+    }
+
+    .header-wrap { margin-bottom: 12px; }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-pill {
+      display: inline-block;
+      background: var(--forest);
+      color: #FFFDF7;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 6px 18px;
+      border-radius: 999px;
+      letter-spacing: -0.1px;
+      white-space: nowrap;
+    }
+
+    .right-legend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .cbar-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--cream-soft);
+      border: 1.5px solid var(--border-dark);
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-size: 10.6px;
+      font-weight: 800;
+      color: var(--ink-dark);
+      white-space: nowrap;
+    }
+
+    .cbar {
+      width: 136px;
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-dark);
+      background: linear-gradient(90deg, #9E3B22 0%, #C05C40 18%, #F1C2B4 35%, #FBF6EA 50%, #D2EAF5 65%, #4A98C2 82%, #1D5C7A 100%);
+    }
+
+    .sig-pills {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+      font-size: 10.6px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .lg {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 9px;
+      border-radius: 999px;
+    }
+    .lg-ok   { background: var(--forest); color: #FFFDF7; border: 1.5px solid var(--forest-deep); }
+    .lg-nom  { background: #FADFD6; color: var(--terra-deep); border: 1.5px solid var(--terra); }
+    .lg-semu { background: var(--cream-soft); color: #8A311B; border: 1.5px dashed #A34E36; }
+
+    .sub {
+      font-size: 12.2px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      margin-top: 7px;
+      padding-left: 6px;
+    }
+
+    table.mat {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 7px;
+      table-layout: fixed;
+    }
+
+    th.corner {
+      width: 214px;
+      background: var(--terra);
+      color: #FFFDF7;
+      text-align: left;
+      padding: 10px 13px;
+      border-radius: 14px;
+      border: 1.5px solid #8A3924;
+      font-size: 11.4px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    th.corner span {
+      display: block;
+      font-size: 10.4px;
+      font-weight: 700;
+      color: #FDEAE3;
+      margin-top: 2px;
+    }
+
+    th.col {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-soft);
+      border: 1.5px solid var(--border-dark);
+      padding: 12px 10px 9px 10px;
+      text-align: center;
+      border-radius: 14px;
+    }
+
+    th.col::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: #8A8168;
+    }
+    th.col.sawit  { background: #FCF0EA; }
+    th.col.sawit::before  { background: var(--terra); }
+    th.col.karet  { background: #EAF2E6; }
+    th.col.karet::before  { background: var(--forest); }
+    th.col.kelapa { background: #E9F4FA; }
+    th.col.kelapa::before { background: var(--sky); }
+
+    .c-name { font-size: 15.5px; font-weight: 900; color: var(--ink-dark); }
+    .c-hs   { font-size: 10.8px; font-weight: 700; color: var(--ink-muted); margin-top: 1px; }
+
+    tbody th.row {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-soft);
+      border: 1.5px solid var(--border-dark);
+      text-align: left;
+      padding: 10px 12px 10px 16px;
+      border-radius: 14px;
+      vertical-align: middle;
+      height: 84px;
+    }
+    tbody th.row::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 6px;
+      background: #8A8168;
+    }
+    tbody th.row.x1::before { background: var(--terra); }
+    tbody th.row.x2::before { background: var(--forest); }
+    tbody th.row.x3::before { background: #8A8168; }
+
+    .r-name { font-size: 13.8px; font-weight: 900; color: var(--ink-dark); }
+    .r-unit { font-size: 10.6px; font-weight: 700; color: var(--ink-muted); margin-top: 1px; }
+
+    td.cell {
+      border-radius: 14px;
+      padding: 9px 10px;
+      text-align: center;
+      vertical-align: middle;
+      height: 84px;
+    }
+
+    .r-val {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+
+    .p-row {
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 11.4px;
+      font-weight: 700;
+    }
+
+    .sub-note {
+      margin-top: 2px;
+      font-size: 9.8px;
+      font-weight: 800;
+      color: #8A311B;
+    }
+
+    .mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .m-ok   { background: var(--forest); color: #FFFDF7; border: 1.5px solid #FFFDF7; }
+    .m-nom  { background: var(--terra); color: #FFFDF7; }
+    .m-semu { background: #FFFDF7; color: #8A311B; border: 1.5px dashed #A34E36; }
+
+    .foot-min {
+      margin-top: 9px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      padding: 0 6px;
+    }
+
+    .foot-badge {
+      background: var(--cream-pill);
+      color: var(--forest-deep);
+      border: 1.2px solid var(--border-dark);
+      border-radius: 999px;
+      padding: 2px 12px;
+      font-weight: 800;
+      font-size: 10.6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header-wrap">
+      <div class="top-bar">
+        <div class="title-pill">Heatmap Korelasi Bivariat Pearson (r)</div>
+
+        <div class="right-legend">
+          <div class="cbar-box">
+            <span>−0,7</span>
+            <div class="cbar"></div>
+            <span>+0,7</span>
+          </div>
+          <div class="sig-pills">
+            <span class="lg lg-ok">✓ Bonf. 15-uji</span>
+            <span class="lg lg-nom">* p &lt; 0,05</span>
+            <span class="lg lg-semu">† τ ≤ 0,08%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">Korelasi Pearson antara Volume Impor AS (MT/bln) dan Variabel Penjelas • n = 57 Bulan per Komoditas (2022–2026)</div>
+    </div>
+
+    <table class="mat">
+      <thead>
+        <tr>
+          <th class="corner">
+            Variabel (↓) · Komoditas (→)
+            <span>Nilai Pearson r &amp; p-value dua sisi</span>
+          </th>
+          <th class="col sawit"><div class="c-name">Sawit</div><div class="c-hs">HS 1511.90</div></th>
+          <th class="col karet"><div class="c-name">Karet</div><div class="c-hs">HS 4001.22</div></th>
+          <th class="col"><div class="c-name">Kopi</div><div class="c-hs">HS 0901.11</div></th>
+          <th class="col kelapa"><div class="c-name">Kelapa</div><div class="c-hs">HS 1513.19</div></th>
+          <th class="col"><div class="c-name">Kakao</div><div class="c-hs">HS 1804.00</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <th class="row x1">
+            <div class="r-name">X₁ Tarif Efektif</div>
+            <div class="r-unit">korelasi vs % bea aktual</div>
+          </th>
+          
+          <td class="cell" style="background:#E09E8B; border: 2px solid #B85439;">
+            <div class="r-val" style="color:#4F1709;">−0,338</div>
+            <div class="p-row" style="color:#2A150E;">p = 0,0102 <span class="mark m-nom">*</span></div>
+            
+          </td>
+          <td class="cell" style="background:#EFBDAF; border: 1.8px dashed #A34E36;">
+            <div class="r-val" style="color:#3E483C;">−0,261</div>
+            <div class="p-row" style="color:#566354;">p = 0,0495 <span class="mark m-semu">†</span></div>
+            <div class="sub-note">τ ≤ 0,08% (4/57 bln)</div>
+          </td>
+          <td class="cell" style="background:#F4F4EC; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">+0,045</div>
+            <div class="p-row" style="color:#566354;">p = 0,7415 </div>
+            
+          </td>
+          <td class="cell" style="background:#F8E8DB; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">−0,068</div>
+            <div class="p-row" style="color:#566354;">p = 0,6134 </div>
+            
+          </td>
+          <td class="cell" style="background:#F3CBBE; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">−0,206</div>
+            <div class="p-row" style="color:#566354;">p = 0,1248 </div>
+            
+          </td>
+        </tr>
+        <tr>
+          <th class="row x2">
+            <div class="r-name">X₂ Kurs IDR/USD</div>
+            <div class="r-unit">korelasi vs kurs Rp/USD</div>
+          </th>
+          
+          <td class="cell" style="background:#F8E9DC; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">−0,065</div>
+            <div class="p-row" style="color:#566354;">p = 0,6329 </div>
+            
+          </td>
+          <td class="cell" style="background:#AA472D; border: 2px solid #6E2614;">
+            <div class="r-val" style="color:#FFFDF7;">−0,629</div>
+            <div class="p-row" style="color:#FDEAE3;">p = 1,61×10⁻⁷ <span class="mark m-ok">✓</span></div>
+            
+          </td>
+          <td class="cell" style="background:#ECF2EE; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">+0,089</div>
+            <div class="p-row" style="color:#566354;">p = 0,5107 </div>
+            
+          </td>
+          <td class="cell" style="background:#E09E8B; border: 2px solid #B85439;">
+            <div class="r-val" style="color:#4F1709;">−0,339</div>
+            <div class="p-row" style="color:#2A150E;">p = 0,0099 <span class="mark m-nom">*</span></div>
+            
+          </td>
+          <td class="cell" style="background:#F9E9DD; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">−0,061</div>
+            <div class="p-row" style="color:#566354;">p = 0,6541 </div>
+            
+          </td>
+        </tr>
+        <tr>
+          <th class="row x3">
+            <div class="r-name">X₃ Harga Brent</div>
+            <div class="r-unit">korelasi vs minyak USD/bbl</div>
+          </th>
+          
+          <td class="cell" style="background:#F0F3ED; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">+0,064</div>
+            <div class="p-row" style="color:#566354;">p = 0,6336 </div>
+            
+          </td>
+          <td class="cell" style="background:#D4EBF4; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">+0,236</div>
+            <div class="p-row" style="color:#566354;">p = 0,0777 </div>
+            
+          </td>
+          <td class="cell" style="background:#F9ECDF; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">−0,049</div>
+            <div class="p-row" style="color:#566354;">p = 0,7169 </div>
+            
+          </td>
+          <td class="cell" style="background:#DAECF3; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">+0,202</div>
+            <div class="p-row" style="color:#566354;">p = 0,1321 </div>
+            
+          </td>
+          <td class="cell" style="background:#ECF2EE; border: 1.4px solid #CBBFA1;">
+            <div class="r-val" style="color:#3E483C;">+0,088</div>
+            <div class="p-row" style="color:#566354;">p = 0,5128 </div>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="foot-min">
+      <span>Catatan: Korelasi bivariat tanpa kontrol antar-peubah (α Bonf. 15-uji = 0,0033) • † Karet ↔ Tarif ≤ 0,08% (hilang setelah kontrol kurs di OLS).</span>
+      <span class="foot-badge">Kelompok 10 — STA2511 IPB</span>
+    </div>
+  </div>
+</body>
+</html>
