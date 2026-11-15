@@ -1,0 +1,141 @@
+---
+title: "Ringkasan Hasil Penelitian: Dampak Kebijakan Tarif AS, Kurs, dan Harga Minyak terhadap Ekspor Agrikultur Indonesia (Level HS-6: 2022–2026)"
+subtitle: "Sintesis Ekonometrika Panel Bulanan 57 Bulan Lintas Komoditas Unggulan"
+author: "Kelompok 10 — Analisis Statistika (STA2511)"
+institute: "Departemen Statistika dan Sains Data, FMIPA IPB University"
+date: "2026-11-15"
+lang: id
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 1.8cm
+      y: 1.8cm
+    toc: true
+    number-sections: true
+---
+
+# Latar Belakang & Pertanyaan Penelitian
+
+Pada April 2025, Pemerintah Amerika Serikat memberlakukan kembali kebijakan tarif proteksionisme perdagangan (*Trump Reciprocal Tariffs*) yang meningkatkan tarif bea masuk impor riil hingga mencatatkan puncak $19{,}00\%$ terhadap produk mitra dagang dunia, termasuk Indonesia. Pada saat yang sama, gejolak ekonomi makro global ditandai oleh fluktuasi nilai tukar Rupiah terhadap Dolar AS (**Kurs IDR/USD**) serta pergerakan harga minyak mentah dunia (**Brent USD/barel**).
+
+Penelitian ini bertujuan untuk menjawab dua pertanyaan pokok:
+1. **Apakah respons volume ekspor agrikultur Indonesia ke pasar AS bersifat seragam lintas komoditas setelah penerapan kebijakan tarif AS?**
+2. **Sejauh mana faktor tarif riil, depresiasi nilai tukar rupiah, dan harga minyak dunia berkaitan secara statistik dengan perubahan volume ekspor tersebut?**
+
+---
+
+# Data & Desain Metodologi
+
+## Sumber & Struktur Dataset
+* **Basis Data:** Panel berimbang bulanan (*monthly balanced panel*) periode **Januari 2022 s.d. September 2026** (**57 bulan** berturut-turut tanpa data hilang).
+* **Klasifikasi Komoditas (Harmonized System 6-digit / HS-6):**
+  1. **Sawit Olahan (`1511.90`):** *Refined Palm Oil* (Raksasa devisa ekspor pangan dan oleokimia).
+  2. **Karet Alam Remah (`4001.22`):** *Technically Specified Natural Rubber (TSNR / SIR-20)* (Bahan baku industri ban otomotif).
+  3. **Kopi Biji Mentah (`0901.11`):** *Raw Coffee Beans* (Komoditas perkebunan gaya hidup dengan diferensiasi cita rasa).
+  4. *Komoditas Pembanding:* **Minyak Kelapa Olahan (`1513.19`)** dan **Mentega/Lemak Kakao (`1804.00`)**.
+* **Total Observasi:** $N = 171$ observasi panel untuk 3 komoditas inti ($N = 285$ observasi panel untuk 5 komoditas lengkap).
+
+## Kalibrasi Tiga Fase Kebijakan
+1. **Fase 1: Pra-Tarif (Januari 2022 – Maret 2025, 39 bulan):** Era perdagangan normal, tarif efektif $0\% - 0{,}06\%$.
+2. **Fase 2: Tarif Resiprokal (April 2025 – Januari 2026, 10 bulan):** Gelombang tarif resiprokal AS aktif, tarif efektif melonjak hingga $19{,}00\%$.
+3. **Fase 3: Pasca-ART (Februari 2026 – September 2026, 8 bulan):** Kesepakatan bilateral *Agreement on Reciprocal Trade* (ART) menolkan kembali tarif bea masuk ($0\%$).
+
+## Spesifikasi Model Ekonometrika
+$$\text{Volume}_{it} = \beta_0 + \beta_1 \text{Tarif}_{it} + \beta_2 \text{Kurs}_t + \beta_3 \text{Minyak}_t + \varepsilon_{it}$$
+* Koreksi tingkat signifikansi multikomparasi Bonferroni:
+  * 3 Komoditas Inti: $\alpha_{\text{Bonf}} = \frac{0{,}05}{3} = 0{,}0167$.
+  * 5 Komoditas Penuh: $\alpha_{\text{Bonf}} = \frac{0{,}05}{5} = 0{,}0100$.
+
+---
+
+# Gambaran Umum Hasil Penelitian (*General Findings*)
+
+Hasil analisis ekonometrika membuktikan bahwa **respons ekspor agrikultur Indonesia terhadap kebijakan tarif dan guncangan makro bersifat sangat heterogen (asimetris)**. Respons tidak dapat disamaratakan antar-komoditas:
+
+| Komoditas HS-6 | Rata-rata Bulanan | Uji Beda 2 Periode (Welch's $t$) | Model Regresi OLS ($R^2$ & Signifikansi) | Evaluasi 5 Asumsi Klasik | Sifat Respons Empiris |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Sawit Olahan (`1511.90`)** | $119.711\text{ MT}$ | **−15,5%** ($p = 0{,}0384^*$) | $R^2 = 13{,}55\%$; Tarif $\beta_1 = -2.675{,}7$ ($p = 0{,}00696^{**}$) | Spesifikasi Linier Valid, Bebas Multikol | **Sensitif Tarif Langsung** |
+| **Karet Alam TSNR (`4001.22`)** | $31.005\text{ MT}$ | **−32,5%** ($p = 2{,}07 \times 10^{-5***}$) | $R^2 = 42{,}84\%$; Kurs $\beta_2 = -6{,}37$ ($p = 4{,}73 \times 10^{-6***}$) | Lolos Penuh 5/5 Asumsi Klasik | **Sensitif Nilai Tukar (Bukan Tarif)** |
+| **Kopi Mentah (`0901.11`)** | $4.428\text{ MT}$ | **+4,2%** ($p = 0{,}6189\text{ TB}$) | $R^2 = 0{,}92\%$; Tidak ada peubah signifikan ($p \ge 0{,}57$) | Indikasi Heteroskedastisitas ($p = 0{,}041$) | **Tidak Berkaitan dengan Model Makro** |
+| **Minyak Kelapa (`1513.19`)** | $6.355\text{ MT}$ | **−25,7%** ($p = 0{,}1640\text{ TB}$) | $R^2 = 13{,}82\%$; Kurs $\beta_2 = -1{,}71$ ($p = 0{,}0179^*$) | Pelanggaran Uji Linieritas RESET | **Peka Kurs, Non-Linier** |
+| **Lemak Kakao (`1804.00`)** | $2.958\text{ MT}$ | **+0,28%** ($p = 0{,}9812\text{ TB}$) | $R^2 = 4{,}30\%$; Tidak ada peubah signifikan ($p \ge 0{,}18$) | Lolos Asumsi OLS, Varians Fase 2 Lebar | **Stabil/Inelastis terhadap Tarif** |
+
+---
+
+# Penjelasan Terperinci Tiga Komoditas Inti
+
+## 1. Sawit Olahan (HS 1511.90): Terbukti Sensitif Tarif Langsung
+* **Dampak Kebijakan:** Rata-rata volume ekspor bulanan terkontraksi sebesar **−15,5%** (turun dari $124.975\text{ MT}$ menjadi $105.618\text{ MT}$; $t = -2{,}120, p = 0{,}0384$).
+* **Estimasi Ekonometrika:** Koefisien tarif $\beta_1 = -2.675{,}7\text{ MT/\%}$ ($p = 0{,}00696$) signifikan secara statistik bahkan di bawah ambang batas ketat Bonferroni. Setiap kenaikan 1 poin persentase tarif efektif mengikis $2.675{,}7\text{ MT}$ ekspor sawit bulanan.
+* **Variabel Makro:** Kurs IDR/USD ($p = 0{,}285$) dan harga minyak Brent ($p = 0{,}730$) tidak berpengaruh signifikan.
+* **Intisari:** Sawit olahan merupakan komoditas yang paling murni menderita dampak distorsi langsung akibat proteksionisme tarif AS.
+
+## 2. Karet Alam TSNR (HS 4001.22): Kontraksi Terdalam Didorong Nilai Tukar
+* **Dampak Kebijakan:** Mengalami penurunan rata-rata volume bulanan paling drastis, yaitu **−32,5%** (turun dari $34.548\text{ MT}$ menjadi $23.328\text{ MT}$; $t = -4{,}748, p = 2{,}07 \times 10^{-5}$).
+* **Uji Dinamika Fase (ANOVA & Tukey HSD):** Uji ANOVA menunjukkan perbedaan antar-fase yang sangat signifikan ($F = 9{,}566, p = 0{,}000278$). Namun, uji post-hoc Tukey HSD mengungkap bahwa titik terendah ekspor karet justru terjadi pada **Fase 3 (Pasca-ART)** dengan penurunan $-14.235\text{ MT}$ dibandingkan Fase 1 ($p = 0{,}00076$), meskipun tarif pada Fase 3 sudah dinolkan ($0\%$).
+* **Hasil Regresi OLS:** Koefisien tarif **tidak signifikan** ($\beta_1 = -202{,}3, p = 0{,}263$). Sebaliknya, nilai tukar rupiah berhubungan negatif sangat kuat ($\beta_2 = -6{,}37\text{ MT/Rp}, p = 4{,}73 \times 10^{-6}$).
+* **Intisari:** Keruntuhan ekspor karet ke AS bukan disebabkan oleh tarif impor AS, melainkan oleh pelemahan nilai tukar rupiah yang menaikkan biaya logistik pengapalan serta penurunan daya serap industri manufaktur ban AS.
+
+## 3. Kopi Biji Mentah (HS 0901.11): Pola Tetap Stabil & Batasan Model
+* **Dampak Kebijakan:** Volume ekspor kopi rata-rata meningkat tipis **+4,2%** (dari $4.372\text{ MT}$ menjadi $4.556\text{ MT}$), namun tidak signifikan secara statistik ($t = +0{,}501, p = 0{,}6189$).
+* **Hasil Regresi OLS:** Nilai $R^2$ hanya sebesar $0{,}92\%$ dan uji kelayakan simultan tidak signifikan ($F = 0{,}164, p = 0{,}920$). Tidak ada satu pun peubah (tarif, kurs, minyak) yang memiliki hubungan signifikan dengan ekspor kopi.
+* **Diagnostik Residual:** Model menunjukkan indikasi heteroskedastisitas ($p = 0{,}041$) dan residual yang tidak berdistribusi normal ($p = 0{,}000026$).
+* **Intisari:** Ketiadaan signifikansi pada model kopi mengindikasikan bahwa volume ekspor kopi Indonesia ke AS ditentukan oleh faktor-faktor non-makro di luar spesifikasi model (seperti keunikan cita rasa specialty coffee, kontrak dagang jangka panjang, dan sertifikasi asal), bukan bukti bahwa kopi kebal absolut terhadap risiko pasar.
+
+---
+
+# Temuan Metodologis & Disiplin Akademis
+
+1. **Uji Beda Bukan Pembuktian Kausalitas Tunggal:**  
+   Perbedaan rata-rata volume sebelum vs sesudah kebijakan (Welch's $t$-test) menunjukkan perubahan periode waktu nyata, tetapi pemilahan efek tarif murni memerlukan kontrol variabel multivariat (regresi OLS).
+2. **Keterbatasan Daya Jelas Model ($R^2$):**  
+   Nilai $R^2$ bervariasi dari $0{,}92\%$ (kopi) hingga $42{,}84\%$ (karet). Hal ini menunjukkan bahwa faktor eksternal makroekometri hanya menjelaskan sebagian variasi ekspor; faktor kapasitas pasokan domestik, iklim, dan logistik lokal tetap memainkan peranan penting.
+3. **Transparansi Asumsi Klasik:**  
+   Penyajian diagnostik Gauss-Markov secara terbuka membuktikan kredibilitas model sawit dan karet, sekaligus menetapkan batasan ilmiah bahwa model kopi memerlukan penelitian lanjutan berbasis spesifikasi non-linier atau variabel mikro.
+
+---
+
+# Implikasi Strategis & Rekomendasi Kebijakan
+
+Berdasarkan general hasil penelitian, rekomendasi kebijakan difokuskan pada tiga pilar terarah:
+
+```
++-----------------------------------------------------------------------------------+
+|               MATRIKS STRATEGI KEBIJAKAN EKSPOR AGRIKULTUR NASIONAL              |
++===================================================================================+
+| 1. SAWIT OLAHAN (HS 1511.90) - Pengamanan Akses Tarif & Kepatuhan Keberlanjutan   |
+| • Pengawalan Implementasi ART: Memastikan tarif 0% berlaku efektif tanpa hambatan  |
+|   nontarif tersembunyi di pelabuhan masuk AS.                                     |
+| • Diplomasi Sertifikasi Hijau: Memperkuat integrasi ISPO dengan standar deforestasi|
+|   pasar global untuk mencegah diskriminasi produk.                                |
+| • Diversifikasi Mitra Dagang: Memperluas penetrasi ekspor ke pasar non-tradisional.|
++-----------------------------------------------------------------------------------+
+| 2. KARET ALAM TSNR (HS 4001.22) - Mitigasi Risiko Valas & Efisiensi Rantai Pasok  |
+| • Fasilitasi Lindung Nilai (FX Hedging): Menyediakan instrumen hedging valas murah|
+|   bagi pabrik pengolahan karet rakyat (Crumb Rubber Factory).                     |
+| • Insentif Logistik Pelabuhan: Menurunkan biaya demurrage dan tarif pengapalan    |
+|   kontainer ekspor ke Pantai Barat AS.                                            |
+| • Penguatan Serapan Domestik: Mengembangkan hilirisasi industri ban lokal dan     |
+|   pemanfaatan aspal karet dalam proyek infrastruktur nasional.                    |
++-----------------------------------------------------------------------------------+
+| 3. KOPI MENTAH (HS 0901.11) - Penguatan Nilai Tambah & Merek Indikasi Geografis   |
+| • Standardisasi Pascapanen: Bimbingan mutu untuk konsistensi kadar air dan grade.  |
+| • Perlindungan Hak Kekayaan Intelektual: Mendaftarkan merek Indikasi Geografis    |
+|   kopi specialty Nusantara di USPTO (United States Patent and Trademark Office).   |
+| • Perdagangan Langsung (Direct Trade): Menghubungkan koperasi produsen kopi dengan|
+|   jaringan sangrai artisan dan rantai kafe premium di AS.                         |
++-----------------------------------------------------------------------------------+
+```
+
+---
+
+# Identitas Laporan
+
+* **Mata Kuliah:** Analisis Statistika (STA2511)
+* **Kelompok:** Kelompok 10
+* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si.
+* **Penyusun:** Emanuel Marthen Embuai & Tim
+* **Institusi:** Departemen Statistika dan Sains Data, FMIPA IPB University
+* **Lokasi Berkas Kerja:** `D:/IPB/KULIAH/S1/ANSTAT/Tugas/infografis_v4/`
+* **Arsip Git:** [github.com/Exmaa/anstat-ekspor-agrikultur-hs6](https://github.com/Exmaa/anstat-ekspor-agrikultur-hs6)
