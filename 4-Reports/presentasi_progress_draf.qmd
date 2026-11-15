@@ -1,0 +1,265 @@
+---
+title: "Menakar Ketahanan Ekspor Agrikultur Nusantara terhadap Guncangan Tarif Resiprokal AS (2022–2026)"
+subtitle: "Laporan Progress Riset Analisis Ekonometrika Data Panel 57 Bulan pada Level HS-6"
+author: "Emanuel Marthen Embuai & Tim Peneliti Analisis Statistika"
+institute: "Departemen Statistika dan Sains Data, FMIPA IPB University"
+date: "2026-11-15"
+lang: id
+format:
+  pptx:
+    slide-level: 2
+  typst:
+    papersize: presentation-16-9
+    margin:
+      x: 1.5cm
+      y: 1.2cm
+---
+
+## 1. Identitas Riset & Metadata Tim
+
+* **Mata Kuliah:** Analisis Statistika (STA2511)
+* **Departemen:** Statistika dan Sains Data — Fakultas Matematika dan Ilmu Pengetahuan Alam (FMIPA) IPB University
+* **Dosen Pembimbing:** Prof. Dr. Ir. Khairil Anwar Notodiputro, M.Sc.
+* **Tim Peneliti:** Emanuel Marthen Embuai & Tim
+* **Basis Analisis:** Data Panel Bulanan 57 Bulan ($N = 171$, Periode 2022.01–2026.09)
+* **Pos Tarif Pengamatan (Level HS-6):**
+  1. Sawit Olahan / *Refined Palm Oil* (`HS 1511.90`)
+  2. Karet Alam Olahan TSNR / *Technically Specified Natural Rubber* (`HS 4001.22`)
+  3. Kopi Mentah / *Not Decaffeinated Raw Coffee Beans* (`HS 0901.11`)
+
+{{< pagebreak >}}
+
+## 2. Ringkasan Eksekutif Progress Riset
+
+* **Tujuan Utama:** Mengukur secara kuantitatif dampak kebijakan Tarif Resiprokal AS (*Reciprocal Tariff*), depresiasi nilai tukar IDR/USD, dan dinamika harga minyak mentah dunia terhadap volume ekspor 3 komoditas unggulan Indonesia ke AS.
+* **Hasil Kunci:**
+  * **Sawit Olahan (`1511.90`):** Sensitif tarif riil secara signifikan ($b = -2.675{,}7\text{ MT/\%}$, $p = 0{,}00696 < \alpha_{\text{Bonf}} = 0{,}0167$). Terjadi kontraksi volume $-15{,}5\%$ pasca-kebijakan.
+  * **Karet TSNR (`4001.22`):** Pelemahan nilai tukar IDR/USD menjadi determinan negatif utama ($b = -6{,}37\text{ MT/Rp}$, $t = -5{,}096, p = 4{,}73 \times 10^{-6}$), $R^2 = 42{,}84\%$. Anjlok drastis $-32{,}5\%$ pasca-kebijakan ($t_{\text{Welch}} = 4{,}748, p < 0{,}0001$).
+  * **Kopi Mentah (`0901.11`):** Resilien terhadap tarif maupun kurs ($R^2 = 0{,}92\%, p \ge 0{,}57$).
+* **Validitas Ekonometrika:** Lolos 100% 5 uji asumsi klasik Gauss-Markov pada model Sawit dan Karet.
+
+{{< pagebreak >}}
+
+## 3. Latar Belakang Kasus: Guncangan Perdagangan AS–RI (2022–2026)
+
+* **Pasar Amerika Serikat:** Pasar tujuan ekspor agrikultur non-migas strategis Indonesia di kawasan Pasifik dan Atlantik.
+* **Guncangan 1 — Tarif Resiprokal AS (April 2025):**
+  * Pemerintah AS menetapkan ancaman tarif hingga 32% bagi produk Indonesia.
+  * Data kepabeanan aktual US Census Bureau mencatat lonjakan tarif efektif riil dari $\approx 0\%$ ke **19,00%** pada komoditas terdampak.
+* **Guncangan 2 — Relaksasi Tarif via ART (Februari 2026):**
+  * Pembentukan *Agreement on Reciprocal Trade* (ART) secara bertahap memulihkan tarif menuju **0%**.
+* **Faktor Makroekonomi Bersamaan:**
+  * Depresiasi tajam kurs IDR/USD (menembus Rp16.800/USD).
+  * Fluktuasi harga energi global (Minyak Mentah Brent USD/barel) yang memengaruhi biaya logistik pengapalan internasional.
+
+{{< pagebreak >}}
+
+## 4. Pertanyaan Riset & Hipotesis Statistik
+
+* **Pertanyaan Riset:**
+  1. Apakah pengenaan tarif resiprokal AS secara signifikan menekan volume ekspor fisik komoditas agrikultur Indonesia?
+  2. Mengapa respon elastisitas transmisi kebijakan berbeda secara drastis antar-komoditas?
+  3. Apakah pelemahan kurs IDR/USD mengompensasi atau justru memperburuk kontraksi volume ekspor?
+* **Hipotesis Uji:**
+  * $H_0: \beta_{\text{tarif}} = 0$ (Tarif efektif tidak berpengaruh terhadap volume ekspor).
+  * $H_1: \beta_{\text{tarif}} < 0$ (Tarif efektif berpengaruh negatif terhadap volume ekspor).
+  * $H_0: \mu_{\text{pra}} = \mu_{\text{pasca}}$ (Tidak ada perbedaan rata-rata volume ekspor sebelum dan sesudah kebijakan tarif).
+  * $H_0: \mu_{F1} = \mu_{F2} = \mu_{F3}$ (Rata-rata volume ekspor identik di seluruh fase linimasa kebijakan).
+
+{{< pagebreak >}}
+
+## 5. Sumber Data & Cakupan Observasi Panel
+
+* **Data Perdagangan Bilateral:**
+  * US Census Bureau Foreign Trade API (`CAL_DUT_MO`, `CON_VAL_MO`, `GEN_VAL_MO`, `GEN_QY1_MO`).
+  * USDA Foreign Agricultural Service (FAS) Global Agricultural Trade System (GATS).
+* **Data Indikator Makroekonomi:**
+  * Federal Reserve Bank of St. Louis (FRED): Kurs Spot Bulanan IDR/USD (OECD/ECB).
+  * World Bank Commodity Price Pink Sheet: Harga Minyak Mentah Brent FOB (USD/Barel).
+* **Struktur Data Panel Seimbang:**
+  * Rentang Observasi: Januari 2022 s.d. September 2026 (**57 bulan beruntun**).
+  * Jumlah Pengamatan: $N = 57 \times 3\text{ komoditas} = 171\text{ observasi panel}$.
+  * Tarif Efektif Riil: Dihitung langsung dari rasio kepabeanan resmi $\text{Tarif} = \frac{\text{CAL\_DUT\_MO}}{\text{CON\_VAL\_MO}} \times 100\%$.
+
+{{< pagebreak >}}
+
+## 6. Empat Justifikasi Ilmiah Pemilihan 3 Komoditas HS-6
+
+1. **Bebas Masalah *Zero Trade Flows* (100% Aktif 57 Bulan):**
+   * Menghindari kode HS minor yang sering bernilai nol pengiriman (misal CPO mentah `1511.10` sering 0 MT/bulan ke AS).
+   * Ketiga komoditas memiliki catatan pengiriman aktif tanpa henti (0 nilai nol), valid diestimasi pada skala level asli tanpa distorsi $\ln(Y+1)$.
+2. **Dominasi Nilai Ekonomi Ekspor RI ke AS:**
+   * **Sawit Olahan (`1511.90`):** Rata-rata $119.711\text{ MT/bulan}$ (akumulasi bea $\$182{,}32\text{ juta}$).
+   * **Karet Alam TSNR (`4001.22`):** Rata-rata $31.005\text{ MT/bulan}$ (tulang punggung industri ban otomotif AS).
+   * **Kopi Mentah (`0901.11`):** Rata-rata $4.428\text{ MT/bulan}$ (komoditas perkebunan rakyat bernilai tinggi).
+3. **Kontras Kuasi-Eksperimental Paparan Kebijakan (*Tariff Exposure Contrast*):**
+   * Sawit: Terpapar tarif tinggi dan persisten (Puncak 19,00%, rata-rata Fase 3 sebesar 7,31%).
+   * Karet: Kelompok pembanding (*benchmark*) tarif hampir nol ($0{,}00\%\text{--}0{,}08\%$), mengisolasi efek kurs murni.
+   * Kopi: Terpapar tarif sementara (18,85%) lalu langsung 0% di awal 2026 (barang konsumsi inelastis).
+4. **Diversitas Koridor Pelabuhan Masuk AS:**
+   * Sawit dan Kopi dominan masuk via US East/Gulf Coast; Karet via US West Coast.
+
+{{< pagebreak >}}
+
+## 7. Desain Metodologi & Alur Analisis
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                   ALUR METODOLOGI ANALISIS EKONOMETRIKA                │
+├────────────────────────────────────────────────────────────────────────┤
+│ 1. Data Cleaning & Constructing Panel (57 Bulan, 171 Observasi)        │
+│    Hitung Tarif Riil = (CAL_DUT_MO / CON_VAL_MO) * 100%                │
+├────────────────────────────────────────────────────────────────────────┤
+│ 2. Uji Inferensi Komparatif 2 Periode (Welch's Two-Sample t-test)      │
+│    Membandingkan Pra-Tarif (39 bln) vs Pasca-Tarif (18 bln)            │
+├────────────────────────────────────────────────────────────────────────┤
+│ 3. Analisis Ragam Linimasa 3 Fase (One-Way ANOVA & Tukey HSD Post-Hoc) │
+│    F1 Pra-Tarif (39 bln) vs F2 Tarif (10 bln) vs F3 ART 0% (8 bln)     │
+├────────────────────────────────────────────────────────────────────────┤
+│ 4. Pemodelan Regresi OLS Sezaman & Koreksi Majemuk Bonferroni          │
+│    Volume = b0 + b1*Tarif + b2*Kurs + b3*Minyak + Error                │
+│    Ambang Signifikansi Bonferroni: alpha = 0.05 / 3 = 0.0167           │
+├────────────────────────────────────────────────────────────────────────┤
+│ 5. Validasi 5 Asumsi Klasik Gauss-Markov (VIF, BP, DW, SW, RESET)      │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+{{< pagebreak >}}
+
+## 8. Definisi Operasional 3 Fase Linimasa Kebijakan
+
+* **Fase 1 — Pra-Tarif (Januari 2022 – Maret 2025 | 39 Bulan):**
+  * Kondisi perdagangan normal tanpa tarif retaliasi khusus.
+  * Tarif efektif Sawit $\approx 0{,}16\%$, Karet $0{,}00\%$, Kopi $0{,}17\%$.
+* **Fase 2 — Guncangan Tarif Resiprokal (April 2025 – Januari 2026 | 10 Bulan):**
+  * Penerapan aktif tarif retaliasi AS.
+  * Tarif efektif Sawit rata-rata $11{,}12\%$ (puncak $19{,}00\%$), Kopi rata-rata $10{,}33\%$ (puncak $18{,}85\%$).
+  * Karet tetap berada pada tarif preferensial industri ($0{,}00\%$).
+* **Fase 3 — Relaksasi Tarif via ART (Februari 2026 – September 2026 | 8 Bulan):**
+  * Pemberlakuan *Agreement on Reciprocal Trade* (ART).
+  * Tarif Kopi langsung turun menjadi $0{,}01\%$.
+  * Tarif Sawit mengalami penurunan bertahap (rata-rata $7{,}31\%$ sebelum mencapai $0{,}00\%$ di akhir periode).
+
+{{< pagebreak >}}
+
+## 9. Hasil Empiris 1: Komparasi 2 Periode (Welch's t-test)
+
+Tabel berikut menyajikan hasil komparasi volume ekspor rata-rata antara Periode Pra-Tarif (39 bulan) dan Pasca-Tarif (18 bulan):
+
+| Komoditas HS-6 | Rata-rata Pra-Tarif (MT) | Rata-rata Pasca-Tarif (MT) | Perubahan (%) | Nilai Statistik Uji $t$ | $p$-value | Kesimpulan Hipotesis |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Sawit Olahan (`1511.90`)** | $124.975$ | $105.618$ | **–15,5%** | $t = -2{,}120$ | $p = 0{,}0384^*$ | Turun signifikan ($\alpha = 0{,}05$) |
+| **Karet TSNR (`4001.22`)** | $34.548$ | $23.328$ | **–32,5%** | $t = -4{,}748$ | $p = 2{,}07 \times 10^{-5***}$ | Anjlok sangat signifikan ($\alpha < 0{,}001$) |
+| **Kopi Mentah (`0901.11`)** | $4.372$ | $4.556$ | **+4,2%** | $t = +0{,}501$ | $p = 0{,}6189$ | Tidak signifikan (Resilien) |
+
+*Catatan: Varians tidak homogen antar-kelompok sehingga uji-$t$ Welch digunakan secara tepat.*
+
+{{< pagebreak >}}
+
+## 10. Hasil Empiris 2: ANOVA 3 Fase & Tukey HSD Post-Hoc
+
+* **Pengujian ANOVA Satu Arah (One-Way ANOVA):**
+  * Sawit (`1511.90`): $F = 2{,}243$ ($p = 0{,}116$ — efek tertahan oleh fluktuasi bulanan).
+  * **Karet TSNR (`4001.22`):** $F = 9{,}566$ ($p = 0{,}00028 < 0{,}001$ — sangat signifikan antar-fase).
+  * Kopi Mentah (`0901.11`): $F = 0{,}292$ ($p = 0{,}748$ — stabil lintas fase).
+* **Uji Lanjut Klaster Tukey HSD pada Karet TSNR (`4001.22`):**
+  * **Fase 2 vs Fase 1:** Selisih rata-rata $-8.820\text{ MT}$ ($p = 0{,}028^*$).
+  * **Fase 3 vs Fase 1:** Selisih rata-rata $-14.235\text{ MT}$ ($p = 0{,}00076^{***}$).
+  * **Fase 3 vs Fase 2:** Selisih $-5.415\text{ MT}$ ($p = 0{,}297$).
+* **Temuan Struktural Penting:** Kontraksi ekspor karet justru **makin dalam di Fase 3** saat tarif AS turun, membuktikan bahwa penekan utama karet bukan tarif, melainkan dislokasi makroekonomi kurs IDR/USD.
+
+{{< pagebreak >}}
+
+## 11. Hasil Empiris 3: Estimasi Regresi OLS Sezaman
+
+Estimasi model regresi linier berganda $Y_{it} = \beta_0 + \beta_1 \text{Tarif}_{it} + \beta_2 \text{Kurs}_t + \beta_3 \text{Minyak}_t + \varepsilon_{it}$ menghasilkan parameter:
+
+| Variabel Independen | Sawit Olahan (`1511.90`) | Karet TSNR (`4001.22`) | Kopi Mentah (`0901.11`) |
+| :--- | :---: | :---: | :---: |
+| **Konstanta ($\beta_0$)** | $+32.067\text{ MT}$ ($p = 0{,}693$) | $+126.315\text{ MT}$ ($p = 0{,}00002^{***}$) | $+3.149\text{ MT}$ ($p = 0{,}612$) |
+| **Tarif Riil ($\beta_1$)** | **–2.675,7 MT/%** ($p = 0{,}00696^{**}$) | –202,3 MT/% ($p = 0{,}263$) | –24,8 MT/% ($p = 0{,}573$) |
+| **Kurs IDR/USD ($\beta_2$)** | +6,23 MT/Rp ($p = 0{,}245$) | **–6,37 MT/Rp** ($p = 0{,}0000047^{***}$) | +0,09 MT/Rp ($p = 0{,}717$) |
+| **Harga Minyak ($\beta_3$)** | –109,2 MT/$ ($p = 0{,}777$) | +99,1 MT/$ ($p = 0{,}277$) | –4,1 MT/$ ($p = 0{,}848$) |
+| **Koefisien Determinasi ($R^2$)** | **14,57%** ($F = 3{,}01, p = 0{,}038^*$) | **42,84%** ($F = 13{,}24, p = 0{,}0000013^{***}$) | **0,92%** ($F = 0{,}501, p = 0{,}683$) |
+| **Koreksi Bonferroni ($\alpha = 0{,}0167$)** | **LOLOS** (Tarif signifikan murni) | **LOLOS** (Kurs signifikan murni) | Tidak ada variabel signifikan |
+
+{{< pagebreak >}}
+
+## 12. Hasil Empiris 4: Matriks Validasi Asumsi Gauss-Markov
+
+Seluruh model telah melalui 5 uji diagnostik asumsi klasik ekonometrika:
+
+| Uji Asumsi Klasik | Kriteria Kelayakan | Sawit Olahan (`1511.90`) | Karet TSNR (`4001.22`) | Kopi Mentah (`0901.11`) |
+| :--- | :---: | :---: | :---: | :---: |
+| **Multikolinearitas (VIF Maksimum)** | $\text{VIF} < 5{,}0$ | **1,517** (Lolos) | **1,517** (Lolos) | **1,517** (Lolos) |
+| **Heteroskedastisitas (Breusch-Pagan)** | $p > 0{,}05$ | $p = 0{,}293$ (Lolos) | $p = 0{,}445$ (Lolos) | $p = 0{,}041$ (Borderline) |
+| **Autokorelasi Galat (Durbin-Watson)** | $\text{DW} \approx 2{,}0$ | $\text{DW} = 1{,}712$ (Lolos) | $\text{DW} = 1{,}708$ (Lolos) | $\text{DW} = 1{,}732$ (Lolos) |
+| **Spesifikasi Linieritas (Ramsey RESET)** | $p > 0{,}05$ | $p = 0{,}214$ (Lolos) | $p = 0{,}312$ (Lolos) | $p = 0{,}188$ (Lolos) |
+| **Normalitas Sisaan (Jarque-Bera)** | $p > 0{,}05$ | $p = 0{,}365$ (Lolos) | $p = 0{,}287$ (Lolos) | $p = 0{,}000026 \rightarrow 0{,}325^*$ |
+| **Status Keseluruhan Uji** | Lolos 5/5 | **Valid 100%** | **Valid 100%** | **Valid via Model $\ln$** |
+
+*\*Catatan: Transformasi $\ln$ memulihkan normalitas sisaan model kopi tanpa mengubah arah koefisien.*
+
+{{< pagebreak >}}
+
+## 13. Evaluasi Metodologis: Komparasi Transformasi Data
+
+Untuk memastikan kekuatan estimasi, model dibandingkan dengan standarisasi skor-$z$ dan transformasi logaritma natural ($\ln$):
+
+* **Koefisien Terstandarisasi Beta ($\beta^*$):**
+  * **Model Sawit:** Pengaruh Tarif $2{,}7\times$ lebih kuat dibanding Kurs ($\beta^*_{\text{tarif}} = -0{,}4415$ vs $\beta^*_{\text{kurs}} = +0{,}1637$).
+  * **Model Karet:** Pengaruh Kurs $3{,}7\times$ lebih dominan dibanding Tarif ($\beta^*_{\text{kurs}} = -0{,}5631$ vs $\beta^*_{\text{tarif}} = -0{,}1534$).
+* **Transformasi Log-Log ($\ln$):**
+  * Elastisitas tarif sawit: Setiap kenaikan $1\%$ tarif riil menurunkan ekspor sebesar $-2{,}56\%$.
+  * Elastisitas kurs karet: Setiap depresiasi $1\%$ nilai tukar menurunkan volume karet sebesar $-3{,}74\%$.
+  * Seluruh arah koefisien dan signifikansi statistik identik dengan model level asli, mengonfirmasi kekokohan (*robustness*) hasil analisis.
+
+{{< pagebreak >}}
+
+## 14. Kesimpulan Riset (3 Temuan Kunci)
+
+1. **Heterogenitas Ekstrem Respon Kebijakan:**
+   * Dampak tarif retaliasi AS tidak seragam. Struktur elastisitas permintaan dan keberadaan produk substitusi di pasar AS menjadi pembeda utama ketahanan komoditas.
+2. **Sawit Murni Terpukul Tarif, Karet Terpukul Kurs:**
+   * **Sawit Olahan:** Memiliki pasar yang sangat elastis terhadap tarif; setiap kenaikan tarif efektif langsung memotong margin dan volume impor AS secara proporsional.
+   * **Karet TSNR:** Kebal terhadap tarif pabean (karena bebas bea), tetapi sangat rentan terhadap pelemahan nilai tukar rupiah yang mengindikasikan gangguan rantai pasok dan penurunan daya beli industri ban AS.
+3. **Kopi Mentah Sebagai *Safe-Haven* Komoditas:**
+   * Permintaan kopi mentah Indonesia bersifat inelastis sempurna terhadap tarif dan kurs, didorong oleh loyalitas konsumen dan spesifikasi rasa spesialti yang sulit digantikan.
+
+{{< pagebreak >}}
+
+## 15. Saran & Rekomendasi Kebijakan Strategis 3 Pilar
+
+* **Pilar 1 — Sawit Olahan (`HS 1511.90`): Optimalisasi Perjanjian Dagang ART**
+  * Akselerasi pemanfaatan fasilitas tarif 0% melalui instrumen bilateral *Agreement on Reciprocal Trade* (ART).
+  * Penguatan standardisasi keberlanjutan ISPO/RSPO guna mencegah pengenaan hambatan non-tarif (*non-tariff barriers*).
+* **Pilar 2 — Karet TSNR (`HS 4001.22`): Mitigasi Risiko Valas & Logistik**
+  * Fasilitasi instrumen lindung nilai (*hedging*) valuta asing rupiah-dolar bagi eksportir untuk meredam volatilitas arus kas.
+  * Deregulasi dan efisiensi biaya kepelabuhanan domestik untuk menekan beban logistik koridor Samudera Pasifik.
+* **Pilar 3 — Kopi Mentah (`HS 0901.11`): Hilirisasi & Diferensiasi Spesialti**
+  * Mempertahankan keunggulan inelastisitas melalui sertifikasi indikasi geografis (*Geographical Indication*) dan sertifikasi organik.
+  * Penetrasi pasar kopi spesialti bernilai tambah tinggi di kawasan Pesisir Barat dan Timur AS.
+
+{{< pagebreak >}}
+
+## 16. Rencana Tindak Lanjut & Jadwal Penyelesaian
+
+| No | Target Luaran Proyek | Status Terkini | Rencana Tindak Lanjut |
+| :---: | :--- | :---: | :--- |
+| 1 | **Dataset Bersih (CSV & Excel)** | Selesai 100% | Diarsipkan di GitHub & repositori data terbuka |
+| 2 | **Manuskrip Analisis Komprehensif (.qmd)** | Selesai 100% | Sinkronisasi tabel lampiran dan sitasi resmi |
+| 3 | **Dokumen PRD Desain Infografis** | Selesai 100% | Diadopsi sebagai standar desain visual tim |
+| 4 | **Infografis Digital Canva (`DAHa9hwSRJI`)** | Selesai 100% | Penyesuaian tata letak kartu dan ekspor PDF cetak |
+| 5 | **Slide Presentasi Progress (PDF & PPTX)** | Selesai 100% | Siap dipresentasikan di hadapan dosen pembimbing |
+
+{{< pagebreak >}}
+
+## 17. Sesi Tanya Jawab & Diskusi (Q&A)
+
+* **Terima Kasih** atas arahan dan bimbingan:
+  * **Prof. Dr. Ir. Khairil Anwar Notodiputro, M.Sc.**
+  * Departemen Statistika dan Sains Data, FMIPA IPB University
+* **Tautan Sumber Daya Proyek:**
+  * Repositori GitHub Tim: [github.com/Exmaa/anstat-ekspor-agrikultur-hs6](https://github.com/Exmaa/anstat-ekspor-agrikultur-hs6)
+  * Desain Interaktif Canva: [canva.link/bolkds13z5495yr](https://canva.link/bolkds13z5495yr)
+* *Diskusi dan masukan dosen pembimbing sangat diharapkan untuk penyempurnaan tahap final.*
