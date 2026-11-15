@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1240, initial-scale=1.0" />
+  <title>Infografis Riset: Satu Perubahan Kebijakan, Lima Respons Perdagangan yang Berbeda</title>
+  <style>
+    :root {
+      --bg-canvas: #FAFAF8;
+      --bg-white: #FFFFFF;
+      --bg-tint: #F1F5F9;
+      --border: #CBD5E1;
+      --navy: #0F172A;
+      --slate: #334155;
+      --muted: #64748B;
+      --cobalt: #005AB5;
+      --cobalt-bg: #EFF6FF;
+      --cobalt-bd: #93C5FD;
+      --amber: #D97706;
+      --amber-txt: #B45309;
+      --amber-bg: #FFFBEB;
+      --amber-bd: #FCD34D;
+      --teal: #0E7490;
+      --teal-bg: #ECFEFF;
+      --teal-bd: #67E8F9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    html, body {
+      background: var(--bg-canvas);
+      color: var(--navy);
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      width: 1240px;
+      margin: 0 auto;
+      line-height: 1.45;
+    }
+
+    @media print {
+      @page {
+        size: 1240px 3785px;
+        margin: 0;
+      }
+      html, body {
+        width: 1240px;
+        height: 3785px;
+        overflow: hidden;
+      }
+    }
+
+    .poster {
+      width: 1240px;
+      background: var(--bg-canvas);
+      padding: 28px 36px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* BAND 1: HERO HEADER */
+    .hero {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-top: 8px solid var(--cobalt);
+      padding: 28px 34px 24px 34px;
+      display: grid;
+      grid-template-columns: 1fr 375px;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: #93C5FD;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      line-height: 1.14;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      color: #FFFFFF;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.45;
+      color: #E2E8F0;
+      max-width: 780px;
+    }
+
+    .hero-meta-box {
+      background: rgba(255, 255, 255, 0.08);
+      border-left: 4px solid #60A5FA;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #F8FAFC;
+    }
+
+    .hero-meta-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      color: #93C5FD;
+      margin-bottom: 5px;
+    }
+
+    .hero-meta-box strong {
+      display: block;
+      font-size: 14.5px;
+      margin-bottom: 3px;
+      color: #FFFFFF;
+    }
+
+    .hero-meta-box .dosen {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.16);
+      color: #BFDBFE;
+      font-weight: 600;
+    }
+
+    /* COMMON SECTION WRAPPER */
+    .sec {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--bg-tint);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+
+    .sec-num {
+      display: inline-block;
+      background: var(--cobalt);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .sec-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .sec-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* BAND 2: KPI + CONTEXT + TIMELINE */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .kpi-card {
+      background: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--navy);
+      padding: 11px 14px;
+    }
+
+    .kpi-card.blue { border-top-color: var(--cobalt); background: var(--cobalt-bg); border-color: var(--cobalt-bd); }
+    .kpi-card.amber { border-top-color: var(--amber); background: var(--amber-bg); border-color: var(--amber-bd); }
+
+    .kpi-val {
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+    }
+
+    .kpi-lbl {
+      font-size: 12px;
+      color: var(--slate);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .def-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .def-box {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--navy);
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--slate);
+    }
+
+    .def-box.amber { border-left-color: var(--amber); background: var(--amber-bg); border-color: var(--amber-bd); }
+    .def-box strong { color: var(--navy); }
+
+    .chart-frame {
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      padding: 8px;
+    }
+
+    .chart-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* BAND 3: WELCH T-TEST */
+    .split-62-38 {
+      display: grid;
+      grid-template-columns: 62% 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .rank-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: space-between;
+    }
+
+    .rank-item {
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--muted);
+      padding: 9px 12px;
+      background: var(--bg-white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rank-item.cobalt {
+      background: var(--cobalt-bg);
+      border-color: var(--cobalt-bd);
+      border-left-color: var(--cobalt);
+    }
+
+    .rank-item.amber {
+      background: var(--amber-bg);
+      border-color: var(--amber-bd);
+      border-left-color: var(--amber);
+    }
+
+    .rank-name { font-size: 13.5px; font-weight: 700; color: var(--navy); }
+    .rank-sub  { font-size: 11.5px; color: var(--slate); margin-top: 1px; }
+
+    .rank-right { text-align: right; flex-shrink: 0; }
+    .rank-pct { font-size: 17px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+    .rank-item.cobalt .rank-pct { color: var(--cobalt); }
+    .rank-item.amber .rank-pct  { color: var(--amber-txt); }
+
+    .badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      margin-top: 3px;
+      border-radius: 2px;
+    }
+    .b-bonf { background: var(--cobalt); color: #FFFFFF; }
+    .b-nom  { background: var(--amber); color: #FFFFFF; }
+    .b-ts   { background: #E2E8F0; color: var(--slate); }
+
+    /* BAND 4: SPOTLIGHT KARET */
+    .spotlight-sec {
+      background: #F8FAFC;
+      border: 2px solid var(--cobalt);
+      padding: 20px 24px;
+    }
+
+    .spot-grid {
+      display: grid;
+      grid-template-columns: 60% 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .spot-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .stat-box {
+      background: #FFFFFF;
+      border: 1px solid var(--cobalt-bd);
+      border-left: 5px solid var(--cobalt);
+      padding: 12px 15px;
+    }
+
+    .stat-box.accent {
+      background: var(--cobalt-bg);
+    }
+
+    .stat-kicker {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--cobalt);
+      margin-bottom: 3px;
+    }
+
+    .stat-big {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+    }
+
+    .stat-desc {
+      font-size: 12px;
+      color: var(--slate);
+      margin-top: 3px;
+    }
+
+    .triangulation-note {
+      background: var(--navy);
+      color: #F8FAFC;
+      padding: 12px 15px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .triangulation-note strong { color: #93C5FD; }
+
+    /* BAND 5: CORRELATION + REGRESSION */
+    .split-47-53 {
+      display: grid;
+      grid-template-columns: 47% 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .sub-panel {
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      background: var(--bg-canvas);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sub-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--navy);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .mini-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--slate);
+    }
+
+    .mini-pill {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--muted);
+      padding: 7px 10px;
+    }
+    .mini-pill.c-blue  { border-left-color: var(--cobalt); }
+    .mini-pill.c-teal  { border-left-color: var(--teal); }
+    .mini-pill.c-amber { border-left-color: var(--amber); background: var(--amber-bg); border-color: var(--amber-bd); }
+
+    /* BAND 6: SYNTHESIS TABLE */
+    table.synth {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.2px;
+    }
+
+    table.synth th {
+      background: var(--navy);
+      color: #FFFFFF;
+      font-weight: 700;
+      text-align: left;
+      padding: 9px 11px;
+      border: 1px solid var(--navy);
+      font-size: 12px;
+    }
+
+    table.synth td {
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--navy);
+    }
+
+    table.synth tr.row-cobalt td { background: var(--cobalt-bg); }
+    table.synth tr.row-amber td  { background: var(--amber-bg); }
+    table.synth tr.row-tint td   { background: var(--bg-tint); }
+
+    .comm-title { font-weight: 800; display: block; }
+    .comm-hs    { font-size: 11px; font-weight: 700; color: var(--muted); }
+    .row-cobalt .comm-hs { color: var(--cobalt); }
+    .row-amber  .comm-hs { color: var(--amber-txt); }
+
+    /* BAND 7: CONCLUSION + LIMITATIONS + FOOTER */
+    .conc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .conc-card {
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--navy);
+      padding: 13px 15px;
+      background: var(--bg-white);
+    }
+    .conc-card.c-blue  { border-top-color: var(--cobalt); background: var(--cobalt-bg); border-color: var(--cobalt-bd); }
+    .conc-card.c-amber { border-top-color: var(--amber); background: var(--amber-bg); border-color: var(--amber-bd); }
+
+    .conc-kicker {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .conc-card.c-blue  .conc-kicker { color: var(--cobalt); }
+    .conc-card.c-amber .conc-kicker { color: var(--amber-txt); }
+
+    .conc-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .conc-card p {
+      font-size: 12px;
+      color: var(--slate);
+      line-height: 1.42;
+    }
+
+    .guardrails {
+      background: var(--bg-tint);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--navy);
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      font-size: 11.8px;
+      color: var(--slate);
+    }
+
+    .guardrails strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 2px;
+      font-size: 12px;
+    }
+
+    .footer-bar {
+      background: var(--navy);
+      color: #CBD5E1;
+      padding: 12px 20px;
+      font-size: 11.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-bar strong { color: #FFFFFF; }
+  </style>
+</head>
+<body>
+  <main class="poster" id="poster-root">
+
+    <!-- BAGIAN 1: JUDUL & IDENTITAS AKADEMIK -->
+    <header class="hero">
+      <div>
+        <div class="hero-eyebrow">Infografis Riset Kuantitatif  •  Analisis Statistika (STA2511)</div>
+        <h1>Satu Perubahan Kebijakan,<br>Lima Respons Perdagangan yang Berbeda</h1>
+        <p class="hero-sub">
+          Analisis Kebijakan Tarif Resiprokal AS, Kurs IDR/USD, dan Harga Minyak Dunia terhadap Volume Impor Agrikultur AS dari Indonesia pada Level HS-6 (Januari 2022 – September 2026).
+        </p>
+      </div>
+      <div class="hero-meta-box">
+        <div class="hero-meta-label">Identitas Akademik</div>
+        <strong>Kelompok 10 — Analisis Statistika (STA2511)</strong>
+        Departemen Statistika dan Sains Data<br>
+        FMIPA IPB University
+        <div class="dosen">Dosen Pengampu: Dr. Farit Mochamad Afendi, M.Si.</div>
+      </div>
+    </header>
+
+    <!-- BAGIAN 2: KONTEKS DATA & LINIMASA KEBIJAKAN -->
+    <section class="sec">
+      <div class="sec-head">
+        <div>
+          <span class="sec-num">1. Cakupan Data &amp; Konteks Kebijakan</span>
+          <h2 class="sec-title">Pengukuran Impor Umum AS, Tarif Efektif Aktual, dan Tiga Fase Kebijakan</h2>
+        </div>
+        <span class="sec-tag">Panel Bulanan Seimbang • 57 Bulan × 5 Pos HS-6</span>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card blue">
+          <div class="kpi-val">285 Observasi</div>
+          <div class="kpi-lbl">57 bulan per komoditas (Jan 2022–Sep 2026)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">5 Pos Tarif HS-6</div>
+          <div class="kpi-lbl">Sawit, Karet, Kopi, Minyak Kelapa, Kakao</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-val">3 Fase Kebijakan</div>
+          <div class="kpi-lbl">Pra-Tarif (39) • Tarif (10) • Pasca-ART (8 bln)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">Koreksi Bonferroni</div>
+          <div class="kpi-lbl">Kendali positif palsu uji lintas 5 komoditas</div>
+        </div>
+      </div>
+
+      <div class="def-strip">
+        <div class="def-box">
+          <strong>Volume = Impor AS dari Indonesia (US General Imports):</strong> Volume kedatangan komoditas Indonesia di kepabeanan AS dalam satuan Metrik Ton (MT/bln), bukan ekspor total global Indonesia.
+        </div>
+        <div class="def-box amber">
+          <strong>Tarif = Tarif Efektif Aktual (Effective Tariff):</strong> Rasio bea masuk aktual terhadap nilai impor kepabeanan (<em>Calculated Duty / Customs Value</em>) di USITC, bukan tarif resmi pengumuman.
+        </div>
+      </div>
+
+      <div class="chart-frame">
+        <img src="assets_v4/G1_timeline_kebijakan.png" alt="Linimasa Tiga Fase Kebijakan 2022-2026" />
+      </div>
+    </section>
+
+    <!-- BAGIAN 3: KOMPARASI DUA PERIODE (UJI-T WELCH) -->
+    <section class="sec">
+      <div class="sec-head">
+        <div>
+          <span class="sec-num">2. Komparasi Sebelum vs Sesudah Kebijakan (Uji-t Welch)</span>
+          <h2 class="sec-title">Penurunan Terdalam Terjadi pada Karet Alam (−32,5%), Sementara Komoditas Lain Beragam</h2>
+        </div>
+        <span class="sec-tag">Sebelum Kebijakan (39 bln) vs Sesudah Kebijakan (18 bln)</span>
+      </div>
+
+      <div class="split-62-38">
+        <div class="chart-frame">
+          <img src="assets_v4/G3_ttest_pra_pasca.png" alt="Grafik Uji-t Welch Sebelum vs Sesudah Kebijakan Tarif" />
+        </div>
+
+        <div class="rank-stack">
+          <div class="rank-item cobalt">
+            <div>
+              <div class="rank-name">Karet Alam TSNR (HS 4001.22)</div>
+              <div class="rank-sub">Turun −11.245,3 MT/bln • p = 0,0000207</div>
+            </div>
+            <div class="rank-right">
+              <div class="rank-pct">−32,5%</div>
+              <span class="badge b-bonf">[✓] Lolos Bonferroni</span>
+            </div>
+          </div>
+
+          <div class="rank-item amber">
+            <div>
+              <div class="rank-name">Sawit Olahan (HS 1511.90)</div>
+              <div class="rank-sub">Signifikan nominal 5% • p = 0,0359</div>
+            </div>
+            <div class="rank-right">
+              <div class="rank-pct">−15,5%</div>
+              <span class="badge b-nom">[*] Taraf Nominal 5%</span>
+            </div>
+          </div>
+
+          <div class="rank-item">
+            <div>
+              <div class="rank-name">Minyak Kelapa (HS 1513.19)</div>
+              <div class="rank-sub">Selisih rata-rata acak • p = 0,1640</div>
+            </div>
+            <div class="rank-right">
+              <div class="rank-pct">−25,7%</div>
+              <span class="badge b-ts">[TS] Tidak Sig.</span>
+            </div>
+          </div>
+
+          <div class="rank-item">
+            <div>
+              <div class="rank-name">Mentega Kakao (HS 1804.00)</div>
+              <div class="rank-sub">Volume cenderung stagnan • p = 0,9812</div>
+            </div>
+            <div class="rank-right">
+              <div class="rank-pct">+0,3%</div>
+              <span class="badge b-ts">[TS] Tidak Sig.</span>
+            </div>
+          </div>
+
+          <div class="rank-item">
+            <div>
+              <div class="rank-name">Kopi Mentah (HS 0901.11)</div>
+              <div class="rank-sub">Peningkatan belum signifikan • p = 0,0814</div>
+            </div>
+            <div class="rank-right">
+              <div class="rank-pct">+21,8%</div>
+              <span class="badge b-ts">[TS] Tidak Sig.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 4: SOROTAN UTAMA — KARET ALAM TSNR -->
+    <section class="spotlight-sec">
+      <div class="sec-head" style="border-bottom-color: var(--cobalt-bd);">
+        <div>
+          <span class="sec-num">3. Temuan Utama Konsisten Lintas 3 Fase</span>
+          <h2 class="sec-title">Hanya Karet Alam TSNR yang Lolos Koreksi Bonferroni: Turun Berlanjut Hingga Pasca-ART</h2>
+        </div>
+        <span class="sec-tag" style="color: var(--cobalt); font-weight: 700;">HS 4001.22 • ANOVA, Welch ANOVA &amp; Kruskal-Wallis</span>
+      </div>
+
+      <div class="spot-grid">
+        <div class="chart-frame">
+          <img src="assets_v4/G4_karet_3fase_spotlight.png" alt="Penurunan Karet Alam TSNR Lintas Tiga Fase Kebijakan" />
+        </div>
+
+        <div class="spot-cards">
+          <div class="stat-box accent">
+            <div class="stat-kicker">Penurunan Pasca-ANOVA (Fase 3 vs Fase 1)</div>
+            <div class="stat-big">−14.235,4 MT / bulan</div>
+            <div class="stat-desc">
+              Rata-rata turun berkelanjutan dari <strong>34.600 MT</strong> (Fase 1) → <strong>25.700 MT</strong> (Fase 2) → <strong>20.300 MT/bln</strong> (Fase 3).<br>
+              Tukey <em>p</em> = <strong>0,000756</strong> &nbsp;|&nbsp; Wilcoxon Koreksi Bonferroni <em>p</em> = <strong>0,0029</strong>.
+            </div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-kicker">Paradoks Tarif Efektif Karet Alam</div>
+            <div class="stat-big">Tarif Aktual ≤ 0,08%</div>
+            <div class="stat-desc">
+              Berbeda dari Sawit, Kopi, Kakao &amp; Minyak Kelapa yang mencatat lonjakan tarif efektif hingga ~19%, Karet Alam mengalami kontraksi terdalam padahal beban tarif efektifnya hampir nol.
+            </div>
+          </div>
+
+          <div class="triangulation-note">
+            <strong>Triangulasi Tiga Metode:</strong> Karet Alam TSNR adalah satu-satunya dari 5 komoditas yang konsisten signifikan setelah koreksi Bonferroni pada uji <strong>ANOVA</strong>, <strong>Welch ANOVA</strong>, dan <strong>Kruskal-Wallis</strong>. Penurunan tetap berlanjut setelah Fase Pasca-ART dimulai Feb 2026.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 5: KORELASI PEARSON & REGRESI MULTIVARIAT -->
+    <section class="sec">
+      <div class="sec-head">
+        <div>
+          <span class="sec-num">4. Penguraian Faktor Ekonomi (Korelasi &amp; Regresi OLS)</span>
+          <h2 class="sec-title">Tarif Berkaitan dengan Sawit Olahan; Nilai Tukar IDR/USD Erat Berkaitan dengan Karet Alam</h2>
+        </div>
+        <span class="sec-tag">Model: Volume Impor AS ~ Tarif Efektif + Kurs IDR/USD + Harga Brent</span>
+      </div>
+
+      <div class="split-47-53">
+        <div class="sub-panel">
+          <div class="sub-title">A. Korelasi Bivariat Pearson Menonjol</div>
+          <div class="chart-frame">
+            <img src="assets_v4/G5_korelasi_pearson.png" alt="Korelasi Bivariat Pearson Terkuat" />
+          </div>
+          <div class="mini-list">
+            <div class="mini-pill c-blue"><strong>Karet Alam TSNR ↔ Kurs IDR/USD:</strong> <em>r</em> = −0,629 (<em>p</em> = 1,61 × 10⁻⁷) — asosiasi bivariat terkuat dalam studi ini.</div>
+            <div class="mini-pill c-teal"><strong>Minyak Kelapa ↔ Kurs IDR/USD:</strong> <em>r</em> = −0,339 (<em>p</em> = 0,0099) — arah negatif sejalan dengan Karet.</div>
+            <div class="mini-pill c-amber"><strong>Sawit Olahan ↔ Tarif Efektif:</strong> <em>r</em> = −0,338 (<em>p</em> = 0,0102) — berkorelasi negatif langsung dengan beban tarif.</div>
+            <div class="mini-pill"><strong>Harga Brent &amp; Komoditas Lain:</strong> Korelasi bivariat Harga Minyak Brent, Kopi Mentah, dan Mentega Kakao tidak menonjol dibanding kurs dan tarif efektif.</div>
+          </div>
+        </div>
+
+        <div class="sub-panel">
+          <div class="sub-title">B. Koefisien Parsial &amp; Signifikansi Regresi Linear Berganda</div>
+          <div class="chart-frame">
+            <img src="assets_v4/G6_regresi_prediktor.png" alt="Kekuatan Statistik Prediktor Regresi OLS" />
+          </div>
+          <div class="mini-list">
+            <div class="mini-pill c-blue">
+              <strong>Karet Alam TSNR (Kurs IDR/USD):</strong> <em>b</em> = −6,37 MT/Rp1 (≈ <strong>−637,2 MT per Rp100/USD</strong>); <em>p</em> = 4,73 × 10⁻⁶; <strong>Adjusted R² = 0,3960</strong> (lolos koreksi Bonferroni).
+            </div>
+            <div class="mini-pill c-amber">
+              <strong>Sawit Olahan (Tarif Efektif):</strong> <em>b</em> = <strong>−2.675,73 MT per +1 poin %</strong>; <em>p</em> = 0,0070. Signifikan pada taraf nominal 5%, tetapi <strong>tidak melewati koreksi Bonferroni 1%</strong>.
+            </div>
+            <div class="mini-pill">
+              <strong>Minyak Kelapa &amp; Lainnya:</strong> Kurs di Kelapa <em>b</em> = −1,71 MT/Rp1 (<em>p</em> = 0,0179, tidak lolos Bonferroni). Kopi Mentah, Mentega Kakao, serta prediktor <strong>Harga Brent</strong> tidak signifikan di model.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 6: MATRIKS SINTESIS 5 KOMODITAS -->
+    <section class="sec">
+      <div class="sec-head">
+        <div>
+          <span class="sec-num">5. Sintesis Lintas Lima Komoditas HS-6</span>
+          <h2 class="sec-title">Peta Respons Lengkap: Dari Sinyal Konsisten Hingga Tidak Signifikan</h2>
+        </div>
+        <span class="sec-tag">[✓] Lolos Bonferroni  •  [*] Taraf Nominal 5%  •  [TS] Tidak Signifikan</span>
+      </div>
+
+      <table class="synth">
+        <thead>
+          <tr>
+            <th style="width: 19%;">Komoditas (HS-6)</th>
+            <th style="width: 19%;">Uji-t (Pra vs Pasca)</th>
+            <th style="width: 19%;">Uji 3 Fase (ANOVA/KW)</th>
+            <th style="width: 19%;">Korelasi Pearson Utama</th>
+            <th style="width: 24%;">Regresi Linear OLS (Simultan)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-cobalt">
+            <td><span class="comm-title">Karet Alam TSNR</span><span class="comm-hs">HS 4001.22 (Tarif ≤ 0,08%)</span></td>
+            <td><strong>−32,5% (−11.245,3 MT/bln)</strong><br>p = 0,0000207 [✓ Bonf]</td>
+            <td><strong>Konsisten Signifikan [✓]</strong><br>F3 vs F1: −14.235,4 MT/bln</td>
+            <td><strong>Kurs IDR/USD:</strong><br>r = −0,629 (p = 1,61×10⁻⁷)</td>
+            <td><strong>Kurs: b = −6,37 MT/Rp1</strong> (p = 4,73×10⁻⁶)<br>Lolos Bonf • Adj. R² = 0,3960</td>
+          </tr>
+          <tr class="row-amber">
+            <td><span class="comm-title">Sawit Olahan</span><span class="comm-hs">HS 1511.90 (Puncak 19,00%)</span></td>
+            <td><strong>−15,5%</strong><br>p = 0,0359 [* Nominal 5%]</td>
+            <td>Tidak Lolos Bonferroni</td>
+            <td><strong>Tarif Efektif:</strong><br>r = −0,338 (p = 0,0102)</td>
+            <td><strong>Tarif: b = −2.675,73 MT/%</strong> (p = 0,0070)<br>Sig. nominal 5%, tak lolos Bonf 1%</td>
+          </tr>
+          <tr>
+            <td><span class="comm-title">Minyak Kelapa</span><span class="comm-hs">HS 1513.19 (Puncak 18,93%)</span></td>
+            <td>−25,7%<br>p = 0,1640 [TS]</td>
+            <td>Tidak Lolos Bonferroni</td>
+            <td>Kurs IDR/USD:<br>r = −0,339 (p = 0,0099)</td>
+            <td>Kurs: b = −1,71 MT/Rp1 (p = 0,0179)<br>Tidak signifikan pasca-Bonferroni</td>
+          </tr>
+          <tr class="row-tint">
+            <td><span class="comm-title">Kopi Mentah</span><span class="comm-hs">HS 0901.11 (Puncak 18,85%)</span></td>
+            <td>+21,8%<br>p = 0,0814 [TS]</td>
+            <td>Tidak Signifikan [TS]</td>
+            <td>Tidak Menonjol</td>
+            <td>Tidak ditemukan prediktor signifikan</td>
+          </tr>
+          <tr>
+            <td><span class="comm-title">Mentega Kakao</span><span class="comm-hs">HS 1804.00 (Puncak 19,00%)</span></td>
+            <td>+0,3%<br>p = 0,9812 [TS]</td>
+            <td>Tidak Signifikan [TS]</td>
+            <td>Tidak Menonjol</td>
+            <td>Tidak ditemukan prediktor signifikan</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- BAGIAN 7: KESIMPULAN, BATASAN METODOLOGI & SUMBER -->
+    <section class="sec" style="padding-bottom: 18px;">
+      <div class="sec-head">
+        <div>
+          <span class="sec-num">6. Kesimpulan Utama &amp; Batasan Interpretasi</span>
+          <h2 class="sec-title">Tiga Pelajaran Kebijakan serta Disiplin Membaca Bukti Statistik</h2>
+        </div>
+        <span class="sec-tag">Validitas Inferensi • Asosiasi ≠ Kausalitas</span>
+      </div>
+
+      <div class="conc-grid">
+        <div class="conc-card">
+          <div class="conc-kicker">01 • Heterogenitas Respons</div>
+          <h3>Tidak Ada Satu Pola Tunggal</h3>
+          <p>Respons perubahan rata-rata volume antar-lima pos tarif HS-6 bervariasi lebar dari −32,5% hingga +21,8%, menegaskan perlunya evaluasi spesifik per komoditas.</p>
+        </div>
+        <div class="conc-card c-blue">
+          <div class="conc-kicker">02 • Bukti Terkuat Studi</div>
+          <h3>Tekanan Karet Terikat Kurs</h3>
+          <p>Karet Alam TSNR mengalami kontraksi terdalam lintas seluruh fase (F3 vs F1 −14.235,4 MT/bln) yang berkaitan erat dengan nilai tukar IDR/USD (Adj. R² = 0,3960).</p>
+        </div>
+        <div class="conc-card c-amber">
+          <div class="conc-kicker">03 • Sinyal Tarif &amp; Faktor Luar</div>
+          <h3>Sawit Peka Tarif Nominal 5%</h3>
+          <p>Hanya Sawit Olahan yang mencatat asosiasi negatif parsial dengan tarif efektif pada taraf nominal 5% (tak lolos Bonf 1%), sedangkan Brent belum signifikan di kelima model.</p>
+        </div>
+      </div>
+
+      <div class="guardrails">
+        <div>
+          <strong>1. Asosiasi ≠ Kausalitas Tunggal</strong>
+          Uji beda, korelasi, dan regresi mengukur keterkaitan statistik observasional—bukan pembuktian sebab-akibat langsung kebijakan tarif semata.
+        </div>
+        <div>
+          <strong>2. Tidak Signifikan ≠ Tidak Terdampak</strong>
+          Ketiadaan bukti kuat pada Kopi, Mentega Kakao, atau Minyak Kelapa tidak membuktikan komoditas tersebut kebal terhadap perubahan pasar.
+        </div>
+        <div>
+          <strong>3. Faktor di Luar Model</strong>
+          Kontrak jangka panjang, pasokan negara pesaing, stok pembeli AS, dan kapasitas logistik tetap memengaruhi pergerakan volume bulanan.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-bar">
+      <div><strong>Sumber Data Resmi:</strong> USDA FAS GATS / US Census Bureau (<em>US General Imports</em>, MT) • USITC DataWeb (<em>Tarif Efektif Aktual</em>) • Bank Indonesia &amp; FRED (Kurs IDR/USD) • World Bank / FRED (Harga Brent) • Periode Jan 2022 – Sep 2026.</div>
+      <div style="white-space: nowrap;"><strong>Kelompok 10 — STA2511 IPB</strong></div>
+    </footer>
+
+  </main>
+</body>
+</html>
