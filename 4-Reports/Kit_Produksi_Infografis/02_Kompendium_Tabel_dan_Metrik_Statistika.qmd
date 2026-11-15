@@ -1,0 +1,120 @@
+---
+title: "Kompendium Tabel & Metrik Statistika Infografis"
+subtitle: "Buku Angka Acuan Resmi Hasil Analisis Ekonometrika Data Panel 57 Bulan (Level HS-6)"
+author: "Kelompok 10 — Analisis Statistika (STA2511)"
+institute: "Departemen Statistika dan Sains Data, FMIPA IPB University"
+date: "2026-11-15"
+lang: id
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 1.8cm
+      y: 1.8cm
+    toc: true
+    number-sections: true
+---
+
+# Ringkasan Parameter & Cakupan Analisis
+
+Dokumen ini memuat seluruh tabel angka resmi yang dihasilkan dari skrip ekonometrika final draf (`master_panel_2022_202609.rds`). Seluruh angka di bawah ini merupakan data valid yang digunakan untuk mengisi elemen infografis, slide presentasi, dan manuskrip penelitian.
+
+* **Kelompok Peneliti:** Kelompok 10 — Analisis Statistika (STA2511)
+* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)
+* **Basis Data:** Panel Bulanan 57 Bulan (Januari 2022 – September 2026, $N = 171$ Observasi)
+* **Ambang Koreksi Bonferroni:** $\alpha_{\text{Bonf}} = \frac{0{,}05}{3} = 0{,}0167$
+
+---
+
+# Profil Nilai Ekonomi & Kontinuitas 3 Pos Tarif HS-6
+
+Tabel berikut menyajikan statistik deskriptif agregat selama 57 bulan pengamatan:
+
+| Pos Tarif HS-6 | Nama Komoditas | Volume Rata-rata (MT/bln) | Total Volume 57 Bln (MT) | Akumulasi Nilai Ekspor (Juta USD) | Akumulasi Bea Impor (Juta USD) | Kontinuitas Bulan Aktif |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+| **`1511.90`** | Sawit Olahan (*Refined Palm Oil*) | **119.711,1** | $6.823.535$ | $\$7.768,43$ | **$182,32** | **57 / 57 (100%)** |
+| **`4001.22`** | Karet Alam TSNR / SIR-20 | **31.005,5** | $1.767.314$ | $\$2.859,12$ | **$0,06** | **57 / 57 (100%)** |
+| **`0901.11`** | Kopi Mentah (*Raw Coffee Beans*) | **4.428,5** | $252.423$ | $\$1.196,87$ | **$20,16** | **57 / 57 (100%)** |
+| **Total Panel** | **3 Komoditas Inti** | **155.145,1** | **8.843.272** | **$11.824,42** | **$202,54** | **171 / 171 (100%)** |
+
+---
+
+# Hasil Uji Inferensial Komparasi 2 Periode (Welch's t-test)
+
+Pengujian komparasi membandingkan Periode Pra-Tarif (Januari 2022 – Maret 2025, $n_1 = 39\text{ bulan}$) dengan Periode Pasca-Kebijakan (April 2025 – September 2026, $n_2 = 18\text{ bulan}$):
+
+| Komoditas HS-6 | Rata-rata Pra-Tarif (MT) | Rata-rata Pasca-Tarif (MT) | Selisih Fisik (MT) | Kontraksi Relatif (%) | Nilai Uji $t$ (Welch) | Derajat Bebas ($df$) | $p$-value | Status Signifikansi |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Sawit Olahan (`1511.90`)** | $124.975,4$ | $105.617,6$ | $-19.357,8$ | **–15,5%** | $t = -2{,}120$ | $35{,}7$ | $p = 0{,}0384^*$ | Signifikan pada $\alpha = 0{,}05$ |
+| **Karet TSNR (`4001.22`)** | $34.548,2$ | $23.328,1$ | $-11.220,1$ | **–32,5%** | $t = -4{,}748$ | $39{,}2$ | $p = 2{,}07 \times 10^{-5***}$ | Sangat Signifikan ($\alpha < 0{,}001$) |
+| **Kopi Mentah (`0901.11`)** | $4.372,1$ | $4.556,3$ | $+184,2$ | **+4,2%** | $t = +0{,}501$ | $26{,}1$ | $p = 0{,}6189$ | Tidak Signifikan (Resilien) |
+
+---
+
+# Analisis Ragam Tiga Fase (One-Way ANOVA) & Uji Lanjut Tukey HSD
+
+## Ringkasan Hasil ANOVA Satu Arah
+
+* **Sawit Olahan (`1511.90`):** $F = 2{,}243$ ($p = 0{,}116$ — efek tertahan variasi bulanan).
+* **Karet TSNR (`4001.22`):** $F = 9{,}566$ ($p = 0{,}00028 < 0{,}001$ — sangat signifikan antar-fase kebijakan).
+* **Kopi Mentah (`0901.11`):** $F = 0{,}292$ ($p = 0{,}748$ — stabil lintas fase).
+
+## Matriks Uji Lanjut Tukey HSD Karet TSNR (`4001.22`)
+
+Pengujian post-hoc Tukey HSD untuk membongkar perbedaan antar-fase pada komoditas Karet TSNR:
+
+| Pasangan Perbandingan Fase | Selisih Rata-rata Volume (MT) | Batas Bawah 95% CI (MT) | Batas Atas 95% CI (MT) | Nilai $p$-value Disesuaikan | Kesimpulan Statistik |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Fase 2 vs Fase 1** (Tarif vs Pra-Tarif) | **–8.820,4** | $-16.821,5$ | $-819,3$ | $p = 0{,}0281^*$ | Turun signifikan saat tarif AS aktif |
+| **Fase 3 vs Fase 1** (ART vs Pra-Tarif) | **–14.235,1** | $-23.018,4$ | $-5.451,8$ | $p = 0{,}00076^{***}$ | **Penurunan paling dalam terjadi di Fase 3!** |
+| **Fase 3 vs Fase 2** (ART vs Tarif) | **–5.414,7** | $-16.035,2$ | $+5.205,8$ | $p = 0{,}2974$ | Tidak ada pemulihan volume karet di Fase 3 |
+
+---
+
+# Estimasi Parameter Regresi OLS Sezaman
+
+Model: $\text{Volume}_{it} = \beta_0 + \beta_1 \text{Tarif}_{it} + \beta_2 \text{Kurs}_t + \beta_3 \text{Minyak}_t + \varepsilon_{it}$
+
+| Komponen Parameter | Sawit Olahan (`1511.90`) | Karet TSNR (`4001.22`) | Kopi Mentah (`0901.11`) |
+| :--- | :---: | :---: | :---: |
+| **Konstanta ($\beta_0$)** | $+32.067,4\text{ MT}$ ($SE = 80.892, p = 0{,}693$) | $+126.315,2\text{ MT}$ ($SE = 26.241, p < 0{,}0001^{***}$) | $+3.149,2\text{ MT}$ ($SE = 6.182, p = 0{,}612$) |
+| **Tarif Riil ($\beta_1$)** | **–2.675,7 MT/%** ($SE = 952,8, p = 0{,}00696^{**}$) | –202,3 MT/% ($SE = 178,9, p = 0{,}263$) | –24,8 MT/% ($SE = 43,8, p = 0{,}573$) |
+| **Kurs IDR/USD ($\beta_2$)** | +6,23 MT/Rp ($SE = 5,31, p = 0{,}245$) | **–6,37 MT/Rp** ($SE = 1,25, p = 4{,}73 \times 10^{-6***}$) | +0,09 MT/Rp ($SE = 0,25, p = 0{,}717$) |
+| **Harga Minyak Brent ($\beta_3$)** | –109,2 MT/$ ($SE = 384,1, p = 0{,}777$) | +99,1 MT/$ ($SE = 90,2, p = 0{,}277$) | –4,1 MT/$ ($SE = 21,3, p = 0{,}848$) |
+| **$R^2$ (Koefisien Determinasi)** | **14,57%** | **42,84%** | **0,92%** |
+| **$R^2$ Terkoreksi (Adj-$R^2$)** | **9,74%** | **39,61%** | **–4,68%** |
+| **Statistik $F$ Model** | $F = 3{,}014$ ($p = 0{,}0379^*$) | $F = 13{,}242$ ($p = 1{,}31 \times 10^{-6***}$) | $F = 0{,}501$ ($p = 0{,}683$) |
+| **Signifikansi Bonferroni ($\alpha = 0{,}0167$)** | **LOLOS (Tarif Riil)** | **LOLOS (Kurs IDR/USD)** | **Tidak Ada Variabel Signifikan** |
+
+---
+
+# Matriks Validasi Lima Asumsi Klasik Gauss-Markov
+
+Tabel diagnostik kelayakan ekonometrika model OLS:
+
+| Jenis Uji Asumsi | Uji Statistik yang Dipakai | Batas Kelayakan | Sawit Olahan (`1511.90`) | Karet TSNR (`4001.22`) | Kopi Mentah (`0901.11`) |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Multikolinearitas** | Variance Inflation Factor (VIF) | $\text{VIF} < 5{,}0$ | **1,517** (Lolos) | **1,517** (Lolos) | **1,517** (Lolos) |
+| **Heteroskedastisitas** | Breusch-Pagan Test (`bptest`) | $p > 0{,}05$ | $BP = 3{,}72, p = 0{,}293$ | $BP = 2{,}67, p = 0{,}445$ | $BP = 8{,}24, p = 0{,}041^*$ |
+| **Autokorelasi Galat** | Durbin-Watson Test (`dwtest`) | $\text{DW} \approx 2{,}0$ | $DW = 1{,}712, p = 0{,}138$ | $DW = 1{,}708, p = 0{,}124$ | $DW = 1{,}732, p = 0{,}151$ |
+| **Spesifikasi Linieritas** | Ramsey RESET Test (`resettest`) | $p > 0{,}05$ | $F = 1{,}58, p = 0{,}214$ | $F = 1{,}19, p = 0{,}312$ | $F = 1{,}73, p = 0{,}188$ |
+| **Normalitas Sisaan** | Jarque-Bera & Shapiro-Wilk | $p > 0{,}05$ | $JB = 2{,}02, p = 0{,}365$ | $JB = 2{,}50, p = 0{,}287$ | $JB = 21{,}1, p = 0{,}000026^{**}$ |
+| **Status Keseluruhan** | Evaluasi 5/5 Uji | Lolos Penuh | **Valid 100%** | **Valid 100%** | **Valid via Model $\ln$ ($p=0{,}325$)** |
+
+---
+
+# Evaluasi Skala: Koefisien Standar Beta ($\beta^*$) & Elastisitas $\ln$
+
+Komparasi model level asli fisik terhadap pembakuan skor-$z$ dan model logaritma natural ($\ln$):
+
+## 1. Koefisien Beta Terstandarisasi ($\beta^*$)
+* **Model Sawit (`1511.90`):**
+  * $\beta^*_{\text{tarif}} = \mathbf{-0{,}4415}$ vs $\beta^*_{\text{kurs}} = \mathbf{+0{,}1637}$.
+  * *Kesimpulan:* Pengaruh tarif **2,7 kali lipat lebih dominan** daripada pengaruh kurs.
+* **Model Karet (`4001.22`):**
+  * $\beta^*_{\text{kurs}} = \mathbf{-0{,}5631}$ vs $\beta^*_{\text{tarif}} = \mathbf{-0{,}1534}$.
+  * *Kesimpulan:* Pengaruh kurs **3,7 kali lipat lebih dominan** daripada pengaruh tarif.
+
+## 2. Elastisitas Model Log-Log ($\ln$)
+* **Sawit Olahan:** Koefisien elastisitas tarif $\beta_{\ln(\text{tarif})} = -0{,}0256$ (Setiap kenaikan 1% tarif riil, ekspor turun sebesar **–2,56%**).
+* **Karet TSNR:** Koefisien elastisitas kurs $\beta_{\ln(\text{kurs})} = -3{,}741$ (Setiap depresiasi 1% nilai tukar rupiah, volume ekspor karet turun sebesar **–3,74%**).

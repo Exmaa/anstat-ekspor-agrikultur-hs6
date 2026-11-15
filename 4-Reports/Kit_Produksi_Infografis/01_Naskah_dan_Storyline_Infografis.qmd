@@ -1,0 +1,164 @@
+---
+title: "Naskah & Storyline Infografis: Mengarungi Badai Tarif Paman Sam"
+subtitle: "Panduan Teks, Narasi Babak, dan Mikro-Kopi Infografis Digital Ketahanan Ekspor Agrikultur (2022–2026)"
+author: "Kelompok 10 — Analisis Statistika (STA2511)"
+institute: "Departemen Statistika dan Sains Data, FMIPA IPB University"
+date: "2026-11-15"
+lang: id
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2cm
+      y: 2cm
+    toc: true
+    number-sections: true
+---
+
+# Pengantar & Filosofi Storytelling Infografis
+
+Infografis ini bukan sekadar pajangan grafik visual, melainkan sebuah **kisah pembuktian ilmiah berbasis data panel 57 bulan (2022.01–2026.09)**. Dokumen ini menyajikan seluruh teks resmi, *callout*, *microcopy*, dan dialog naratif yang dirancang untuk disalin-tempel langsung ke dalam elemen kartu di kanvas Canva (`DAHa9_KM1Sg` / `DAHa9yyASS0`).
+
+* **Mata Kuliah:** Analisis Statistika (STA2511)
+* **Kelompok:** Kelompok 10
+* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)
+* **Tim Peneliti:** Emanuel Marthen Embuai & Tim
+
+---
+
+# Header & Identitas Akademik (Zona 1)
+
+## Teks Judul Utama (Headline)
+> **Mengarungi Badai Tarif Paman Sam: Menakar Ketahanan Ekspor Agrikultur Nusantara (Level HS-6: 2022–2026)**
+
+## Teks Subjudul (Sub-Headline)
+> *Studi Ekonometrika Data Panel 57 Bulan: Menguji Dampak Kebijakan Tarif Resiprokal AS, Volatilitas Kurs IDR/USD, dan Dinamika Harga Minyak Dunia pada Tiga Komoditas Unggulan Perkebunan Indonesia.*
+
+## Metadata Institusi & Peneliti
+* **Institusi:** Departemen Statistika dan Sains Data, Fakultas Matematika dan Ilmu Pengetahuan Alam, IPB University
+* **Kelas & Mata Kuliah:** Analisis Statistika (STA2511) — Kelompok 10
+* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)
+* **Tim Peneliti:** Emanuel Marthen Embuai & Tim (Kelompok 10)
+* **Cakupan Data:** Data Panel Bulanan Seimbang (57 Bulan: Januari 2022 – September 2026, 171 Observasi)
+
+---
+
+# Babak I: The Inciting Incident & 6 Indikator Kunci (Zona 2)
+
+## Narasi Pembuka Babak I
+Pada April 2025, pemerintah Amerika Serikat meluncurkan kebijakan proteksionisme agresif *Reciprocal Tariff Policy* dengan ancaman bea masuk hingga 32%. Catatan kepabeanan resmi US Census Bureau mencatat lonjakan tarif efektif riil dari $\approx 0\%$ ke puncaknya **19,00%**, mengguncang jalur perdagangan ekspor agrikultur Nusantara di Samudera Pasifik.
+
+## Mikro-Kopi 6 Kartu Medali KPI
+
+### Kartu KPI 1: Puncak Tarif
+* **Angka Utama:** `19.00%`
+* **Label:** Puncak Tarif Resiprokal AS (Fase 2)
+* **Keterangan Singkat:** Lonjakan tarif efektif riil kepabeanan dari baseline 0% pada April 2025.
+
+### Kartu KPI 2: Kontraksi Karet
+* **Angka Utama:** `–32.5%`
+* **Label:** Anjloknya Volume Ekspor Karet TSNR
+* **Keterangan Singkat:** Rata-rata pengapalan bulanan merosot dari 34,5k MT ke 23,3k MT ($p < 0{,}0001$).
+
+### Kartu KPI 3: Kontraksi Sawit
+* **Angka Utama:** `–15.5%`
+* **Label:** Penurunan Ekspor Sawit Olahan
+* **Keterangan Singkat:** Kontraksi volume fisik akibat beban akumulasi bea masuk sebesar \$182,32 juta ($p = 0{,}038$).
+
+### Kartu KPI 4: Daya Jelas Model Karet
+* **Angka Utama:** `R² = 42.8%`
+* **Label:** Kekuatan Model Ekonometrika Karet
+* **Keterangan Singkat:** Variabel makroekonomi dan kebijakan menjelaskan 42,84% variasi ekspor ($F = 13{,}24$).
+
+### Kartu KPI 5: Sensitivitas Tarif Sawit
+* **Angka Utama:** `b = –2.675,7 MT/%`
+* **Label:** Kemiringan Tarif Sawit Olahan
+* **Keterangan Singkat:** Setiap kenaikan 1% tarif memotong 2.675,7 MT ekspor (Lolos Bonferroni $\alpha = 0{,}0167$).
+
+### Kartu KPI 6: Validasi Gauss-Markov
+* **Angka Utama:** `100% Lolos`
+* **Label:** Benteng Diagnostik Asumsi Klasik
+* **Keterangan Singkat:** Memenuhi syarat homoskedastisitas, non-autokorelasi (DW=1,71), dan bebas multikolinearitas (VIF=1,52).
+
+---
+
+# Babak II: Cast of Characters — Tiga Ksatria Komoditas HS-6 (Zona 3)
+
+## Sumpah Tanpa Celah: 0% Zero-Trade Flows
+> *Ketiga komoditas dipilih bukan secara acak, melainkan berdasarkan prinsip kelayakan statistika parametrik: 100% aktif (57 dari 57 bulan pengamatan memiliki catatan pengiriman fisik), tanpa satu pun observasi bernilai nol. Hal ini menjaga validitas estimasi pada skala level asli tanpa distorsi manipulasi $\ln(Y+1)$.*
+
+## Profil Tiga Karakter Utama
+
+### 1. Sawit Olahan (`HS 1511.90`) — "Sang Raksasa Penyumbang Devisa"
+* **Volume Rata-rata:** $119.711\text{ MT/bulan}$ (Penyumbang tonase terbesar).
+* **Akumulasi Bea Impor AS:** $\$182{,}32\text{ juta}$ (Beban fiskal tertinggi di pelabuhan AS).
+* **Karakter Paparan:** Terpapar tarif tinggi dan persisten (puncak 19,00%, rata-rata Fase 3 masih 7,31%).
+
+### 2. Karet Alam TSNR / SIR-20 (`HS 4001.22`) — "Sang Tulang Punggung Otomotif"
+* **Volume Rata-rata:** $31.005\text{ MT/bulan}$ (Bahan baku vital pabrik ban AS).
+* **Akumulasi Bea Impor AS:** $\$0{,}06\text{ juta}$ (Bebas bea / tarif mendekati 0%).
+* **Karakter Paparan:** Kelompok kontrol murni; kebal tarif pabean sehingga mengisolasi transmisi nilai tukar Rupiah.
+
+### 3. Kopi Mentah (`HS 0901.11`) — "Sang Jawara Konsumsi Spesialti"
+* **Volume Rata-rata:** $4.428\text{ MT/bulan}$ (Komoditas perkebunan rakyat bernilai tambah tinggi).
+* **Akumulasi Bea Impor AS:** $\$20{,}16\text{ juta}$ (Tarif temporer 18,85%, relaksasi cepat ke 0%).
+* **Karakter Paparan:** Barang konsumsi bernilai tinggi dengan elastisitas harga inelastis sempurna.
+
+---
+
+# Babak III: Pengembaraan 57 Bulan & Uji Welch t-test (Zona 4)
+
+## Dinamika Tiga Babak Kebijakan (Temporal Regimes)
+1. **Fase 1 — Pra-Tarif (Januari 2022 – Maret 2025 | 39 Bulan):**  
+   Masa damai perdagangan; tarif efektif riil stabil di bawah $0{,}2\%$. Sawit mencatatkan rata-rata $124.975\text{ MT/bln}$ dan Karet $34.548\text{ MT/bln}$.
+2. **Fase 2 — Guncangan Tarif Resiprokal (April 2025 – Januari 2026 | 10 Bulan):**  
+   Masa badai proteksionisme; tarif efektif melonjak ke $18{,}8\%\text{--}19{,}0\%$. Terjadi kontraksi tajam volume ekspor dan kepanikan rantai pasok.
+3. **Fase 3 — Relaksasi Tarif via ART (Februari 2026 – September 2026 | 8 Bulan):**  
+   Masa pemulihan bilateral; pembentukan *Agreement on Reciprocal Trade* (ART) secara bertahap memulihkan tarif menuju $0\%$.
+
+## Teks Box Uji Komparasi 2 Periode (Welch's t-test)
+* **Sawit Olahan:** Rata-rata merosot dari $124.975\text{ MT}$ ke $105.618\text{ MT}$ (Turun **–15,5%**, $t = -2{,}120, p = 0{,}0384^*$).
+* **Karet TSNR:** Rata-rata anjlok dari $34.548\text{ MT}$ ke $23.328\text{ MT}$ (Turun **–32,5%**, $t = -4{,}748, p = 2{,}07 \times 10^{-5***}$).
+* **Kopi Mentah:** Rata-rata stabil dari $4.372\text{ MT}$ ke $4.556\text{ MT}$ (Tumbuh **+4,2%**, $t = +0{,}501, p = 0{,}6189$, Resilien).
+
+---
+
+# Babak IV: The Major Plot Twist — Karet Tenggelam oleh Kurs (Zona 5)
+
+## [BADGE: KEY DISCOVERY]
+> **Plot Twist Ekonometrika:**  
+> Praduga awal menduga anjloknya ekspor karet disebabkan oleh kebijakan proteksionisme AS. Namun hasil pengujian membuktikan fakta sebaliknya: **Karet TSNR bebas dari tarif (tarif efektif = 0%), melainkan tenggelam oleh gelombang depresiasi Kurs Rupiah terhadap Dolar AS!**
+
+## Pembuktian Angka Regresi & Post-Hoc Tukey HSD
+1. **Bukti ANOVA 3 Fase Karet ($F = 9{,}566, p = 0{,}00028$):**  
+   Kontraksi volume ekspor karet justru **makin dalam di Fase 3** saat tarif AS sudah turun ke $0\%$. Uji lanjut Tukey HSD mencatat selisih penurunan terbesar terjadi pada Fase 3 vs Fase 1 sebesar **–14.235 MT** ($p = 0{,}00076$).
+2. **Sensitivitas Kurs yang Menghancurkan:**  
+   Koefisien kurs karet $b = -6{,}37\text{ MT/Rp}$ ($t = -5{,}096, p = 4{,}73 \times 10^{-6}$). Pelemahan rupiah menembus Rp16.800/USD memicu lonjakan biaya logistik dan penurunan serapan pabrik ban AS.
+3. **Rasio Dominasi Beta Terstandarisasi:**  
+   Pengaruh nilai tukar kurs terbukti **3,7 kali lebih kuat** menekan karet dibanding pengaruh tarif ($\beta^*_{\text{kurs}} = -0{,}5631$ vs $\beta^*_{\text{tarif}} = -0{,}1534$).
+4. **Resiliensi Kopi (The Safe Haven):**  
+   Model kopi menghasilkan $R^2 = 0{,}92\%$ dengan nilai $F = 0{,}501$ ($p = 0{,}683$). Kopi mentah kebal terhadap guncangan tarif maupun kurs karena loyalitas konsumen kopi spesialti AS.
+
+---
+
+# Babak V: Resolusi Kebijakan Strategis 3 Pilar (Zona 6)
+
+## Teks Peta Aksi 3 Pilar
+
+### 1. Pilar Sawit Olahan (`HS 1511.90`): "Kawal Fasilitas ART 0%"
+* Menjadikan kesepakatan bilateral ART sebagai instrumen perlindungan tarif permanen.
+* Memperkuat audit sertifikasi keberlanjutan ISPO/RSPO guna mencegah dalih proteksionisme non-tarif.
+
+### 2. Pilar Karet TSNR (`HS 4001.22`): "Bangun Sekoci Lindung Nilai Valas"
+* Memfasilitasi instrumen *hedging* devisa valuta asing rupiah-dolar bagi eksportir untuk meredam volatilitas arus kas.
+* Deregulasi dan efisiensi biaya tambat kepelabuhanan domestik untuk menekan beban pengapalan Samudera Pasifik.
+
+### 3. Pilar Kopi Mentah (`HS 0901.11`): "Pertahankan Mahkota Kopi Spesialti"
+* Memperluas penetrasi kopi spesialti bersertifikat Indikasi Geografis (Gayo, Mandheling, Toraja, Kintamani).
+* Memanfaatkan inelastisitas permintaan untuk meningkatkan daya tawar harga di segmen pasar premium AS.
+
+## Sitasi Resmi Data Kepabeanan
+* US Census Bureau Foreign Trade Division (General Imports HS-6 Bulanan 2022–2026).
+* USDA Foreign Agricultural Service (FAS) GATS Database.
+* Federal Reserve Bank of St. Louis (FRED): Spot Exchange Rate IDR/USD.
+* World Bank Commodity Price Pink Sheet: Crude Oil Brent FOB.
