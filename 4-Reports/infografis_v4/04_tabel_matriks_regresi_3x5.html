@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=1120, initial-scale=1.0" />
-  <title>Matriks Minimalis Regresi OLS (3 Prediktor × 5 Komoditas)</title>
+  <title>Matriks Minimalis Regresi OLS (3 Prediktor × 5 Komoditas) — Gaya Canva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-canvas: #FAFAF8;
-      --bg-white: #FFFFFF;
-      --bg-tint: #F8FAFC;
-      --border: #E2E8F0;
-      --navy: #0F172A;
-      --slate: #475569;
-      --muted: #94A3B8;
-      --cobalt: #005AB5;
-      --cobalt-bg: #EFF6FF;
-      --amber: #D97706;
-      --amber-txt: #B45309;
-      --amber-bg: #FFFBEB;
-      --teal: #0E7490;
-      --teal-bg: #ECFEFF;
+      --cream-card: #F2E4C7;
+      --cream-soft: #FBF6EA;
+      --cream-pill: #E8F0DA;
+      --border-dark: #3C4D3D;
+      --border-soft: #C9BA98;
+      --ink-dark: #233326;
+      --ink-muted: #566354;
+      --forest: #44644C;
+      --forest-deep: #2E4836;
+      --terra: #C05C40;
+      --terra-deep: #8A311B;
+      --terra-tint: #FADFD6;
+      --sky: #2E7BA1;
+      --sky-deep: #174B66;
+      --sky-tint: #DCEEF7;
     }
 
     * {
@@ -29,173 +33,212 @@
     }
 
     html, body {
-      background: var(--bg-canvas);
-      color: var(--navy);
-      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background: transparent;
+      color: var(--ink-dark);
+      font-family: "Nunito", "Segoe UI", -apple-system, Roboto, Helvetica, Arial, sans-serif;
       width: 1120px;
-      line-height: 1.35;
+      line-height: 1.32;
     }
 
     .card {
       width: 1120px;
-      background: var(--bg-white);
-      border: 1px solid #CBD5E1;
-      border-top: 6px solid var(--cobalt);
-      padding: 22px 26px 20px 26px;
+      background: var(--cream-card);
+      border: 2.5px solid var(--border-dark);
+      border-radius: 22px;
+      padding: 20px 24px 18px 24px;
+    }
+
+    .header-wrap {
+      margin-bottom: 12px;
     }
 
     .top-bar {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 14px;
-      gap: 16px;
+      align-items: center;
+      gap: 12px;
     }
 
-    h1 {
-      font-size: 20px;
+    .title-pill {
+      display: inline-block;
+      background: var(--forest);
+      color: #FFFDF7;
+      font-size: 18px;
       font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.2px;
-    }
-
-    .sub {
-      font-size: 12.2px;
-      color: var(--slate);
-      margin-top: 2px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      letter-spacing: -0.1px;
+      white-space: nowrap;
     }
 
     .legend {
       display: flex;
-      gap: 10px;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      gap: 6px;
       align-items: center;
-      font-size: 11.2px;
-      font-weight: 700;
-      flex-shrink: 0;
+      font-size: 10.8px;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
     .lg {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 3px 8px;
-      border-radius: 3px;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
     }
-    .lg-bonf { background: var(--cobalt-bg); color: var(--cobalt); border: 1.5px solid var(--cobalt); }
-    .lg-nom  { background: var(--amber-bg); color: var(--amber-txt); border: 1.5px solid var(--amber); }
-    .lg-tak  { background: var(--teal-bg); color: var(--teal); border: 1px dashed var(--teal); }
-    .lg-ts   { background: var(--bg-tint); color: var(--slate); border: 1px dashed #CBD5E1; }
+    .lg-bonf { background: var(--forest); color: #FFFDF7; border: 1.5px solid var(--forest-deep); }
+    .lg-nom  { background: var(--terra-tint); color: var(--terra-deep); border: 1.5px solid var(--terra); }
+    .lg-tak  { background: var(--sky-tint); color: var(--sky-deep); border: 1.5px dashed var(--sky); }
+    .lg-ts   { background: var(--cream-soft); color: var(--ink-muted); border: 1.5px dashed #B5A888; }
+
+    .sub {
+      font-size: 12.2px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      margin-top: 7px;
+      padding-left: 6px;
+    }
 
     table.mat {
       width: 100%;
       border-collapse: separate;
-      border-spacing: 6px;
+      border-spacing: 7px;
       table-layout: fixed;
     }
 
     th.corner {
-      width: 195px;
-      background: var(--navy);
-      color: #FFFFFF;
+      width: 204px;
+      background: var(--terra);
+      color: #FFFDF7;
       text-align: left;
-      padding: 10px 12px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 700;
+      padding: 10px 13px;
+      border-radius: 14px;
+      border: 1.5px solid #8A3924;
+      font-size: 11.6px;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
     th.corner span {
       display: block;
-      font-size: 10.5px;
-      font-weight: 400;
-      color: #CBD5E1;
+      font-size: 10.6px;
+      font-weight: 700;
+      color: #FDEAE3;
       margin-top: 2px;
     }
 
     th.col {
-      background: var(--bg-tint);
-      border: 1px solid var(--border);
-      border-top: 4px solid #94A3B8;
-      padding: 10px 10px;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-soft);
+      border: 1.5px solid var(--border-dark);
+      padding: 12px 10px 9px 10px;
       text-align: center;
-      border-radius: 4px;
+      border-radius: 14px;
     }
 
-    th.col.sawit  { background: var(--amber-bg); border-top-color: var(--amber); border-color: #FCD34D; }
-    th.col.karet  { background: var(--cobalt-bg); border-top-color: var(--cobalt); border-color: #93C5FD; }
-    th.col.kelapa { background: var(--teal-bg); border-top-color: var(--teal); border-color: #67E8F9; }
+    th.col::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: #8A8168;
+    }
+
+    th.col.sawit  { background: #FCF0EA; }
+    th.col.sawit::before  { background: var(--terra); }
+    th.col.karet  { background: #EAF2E6; }
+    th.col.karet::before  { background: var(--forest); }
+    th.col.kelapa { background: #E9F4FA; }
+    th.col.kelapa::before { background: var(--sky); }
 
     .c-name {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--navy);
+      font-size: 15.5px;
+      font-weight: 900;
+      color: var(--ink-dark);
     }
 
     .c-hs {
       font-size: 10.8px;
-      font-weight: 600;
-      color: var(--slate);
+      font-weight: 700;
+      color: var(--ink-muted);
       margin-top: 1px;
     }
 
     tbody th.row {
-      background: var(--bg-tint);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--navy);
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-soft);
+      border: 1.5px solid var(--border-dark);
       text-align: left;
-      padding: 12px 12px;
-      border-radius: 4px;
+      padding: 11px 12px 11px 16px;
+      border-radius: 14px;
       vertical-align: middle;
     }
-    tbody th.row.x1 { border-left-color: var(--amber); }
-    tbody th.row.x2 { border-left-color: var(--cobalt); }
-    tbody th.row.x3 { border-left-color: #94A3B8; }
+
+    tbody th.row::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 6px;
+      background: #8A8168;
+    }
+    tbody th.row.x1::before { background: var(--terra); }
+    tbody th.row.x2::before { background: var(--forest); }
+    tbody th.row.x3::before { background: #8A8168; }
 
     .r-name {
-      font-size: 13.5px;
-      font-weight: 800;
-      color: var(--navy);
+      font-size: 13.8px;
+      font-weight: 900;
+      color: var(--ink-dark);
     }
 
     .r-unit {
       font-size: 10.8px;
-      font-weight: 500;
-      color: var(--slate);
+      font-weight: 700;
+      color: var(--ink-muted);
       margin-top: 1px;
     }
 
     td.cell {
-      border-radius: 4px;
+      border-radius: 14px;
       padding: 11px 10px;
       text-align: center;
       vertical-align: middle;
-      background: #FFFFFF;
-      border: 1px dashed #CBD5E1;
+      background: var(--cream-soft);
+      border: 1.5px dashed #BDB091;
     }
 
     td.cell.bonf {
-      background: var(--cobalt-bg);
-      border: 2px solid var(--cobalt);
+      background: var(--forest);
+      border: 2px solid #243C2B;
     }
 
     td.cell.nom {
-      background: var(--amber-bg);
-      border: 2px solid var(--amber);
+      background: var(--terra-tint);
+      border: 2px solid var(--terra);
     }
 
     td.cell.tak {
-      background: var(--teal-bg);
-      border: 1.5px dashed var(--teal);
+      background: var(--sky-tint);
+      border: 1.8px dashed var(--sky);
     }
 
     .b-val {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--slate);
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--ink-muted);
     }
-    td.cell.bonf .b-val { color: var(--cobalt); font-weight: 800; font-size: 15px; }
-    td.cell.nom  .b-val { color: var(--amber-txt); font-weight: 800; font-size: 14.5px; }
-    td.cell.tak  .b-val { color: var(--teal); font-weight: 700; }
+    td.cell.bonf .b-val { color: #FFFDF7; font-weight: 900; font-size: 15.8px; }
+    td.cell.nom  .b-val { color: var(--terra-deep); font-weight: 900; font-size: 15px; }
+    td.cell.tak  .b-val { color: var(--sky-deep); font-weight: 800; font-size: 14.5px; }
 
     .p-row {
       margin-top: 5px;
@@ -203,61 +246,75 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--slate);
+      font-size: 11.6px;
+      font-weight: 700;
+      color: var(--ink-muted);
     }
 
-    td.cell.bonf .p-row { color: var(--navy); font-weight: 700; }
-    td.cell.nom  .p-row { color: var(--navy); font-weight: 700; }
+    td.cell.bonf .p-row { color: #E4EFE0; font-weight: 800; }
+    td.cell.nom  .p-row { color: var(--ink-dark); font-weight: 800; }
+    td.cell.tak  .p-row { color: var(--ink-dark); font-weight: 800; }
 
     .mark {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 20px;
-      height: 20px;
+      width: 21px;
+      height: 21px;
       border-radius: 50%;
-      font-size: 11.5px;
-      font-weight: 800;
+      font-size: 11.8px;
+      font-weight: 900;
     }
-    .m-ok  { background: var(--cobalt); color: #FFFFFF; }
-    .m-nom { background: var(--amber); color: #FFFFFF; }
-    .m-tak { background: #FFFFFF; color: var(--teal); border: 1.5px solid var(--teal); }
-    .m-ts  { background: #F1F5F9; color: #94A3B8; border: 1px solid #CBD5E1; font-weight: 700; }
+    .m-ok  { background: var(--cream-card); color: #243C2B; border: 1.5px solid #FFFDF7; }
+    .m-nom { background: var(--terra); color: #FFFDF7; }
+    .m-tak { background: #FFFDF7; color: var(--sky); border: 1.5px solid var(--sky); }
+    .m-ts  { background: #EFE6D1; color: #7C7560; border: 1px solid #C8BC9D; font-weight: 800; }
 
     .foot-min {
-      margin-top: 10px;
+      margin-top: 9px;
       display: flex;
       justify-content: space-between;
-      font-size: 10.8px;
-      color: var(--slate);
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-muted);
       padding: 0 6px;
+    }
+
+    .foot-badge {
+      background: var(--cream-pill);
+      color: var(--forest-deep);
+      border: 1.2px solid var(--border-dark);
+      border-radius: 999px;
+      padding: 2px 12px;
+      font-weight: 800;
+      font-size: 10.6px;
     }
   </style>
 </head>
 <body>
   <div class="card">
 
-    <div class="top-bar">
-      <div>
-        <h1>Ringkasan Koefisien &amp; Signifikansi Regresi OLS (3 Prediktor × 5 Komoditas)</h1>
-        <div class="sub">Volume Impor AS (MT/bln) ~ Tarif Efektif (X₁) + Kurs IDR/USD (X₂) + Harga Brent (X₃) • 57 Bulan (2022–2026)</div>
+    <div class="header-wrap">
+      <div class="top-bar">
+        <div class="title-pill">Matriks Koefisien &amp; Signifikansi Regresi OLS</div>
+
+        <div class="legend">
+          <span class="lg lg-bonf">✓ Lolos Bonferroni</span>
+          <span class="lg lg-nom">* Sig. 5% (Tak Bonf 1%)</span>
+          <span class="lg lg-tak">~ Tak Lolos Bonf</span>
+          <span class="lg lg-ts">— Tidak Sig.</span>
+        </div>
       </div>
 
-      <div class="legend">
-        <span class="lg lg-bonf">✓ Lolos Bonferroni</span>
-        <span class="lg lg-nom">* Sig. 5% (Tak Bonf 1%)</span>
-        <span class="lg lg-tak">~ Tak Lolos Bonf</span>
-        <span class="lg lg-ts">— Tidak Sig.</span>
-      </div>
+      <div class="sub">Volume Impor AS (MT/bln) ~ Tarif Efektif (X₁) + Kurs IDR/USD (X₂) + Harga Brent (X₃) • 57 Bulan (2022–2026)</div>
     </div>
 
     <table class="mat">
       <thead>
         <tr>
           <th class="corner">
-            Prediktor (↓) \ Komoditas (→)
+            Prediktor (↓) · Komoditas (→)
             <span>Koefisien (b) &amp; p-value OLS</span>
           </th>
           <th class="col sawit">
@@ -387,7 +444,7 @@
 
     <div class="foot-min">
       <span>Catatan: Karet ↔ Kurs Adj. R² = 0,3960 • Asosiasi statistik observasional, bukan bukti kausalitas.</span>
-      <span>Kelompok 10 — STA2511 IPB</span>
+      <span class="foot-badge">Kelompok 10 — STA2511 IPB</span>
     </div>
 
   </div>
