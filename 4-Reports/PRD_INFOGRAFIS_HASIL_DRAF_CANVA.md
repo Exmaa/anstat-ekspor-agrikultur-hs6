@@ -3,10 +3,10 @@
 ### Berbasis Bukti Audit Desain Historis Canva & Hasil Empiris Final Draf HS-6
 
 * **Peran:** Senior Data Visualization Architect & Lead Product Manager
+* **Kelompok:** Kelompok 10 — Analisis Statistika (STA2511)
 * **Institusi:** Departemen Statistika dan Sains Data, FMIPA IPB University
-* **Mata Kuliah:** Analisis Statistika (STA2511)
-* **Dosen Pembimbing:** Prof. Dr. Ir. Khairil Anwar Notodiputro, M.Sc.
-* **Tim Peneliti:** Emanuel Marthen Embuai & Tim
+* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)
+* **Tim Peneliti:** Kelompok 10 (Emanuel Marthen Embuai & Tim)
 * **ID Desain Canva Aktif:** `DAHa9hwSRJI` ([Tautan Canva Editor](https://www.canva.com/d/h83NMmeAKavZFZH) | [Shortlink Canva](https://canva.link/bolkds13z5495yr))
 * **Desain Canva Sebelumnya:** `DAHa9rQHHko` (374×794 px) & `DAHa9lpdGeM` (1587×2245 px)
 
@@ -81,7 +81,7 @@ Audit dilakukan terhadap seluruh artefak desain di akun Canva (`search-designs`,
 │ • Logo IPB University & Departemen Statistika dan Sains Data           │
 │ • Judul Utama: Menakar Ketahanan Ekspor Agrikultur Nusantara           │
 │ • Subjudul: Dampak Tarif Resiprokal AS, Kurs IDR/USD & Minyak Mentah   │
-│ • Metadata: Pembimbing Prof. Khairil Anwar Notodiputro | Tim Emanuel   │
+│ • Metadata: Dosen Dr. Farit Mochamad Afendi, M.Si. | Kelompok 10       │
 │ • Lingkup: 57 Bulan Data Panel (2022.01–2026.09), 171 Observasi HS-6   │
 ├────────────────────────────────────────────────────────────────────────┤
 │ [ZONA 2] KEY PERFORMANCE INDICATORS (3 KARTU KPI)                      │

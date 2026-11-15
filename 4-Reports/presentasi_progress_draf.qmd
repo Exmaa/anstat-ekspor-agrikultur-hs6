@@ -1,7 +1,7 @@
 ---
 title: "Menakar Ketahanan Ekspor Agrikultur Nusantara terhadap Guncangan Tarif Resiprokal AS (2022–2026)"
 subtitle: "Laporan Progress Riset Analisis Ekonometrika Data Panel 57 Bulan pada Level HS-6"
-author: "Emanuel Marthen Embuai & Tim Peneliti Analisis Statistika"
+author: "Kelompok 10 — Analisis Statistika (Emanuel Marthen Embuai & Tim)"
 institute: "Departemen Statistika dan Sains Data, FMIPA IPB University"
 date: "2026-11-15"
 lang: id
@@ -17,10 +17,11 @@ format:
 
 ## 1. Identitas Riset & Metadata Tim
 
+* **Kelompok:** Kelompok 10
 * **Mata Kuliah:** Analisis Statistika (STA2511)
 * **Departemen:** Statistika dan Sains Data — Fakultas Matematika dan Ilmu Pengetahuan Alam (FMIPA) IPB University
-* **Dosen Pembimbing:** Prof. Dr. Ir. Khairil Anwar Notodiputro, M.Sc.
-* **Tim Peneliti:** Emanuel Marthen Embuai & Tim
+* **Dosen Pengampu / Pembimbing:** Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)
+* **Tim Peneliti:** Emanuel Marthen Embuai & Tim (Kelompok 10)
 * **Basis Analisis:** Data Panel Bulanan 57 Bulan ($N = 171$, Periode 2022.01–2026.09)
 * **Pos Tarif Pengamatan (Level HS-6):**
   1. Sawit Olahan / *Refined Palm Oil* (`HS 1511.90`)
@@ -257,9 +258,9 @@ Untuk memastikan kekuatan estimasi, model dibandingkan dengan standarisasi skor-
 ## 17. Sesi Tanya Jawab & Diskusi (Q&A)
 
 * **Terima Kasih** atas arahan dan bimbingan:
-  * **Prof. Dr. Ir. Khairil Anwar Notodiputro, M.Sc.**
+  * **Dr. Farit Mochamad Afendi, M.Si. (Pak Farit)**
   * Departemen Statistika dan Sains Data, FMIPA IPB University
 * **Tautan Sumber Daya Proyek:**
-  * Repositori GitHub Tim: [github.com/Exmaa/anstat-ekspor-agrikultur-hs6](https://github.com/Exmaa/anstat-ekspor-agrikultur-hs6)
-  * Desain Interaktif Canva: [canva.link/bolkds13z5495yr](https://canva.link/bolkds13z5495yr)
-* *Diskusi dan masukan dosen pembimbing sangat diharapkan untuk penyempurnaan tahap final.*
+  * Repositori GitHub Kelompok 10: [github.com/Exmaa/anstat-ekspor-agrikultur-hs6](https://github.com/Exmaa/anstat-ekspor-agrikultur-hs6)
+  * Desain Interaktif Canva: [canva.link/27vbrrvi61563k4](https://canva.link/27vbrrvi61563k4)
+* *Diskusi dan masukan dosen pengampu sangat diharapkan untuk penyempurnaan tahap final.*
